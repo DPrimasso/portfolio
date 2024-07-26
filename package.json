@@ -23,20 +23,13 @@
     "react-simple-chatbot": "^0.6.1",
     "react-tsparticles": "^1.42.2",
     "serve": "^14.2.3",
-    "typewriter-effect": "^2.18.2",
-    "web-vitals": "^2.1.4"
+    "typewriter-effect": "^2.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
