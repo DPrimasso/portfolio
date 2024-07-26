@@ -166,6 +166,16 @@ button:focus {
   width: 5em !important;
 }
 
+.bot-image {
+  height: 300px !important;
+  width: 400px !important;
+}
+
+.close-image {
+  height: 40px !important;
+  width: 40px !important;
+}
+
 .navbar-nav .nav-link {
   color: black !important;
   font-weight: bold !important;
@@ -328,7 +338,7 @@ button:focus {
 
 .home-about-section {
   position: relative;
-  padding-bottom: 70px !important;
+  padding-bottom: 0px !important;
   padding-top: 0px !important;
 }
 
@@ -553,7 +563,7 @@ button:focus {
 
 .about-section {
   position: relative !important;
-  padding-top: 150px !important;
+  padding-top: 75px !important;
   padding-bottom: 30px !important;
   color: black !important;
 }
@@ -619,7 +629,7 @@ button:focus {
   position: relative !important;
   padding-top: 110px !important;
   padding-bottom: 30px !important;
-  background-image: var(--section-background-color) !important;
+  /*background-image: var(--section-background-color) !important;*/
   color: white !important;
 }
 
@@ -627,6 +637,10 @@ button:focus {
   padding-top: 50px;
   padding-bottom: 50px;
   justify-content: center;
+}
+
+.transparent {
+    background-color: black;
 }
 
 .resume-left {
@@ -754,3 +768,85 @@ button:focus {
 .fork-btn-inner::after {
   display: none !important;
 }
+
+/*Chat bot style*/
+
+.chatbot-wrapper {
+  position: fixed;
+  right: 0;
+  bottom: 255px;
+  width: 352px;
+  max-width: 100%;
+  height: 500px;
+  background-color: transparent;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s ease;
+}
+
+.chatbot-wrapper.collapsed {
+  height: 50px;
+}
+
+.chatbot-wrapper.expanded {
+  bottom: 62px !important;
+
+}
+
+.chatbot-container {
+  padding: 0px;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.chatbot-messages {
+  max-height: calc(100% - 50px);
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.message.user {
+  background-color: #daf1da;
+  text-align: right;
+}
+
+.message.bot {
+  background-color: #f1f1f1;
+  text-align: left;
+}
+
+.chatbot-input {
+  display: flex;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 5px;
+}
+
+.chatbot-input button {
+  padding: 5px 10px;
+}
+
+.collapse-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0px;
+  bottom: 25px;
+}
+
+.collapse-btn:hover {
+  background-color: #0056b3;
+}
+

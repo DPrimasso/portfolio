@@ -1,0 +1,252 @@
+{
+  "Programming Languages": {
+    "JavaScript": {
+      "Description": "Interpreted scripting language, primarily used for web development.",
+      "Usage": "Used for server-side logic.",
+      "Advantages": "Large developer community, dynamic and versatile.",
+      "Disadvantages": "Weak typing, potential for hard-to-detect bugs."
+    },
+    "TypeScript": {
+      "Description": "Superset of JavaScript that adds static typing.",
+      "Usage": "Used to write more robust and maintainable code.",
+      "Advantages": "Reduces runtime errors, improved autocompletion and refactoring.",
+      "Disadvantages": "Requires initial setup, learning curve for those unfamiliar with static typing."
+    },
+    "Go": {
+      "Description": "Statically typed programming language developed by Google.",
+      "Usage": "Used to develop the core of the backend application.",
+      "Advantages": "Native concurrency, fast compilation, garbage collection, high performance.",
+      "Disadvantages": "Lack of generics (recently introduced), learning curve for those coming from dynamic languages."
+    },
+    "Solidity": {
+      "Description": "Contract-oriented programming language for writing smart contracts.",
+      "Usage": "Used for developing smart contracts on Ethereum and other blockchain platforms.",
+      "Advantages": "Specifically designed for blockchain development, strong community support.",
+      "Disadvantages": "Young language with evolving best practices, security vulnerabilities if not used correctly."
+    }
+  },
+  "Runtime": {
+    "Node.js": {
+      "Description": "JavaScript runtime built on Chrome's V8 engine.",
+      "Usage": "Used as the execution environment for the backend server.",
+      "Advantages": "High performance due to event-driven architecture, uses JavaScript on both server and client sides.",
+      "Disadvantages": "Complex handling of CPU-intensive operations, callback hell without async/await."
+    },
+    "Go Runtime": {
+      "Description": "Runtime environment for programs written in Go.",
+      "Usage": "Used as the execution environment for the backend.",
+      "Advantages": "Optimized for high performance, native support for concurrency.",
+      "Disadvantages": "Lower level compared to runtimes like Node.js, requires manual management of goroutines."
+    }
+  },
+  "Frameworks and Libraries": {
+    "Express.js": {
+      "Description": "Web application framework for Node.js.",
+      "Usage": "Used to handle routes and middleware for the backend server.",
+      "Advantages": "Ease of use, wide range of available middleware.",
+      "Disadvantages": "Less structured compared to frameworks like Rails or Django."
+    },
+    "Ethers.js": {
+      "Description": "Library for interacting with Ethereum.",
+      "Usage": "Used to interface with smart contracts and Ethereum nodes.",
+      "Advantages": "Simple and intuitive API, support for various providers.",
+      "Disadvantages": "Depends on the stability of network connections."
+    },
+    "Gin": {
+      "Description": "Web framework written in Go.",
+      "Usage": "Used to handle routes and middleware for the backend server.",
+      "Advantages": "High performance, simple and intuitive API, middleware support.",
+      "Disadvantages": "Less feature-rich compared to heavier frameworks like Django."
+    },
+    "Gorm": {
+      "Description": "ORM (Object-Relational Mapping) for Go.",
+      "Usage": "Used to interact with the database in an ORM fashion.",
+      "Advantages": "Ease of use, support for multiple databases, automatic migrations.",
+      "Disadvantages": "Lower performance compared to hand-written SQL queries."
+    },
+    "Apollo Client": {
+      "Description": "Library for managing GraphQL queries on the client side.",
+      "Usage": "Used to make GraphQL queries and manage application state.",
+      "Advantages": "Powerful state management, built-in caching.",
+      "Disadvantages": "Additional complexity compared to REST, requires good understanding of GraphQL."
+    },
+    "Axios": {
+      "Description": "A Promise-based HTTP client for the browser and Node.js.",
+      "Usage": "Making HTTP requests.",
+      "Advantages": "Promise-based, supports async/await.",
+      "Disadvantages": "Slightly larger footprint compared to native fetch."
+    },
+    "Handlebars": {
+      "Description": "A simple templating language.",
+      "Usage": "Renders HTML templates.",
+      "Advantages": "Simple, logic-less templates.",
+      "Disadvantages": "Limited in logic complexity compared to JSX or other templating engines."
+    },
+    "TSLint": {
+      "Description": "A linter for TypeScript code.",
+      "Usage": "Enforces code style and best practices.",
+      "Advantages": "Consistent code style, catches potential errors.",
+      "Disadvantages": "Some overhead in configuring rules."
+    },
+    "dotenv": {
+      "Description": "A module for loading environment variables from a .env file.",
+      "Usage": "Manages configuration through environment variables.",
+      "Advantages": "Secure, easy configuration management.",
+      "Disadvantages": "Requires additional package."
+    },
+    "MongoDB Go Driver": {
+      "Description": "Official MongoDB driver for Go.",
+      "Usage": "Used for database operations such as querying and updating MongoDB collections.",
+      "Advantages": "Strong typing, integration with Go's context package for managing deadlines and cancellations.",
+      "Disadvantages": "More verbose than other MongoDB clients, requires understanding of Go concurrency model."
+    },
+    "Chi": {
+      "Description": "Lightweight, idiomatic and composable router for building Go HTTP services.",
+      "Usage": "Used to manage routing in the Go web server.",
+      "Advantages": "Lightweight, composable, middleware support.",
+      "Disadvantages": "Less feature-rich compared to heavier frameworks like Gin or Echo."
+    },
+    "Mongoose": {
+      "Description": "An Object Data Modeling (ODM) library for MongoDB and Node.js.",
+      "Usage": "Used to model application data in MongoDB, providing schema-based data validation and querying.",
+      "Advantages": "Schema validation, middleware support, easy data manipulation.",
+      "Disadvantages": "Additional abstraction layer can lead to performance overhead, learning curve for Mongoose-specific methods."
+    },
+    "Hardhat": {
+      "Description": "Development environment for compiling, deploying, testing, and debugging Ethereum software.",
+      "Usage": "Used to manage the Ethereum smart contract development workflow.",
+      "Advantages": "Extensible, integrates with various plugins, supports TypeScript.",
+      "Disadvantages": "Steeper learning curve compared to simpler tools like Truffle."
+    },
+    "Jest": {
+      "Description": "A JavaScript testing framework.",
+      "Usage": "Used for writing and running unit tests for the project.",
+      "Advantages": "Easy to set up, great documentation, snapshot testing.",
+      "Disadvantages": "Can be slow for large test suites, potential configuration overhead."
+    },
+    "React": {
+      "Description": "JavaScript library for building user interfaces.",
+      "Usage": "Used to create interactive UIs.",
+      "Advantages": "Component-based, fast rendering.",
+      "Disadvantages": "Requires learning JSX, complexity in large applications."
+    },
+    "Redux": {
+      "Description": "State management library for JavaScript applications.",
+      "Usage": "Used to manage the state of the application.",
+      "Advantages": "Predictable state management, central state store.",
+      "Disadvantages": "Boilerplate code, learning curve."
+    },
+    "OpenAI": {
+      "Description": "AI research and deployment company.",
+      "Usage": "Provides various AI models and APIs for different use cases.",
+      "Advantages": "Cutting-edge AI technology, wide range of applications.",
+      "Disadvantages": "Can be costly, requires understanding of AI principles."
+    }
+  },
+  "Database": {
+    "MongoDB": {
+      "Description": "Document-oriented NoSQL database.",
+      "Usage": "Used as the main database for the application.",
+      "Advantages": "Flexibility in data management, scalability.",
+      "Disadvantages": "Eventual consistency (instead of strong consistency), complexity in handling complex queries."
+    },
+    "PostgreSQL": {
+      "Description": "Open-source relational database.",
+      "Usage": "Used as the main database for the application.",
+      "Advantages": "ACID compliant, supports complex operations and transactions, extensibility.",
+      "Disadvantages": "Complex initial configuration, lower performance compared to NoSQL for some operations."
+    }
+  },
+  "Protocols and APIs": {
+    "JSON-RPC": {
+      "Description": "Lightweight protocol for remote procedure calls using JSON.",
+      "Usage": "Used to communicate with Ethereum nodes.",
+      "Advantages": "Simple to implement and use.",
+      "Disadvantages": "Limited compared to other protocols like gRPC."
+    },
+    "GraphQL": {
+      "Description": "Query language for APIs developed by Facebook.",
+      "Usage": "Used for API queries and mutations on the client side.",
+      "Advantages": "Requests only the necessary data, reduces over-fetching, powerful typing.",
+      "Disadvantages": "Initial complexity, requires a GraphQL server."
+    },
+    "REST API": {
+      "Description": "Representational state transfer is a software architectural style that defines a set of constraints to be used for creating Web services.",
+      "Usage": "Used to create endpoints for the backend service.",
+      "Advantages": "Stateless, cacheable, and scalable.",
+      "Disadvantages": "Can lead to multiple round trips to the server for complex queries."
+    }
+  },
+  "Documentation Tools": {
+    "Swagger": {
+      "Description": "Tool for designing, building, documenting, and using RESTful APIs.",
+      "Usage": "Used to document backend APIs.",
+      "Advantages": "Facilitates understanding and usage of APIs, automatically generates documentation.",
+      "Disadvantages": "Requires configuration and constant updates."
+    }
+  },
+  "Design Patterns": {
+    "Middleware Pattern": {
+      "Description": "A pattern for handling requests and responses in a modular way.",
+      "Usage": "Used in src/middlewares/ for auth and email handling.",
+      "Advantages": "Code reusability, separation of concerns.",
+      "Disadvantages": "Can become hard to manage with many middlewares."
+    },
+    "Controller Pattern": {
+      "Description": "A pattern for separating business logic from routing.",
+      "Usage": "Used in src/controllers/ for handling specific functionalities like error handling and email.",
+      "Advantages": "Clear separation of concerns, easier testing.",
+      "Disadvantages": "Can become bloated if not managed properly."
+    },
+    "Repository Pattern": {
+      "Description": "Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.",
+      "Usage": "Used in `internal/db/mongo.go` to abstract the database operations.",
+      "Advantages": "Decouples business logic from data access, easier testing.",
+      "Disadvantages": "Can introduce additional complexity, potential performance overhead."
+    },
+    "Singleton Pattern": {
+      "Description": "Ensures a class has only one instance and provides a global point of access to it.",
+      "Usage": "Used in the database connection setup to ensure only one connection pool is created.",
+      "Advantages": "Controlled access to the sole instance, reduced memory footprint.",
+      "Disadvantages": "Can be difficult to implement in a thread-safe way, global state can make testing harder."
+    },
+    "Observer Pattern": {
+      "Description": "Defines a one-to-many dependency between objects.",
+      "Usage": "Used to create a subscription mechanism.",
+      "Advantages": "Promotes loose coupling, easy to extend.",
+      "Disadvantages": "Potential memory leaks, complex debugging."
+    }
+  },
+  "In Phase of Learning": {
+    "Machine Learning": {
+      "Description": "Field of study that gives computers the ability to learn without being explicitly programmed.",
+      "Usage": "Used to build models that can make predictions or decisions without human intervention.",
+      "Advantages": "Automates analytical model building, can process large amounts of data.",
+      "Disadvantages": "Requires large datasets, can be computationally intensive."
+    },
+    "AWS": {
+      "Description": "Amazon Web Services, a comprehensive cloud computing platform.",
+      "Usage": "Used for cloud storage, computing power, and various cloud services.",
+      "Advantages": "Scalability, reliability, wide range of services.",
+      "Disadvantages": "Complex pricing model, steep learning curve."
+    },
+    "Python": {
+      "Description": "High-level programming language known for its readability and versatility.",
+      "Usage": "Used in web development, data analysis, artificial intelligence, and more.",
+      "Advantages": "Easy to read and write, large standard library, strong community support.",
+      "Disadvantages": "Slower than compiled languages, can have runtime errors due to dynamic typing."
+    },
+    "Ton Ecosystem": {
+      "Description": "Ecosystem around the Telegram Open Network, a blockchain-based platform.",
+      "Usage": "Used for building decentralized applications and smart contracts.",
+      "Advantages": "High transaction speed, strong community support.",
+      "Disadvantages": "Relatively new, evolving best practices."
+    },
+    "Near Ecosystem": {
+      "Description": "Ecosystem around the NEAR Protocol, a blockchain-based platform.",
+      "Usage": "Used for building decentralized applications and smart contracts.",
+      "Advantages": "High performance, user-friendly development environment.",
+      "Disadvantages": "Relatively new, evolving best practices."
+    }
+  }
+}
