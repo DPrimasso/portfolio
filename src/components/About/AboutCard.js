@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import {ImAirplane, ImPointRight} from "react-icons/im";
-import {MdOutlineSportsSoccer, MdEmojiPeople, MdPeopleAlt, MdPerson4, MdPeople} from "react-icons/md";
+import {ImAirplane} from "react-icons/im";
+import {MdOutlineSportsSoccer, MdPeople} from "react-icons/md";
 
 function AboutCard() {
   return (

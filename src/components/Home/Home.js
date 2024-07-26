@@ -9,7 +9,6 @@ import laptopImg from "../../Assets/about.png";
 import Techstack from "../About/Techstack";
 import Toolstack from "../About/Toolstack";
 import Home3 from "./Home3";
-import ChatBotComponent from "../ChatBot/ChatBotComponent";
 
 function Home() {
   return (

@@ -1,13 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import logo from "../../Assets/logo.png";
 import homeMainMe from "../../Assets/home-main_me.png";
 
 import Tilt from "react-parallax-tilt";
-import {
-  AiFillGithub,
-} from "react-icons/ai";
-import {FaLinkedinIn, FaTelegram} from "react-icons/fa";
 
 function Home2() {
   return (
