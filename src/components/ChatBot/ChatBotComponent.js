@@ -23,9 +23,10 @@ const getOpenAIResponse = async (message) => {
     const assistantMessage =
         "Here is Daniele's technical competencies, use it as a knowledge base for your response:\n" +
         JSON.stringify(learn) + "\n" +
-    "If you don't know some information or how response some question, " +
+        "If you don't know some information or how response some question, " +
         "provide information for contact Daniele Primasso on LinkedIn or email: " +
-        "Linkedin is https://www.linkedin.com/in/daniele-primasso-695ab8158/ and email is primo.note4@gmail.com";
+        "Linkedin is https://www.linkedin.com/in/daniele-primasso-695ab8158/ and email is primo.note4@gmail.com." +
+        "Use a casual tone but try to be concise and not ramble. ";
 
     const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',

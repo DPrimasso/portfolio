@@ -248,8 +248,7 @@
     "Projects": [
       "Curve: DeFi protocol for stablecoin trading",
       "Compound: DeFi protocol for lending and borrowing",
-      "Zapper: DeFi dashboard for managing assets",
-      "Astra Finance: Play-to-earn blockchain game"
+      "Zapper: DeFi dashboard for managing assets"
     ]
   },
   "Professional Experience": [
@@ -265,10 +264,6 @@
         "Database support: MongoDB, GraphQL, SQL",
         "Solidity development using standards such as ERC20, ERC721, ERC1155, ERC1271, ERC4337",
         "Research and development in emerging projects such as play-to-earn, NFT tokenization, and trading"
-      ],
-      "Projects": [
-        "Curve, Compound, Zapper: Stablecomp",
-        "Astra Finance (Play to Earn)"
       ]
     },
     {
