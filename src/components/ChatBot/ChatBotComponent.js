@@ -107,7 +107,7 @@ const ChatBotComponent = () => {
                 <div className="chatbot-container">
                 <img src={closeImage} className="img-fluid close-image" onClick={toggleCollapse} alt="brand"/>
                     <ThemeProvider theme={theme}>
-                        <ChatBot steps={steps}/>
+                        <ChatBot steps={steps} botDelay="500"/>
                     </ThemeProvider>
                 </div>
             )}
