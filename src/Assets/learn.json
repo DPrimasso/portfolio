@@ -1,4 +1,14 @@
 {
+  "Introduction": {
+    "Name": "Daniele Primasso",
+    "DateOfBirth": "27/09/1993",
+    "Contact": {
+      "Address": "Castel Goffredo (MN)",
+      "Phone": "3272404432",
+      "Email": "primo.note4@gmail.com"
+    },
+    "Summary": "Experienced Lead Software Developer with a strong background in backend development, smart contract development, and blockchain technologies. Proven track record in designing and implementing API services, developing decentralized applications, and leading development teams. Adept in various programming languages including JavaScript, Go, Python, and Solidity."
+  },
   "Programming Languages": {
     "JavaScript": {
       "Description": "Interpreted scripting language, primarily used for web development.",
@@ -217,6 +227,73 @@
       "Disadvantages": "Potential memory leaks, complex debugging."
     }
   },
+  "Blockchain Competencies": {
+    "ERC Standards": [
+      "ERC20: Standard interface for fungible tokens",
+      "ERC721: Standard interface for non-fungible tokens (NFTs)",
+      "ERC1155: Standard interface for multi-token types (both fungible and non-fungible)",
+      "ERC1271: Standard interface for validating signatures on behalf of a contract",
+      "ERC4337: Standard for account abstraction"
+    ],
+    "Protocols": [
+      "Masterchef: Yield farming protocol",
+      "VotingEscrow: Protocol for time-locked staking and governance"
+    ],
+    "Development Tools": [
+      "Hardhat: Ethereum development environment",
+      "Truffle: Ethereum development framework",
+      "Ganache: Personal blockchain for Ethereum development",
+      "Remix: Web-based IDE for Solidity development"
+    ],
+    "Projects": [
+      "Curve: DeFi protocol for stablecoin trading",
+      "Compound: DeFi protocol for lending and borrowing",
+      "Zapper: DeFi dashboard for managing assets",
+      "Astra Finance: Play-to-earn blockchain game"
+    ]
+  },
+  "Professional Experience": [
+    {
+      "Company": "Scaling Parrots",
+      "Role": "Lead Software Developer",
+      "Location": "Brescia, Italy",
+      "Duration": "April 2020 - Present",
+      "Responsibilities": [
+        "Backend software development",
+        "Design and implementation of API services for microservices",
+        "Primary languages used: Node.js and Go",
+        "Database support: MongoDB, GraphQL, SQL",
+        "Solidity development using standards such as ERC20, ERC721, ERC1155, ERC1271, ERC4337",
+        "Research and development in emerging projects such as play-to-earn, NFT tokenization, and trading"
+      ],
+      "Projects": [
+        "Curve, Compound, Zapper: Stablecomp",
+        "Astra Finance (Play to Earn)"
+      ]
+    },
+    {
+      "Company": "Nextre Engineering",
+      "Role": "Software Developer",
+      "Location": "Milan, Italy",
+      "Duration": "January 2017 - March 2020",
+      "Responsibilities": [
+        "Maintenance and development of travel agency software for Expedia using Java (Grails framework)",
+        "Participation in the Tech Companies Lab 2019 project, awarded special mention for complex cloud, big data, and IoT projects",
+        "Maintenance and migration of management software for HP"
+      ]
+    },
+    {
+      "Company": "Margor SRL",
+      "Role": "PLC Developer",
+      "Location": "Calcinato (BS), Italy",
+      "Duration": "March 2014 - December 2016",
+      "Responsibilities": [
+        "Development of software for machine automation using PLC",
+        "Development of IoT project prototype for waste disposal machine",
+        "Development of machine prototype for digitizing the cataloging process of mechanical parts"
+      ]
+    }
+  ],
   "In Phase of Learning": {
     "Machine Learning": {
       "Description": "Field of study that gives computers the ability to learn without being explicitly programmed.",
