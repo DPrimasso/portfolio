@@ -68,9 +68,15 @@ export default {
       projects: [
         {
           title: 'Primo Code Assistant',
-          description: 'Applicazione Python che utilizza le API di OpenAI per fornire supporto di codifica in tempo reale e include un portfolio web basato su Vue.js con layout responsive, caricamento dinamico dei progetti e stili modulari con effetti hover.',
-          technologies: 'Python, OpenAI, Vue.js, JavaScript, CSS',
+          description: 'Applicazione Python che utilizza le API di OpenAI per fornire supporto di codifica in tempo reale',
+          technologies: 'Python, OpenAI',
           link: 'https://github.com/DPrimasso/primo-code-assistant'
+        },
+        {
+          title: 'Portfolio Project',
+          description: 'Portfolio basato su Vue.js con layout responsive, caricamento dinamico dei progetti, design delle card interattivo con effetti hover e struttura modulare dei componenti.',
+          technologies: 'Vue.js, HTML5, CSS3, JavaScript',
+          link: 'https://github.com/DPrimasso/portfolio'
         },
         {
           title: 'Node js Backend',
