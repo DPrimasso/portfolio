@@ -37,6 +37,7 @@
         skip,
         isFirst,
         isLast,
+        isThirdStep,
         labels
       }"
     >
@@ -52,7 +53,7 @@
             :is-first="isFirst"
             :is-last="isLast"
             :labels="labels"
-            :class="['tour-step', { 'tour-step-final': isLast }]"
+            :class="['tour-step']"
         >
           <!-- Navigation buttons -->
           <template #actions>
@@ -95,7 +96,7 @@
     </v-tour>
 
     <!-- Footer ----------------------------------------------------------- -->
-    <footer class="bg-dark text-light py-5">
+    <footer id="footer" class="bg-dark text-light py-5">
       <div class="container">
         <div class="row">
           <div id="contact" class="col-md-8">
@@ -184,11 +185,6 @@ export default {
           content:
               "I <strong>progetti più significativi</strong> che ho realizzato."
         },
-        {
-          target: "#chatbot_minimize",
-          content:
-              "Puoi anche <strong>chattare con PrimoBot</strong>, il mio assistente virtuale!"
-        }
       ]
     };
   },
@@ -203,17 +199,11 @@ export default {
 <style scoped>
 /* ------------------------------- Tour styles ------------------------------- */
 .tour-step {
-  background: transparent !important; /* remove default background */
+  background: darkgrey !important; /* remove default background */
   box-shadow: none !important; /* remove default shadow */
-  left: 50em !important;
-  top: -25em !important;
+  left: 30em !important;
+  top: -5em !important;
 
-}
-.tour-step-final {
-  background: transparent !important; /* remove default background */
-  box-shadow: none !important; /* remove default shadow */
-  left: 0em !important;
-  top: -15em !important;
 }
 
 .tour-launcher {
@@ -223,6 +213,7 @@ export default {
 
 .v-step {
   max-width: 250px;
+  max-height: 450px;
 }
 
 .avatar-img {
