@@ -3,7 +3,6 @@
 .env.*.local
 node_modules/
 dist/
-package-lock.json
 .idea/
 *.log
 .DS_Store
