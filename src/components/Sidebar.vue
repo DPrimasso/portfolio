@@ -1,19 +1,37 @@
 <template>
-  <div class="sidebar">
-    <a href="https://github.com/tuo-account" target="_blank" title="GitHub">
-      <i class="fab fa-github"></i>
+  <aside class="sidebar" aria-label="Link social">
+    <a 
+      v-if="portfolioStore.contact?.github"
+      :href="portfolioStore.contact.github" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label="Visita il profilo GitHub"
+    >
+      <i class="fab fa-github" aria-hidden="true"></i>
     </a>
-    <a href="https://www.linkedin.com/in/tuo-profilo/" target="_blank" title="LinkedIn">
-      <i class="fab fa-linkedin"></i>
+    <a 
+      v-if="portfolioStore.contact?.linkedin"
+      :href="portfolioStore.contact.linkedin" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      aria-label="Visita il profilo LinkedIn"
+    >
+      <i class="fab fa-linkedin" aria-hidden="true"></i>
     </a>
-    <a href="https://twitter.com/tuo-profilo" target="_blank" title="Twitter">
-      <i class="fab fa-twitter"></i>
-    </a>
-  </div>
+  </aside>
 </template>
 
-<script>
-export default { name: 'Sidebar' }
+<script setup>
+import { onMounted } from 'vue';
+import { usePortfolioStore } from '../stores/portfolio';
+
+const portfolioStore = usePortfolioStore();
+
+onMounted(() => {
+  if (!portfolioStore.contact) {
+    portfolioStore.loadContact();
+  }
+});
 </script>
 
 <style scoped>

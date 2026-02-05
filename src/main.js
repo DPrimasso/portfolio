@@ -1,18 +1,31 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// importa il tour per Vue3
-import Vue3Tour from 'vue3-tour'
+// Import Pinia
+import pinia from './stores'
 
+// Import VueUse Head for SEO
+import { createHead } from '@vueuse/head'
+
+// Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './assets/style.css'
 
-import 'vue3-tour/dist/vue3-tour.css'
-
 const app = createApp(App)
 
-// registra il plugin sul tuo app instance
-app.use(Vue3Tour)
+// Registra Pinia
+app.use(pinia)
+
+// Registra VueUse Head
+const head = createHead()
+app.use(head)
+
+// Carica i dati iniziali del portfolio
+import { usePortfolioStore } from './stores/portfolio'
+const portfolioStore = usePortfolioStore()
+portfolioStore.loadAll().catch(err => {
+  console.error('Error loading initial portfolio data:', err)
+})
 
 app.mount('#app')

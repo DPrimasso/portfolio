@@ -1,7 +1,12 @@
 <template>
-  <section class="stats py-5">
-    <div class="container d-flex justify-content-around">
-      <div class="stat text-center" v-for="(item, i) in stats" :key="i">
+  <section class="stats py-5" aria-labelledby="stats-heading">
+    <div class="container d-flex justify-content-around" role="list">
+      <div 
+        class="stat text-center" 
+        v-for="(item, i) in portfolioStore.stats" 
+        :key="i"
+        role="listitem"
+      >
         <h3>{{ item.value }}</h3>
         <p>{{ item.label }}</p>
       </div>
@@ -9,19 +14,17 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Stats',
-  data() {
-    return {
-      stats: [
-        { value: '7+', label: 'Anni di esperienza' },
-        { value: '50+', label: 'Progetti completati' },
-        { value: '1000+', label: 'Ore di coding' }
-      ]
-    }
+<script setup>
+import { onMounted } from 'vue';
+import { usePortfolioStore } from '../stores/portfolio';
+
+const portfolioStore = usePortfolioStore();
+
+onMounted(() => {
+  if (portfolioStore.stats.length === 0) {
+    portfolioStore.loadStats();
   }
-}
+});
 </script>
 
 <style scoped>

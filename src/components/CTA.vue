@@ -1,16 +1,21 @@
 <template>
-  <section class="cta py-5 text-center">
+  <section class="cta py-5 text-center" aria-labelledby="cta-heading">
     <div class="container">
-      <h2 class="fw-bold mb-3">Scarica il mio CV</h2>
-      <a href="/src/assets/Curriculum_Vitae_Primasso_Daniele.pdf" class="btn btn-lg btn-cta" download>
-        <i class="fas fa-download me-2"></i>Download CV
+      <h2 id="cta-heading" class="fw-bold mb-3">Scarica il mio CV</h2>
+      <a 
+        href="/Curriculum_Vitae_Primasso_Daniele.pdf" 
+        class="btn btn-lg btn-cta" 
+        download="Curriculum_Vitae_Primasso_Daniele.pdf"
+        aria-label="Scarica il curriculum vitae di Daniele Primasso"
+      >
+        <i class="fas fa-download me-2" aria-hidden="true"></i>Download CV
       </a>
     </div>
   </section>
 </template>
 
-<script>
-export default { name: 'CTA' }
+<script setup>
+// CTA component - no logic needed
 </script>
 
 <style scoped>

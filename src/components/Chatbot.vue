@@ -1,18 +1,25 @@
 <template>
-  <div id="chatbot" v-if="isOpen" class="chatbot">
+  <div id="chatbot" v-if="isOpen" class="chatbot" role="dialog" aria-labelledby="chatbot_header" aria-modal="true">
     <div id="chatbot_header" class="chatbot-header">
       <strong>PrimoBot</strong>
-      <button @click="toggleChatbot">{{ isOpen ? '➖' : '➕' }}</button>
+      <button 
+        @click="toggleChatbot" 
+        aria-label="Chiudi chatbot"
+        :aria-expanded="isOpen"
+      >
+        {{ isOpen ? '➖' : '➕' }}
+      </button>
     </div>
-    <div id="messages" class="chatbot-messages" ref="messagesContainer">
+    <div id="messages" class="chatbot-messages" ref="messagesContainer" role="log" aria-live="polite" aria-atomic="false">
       <div
           v-for="msg in chatMessages"
           :key="msg.id"
           :class="['message', msg.isUser ? 'user' : 'bot']"
+          :role="msg.isUser ? 'user' : 'assistant'"
       >
         <div class="text">{{ msg.text }}</div>
       </div>
-      <div v-if="isTyping" class="typing-indicator">
+      <div v-if="isTyping" class="typing-indicator" aria-label="Il bot sta scrivendo">
         <span></span><span></span><span></span>
       </div>
     </div>
@@ -20,109 +27,57 @@
       <input
           type="text"
           v-model="userMessage"
-          @keyup.enter="sendMessage"
+          @keyup.enter="handleSendMessage"
           placeholder="Scrivi un messaggio..."
+          aria-label="Messaggio per il chatbot"
+          :disabled="isTyping"
       />
-      <button @click="sendMessage"><i class="fas fa-paper-plane"></i></button>
+      <button 
+        @click="handleSendMessage" 
+        aria-label="Invia messaggio"
+        :disabled="isTyping || !userMessage.trim()"
+      >
+        <i class="fas fa-paper-plane"></i>
+      </button>
     </div>
   </div>
-  <div id="chatbot_minimize" class="minimized-chatbot" v-else @click="toggleChatbot">
+  <div 
+    id="chatbot_minimize" 
+    class="minimized-chatbot" 
+    v-else 
+    @click="toggleChatbot"
+    role="button"
+    aria-label="Apri chatbot PrimoBot"
+    tabindex="0"
+    @keyup.enter="toggleChatbot"
+  >
     CHATTA CON PRIMOBOT  💬
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { ref } from 'vue';
+import { useChatbot } from '../composables/useChatbot'
 
-const OPENAI_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY
+const userMessage = ref('');
+const messagesContainer = ref(null);
 
-export default {
-  name: 'Chatbot',
-  data() {
-    return {
-      userMessage: '',
-      chatMessages: [],
-      isOpen: false,
-      // Manteniamo la history dei messaggi API
-      apiMessages: [
-        {
-          role: 'system',
-          content: `Sei PrimoBot, l'assistente virtuale del portfolio di Daniele Primasso. Usa queste informazioni del CV per rispondere alle domande:
-            Nome: Daniele Primasso
-            Data di nascita: 27/09/1993
-            Posizione: Software Developer
-            Contatti: primo.note4@gmail.com, +39 3272404432
+const {
+  chatMessages,
+  isTyping,
+  isOpen,
+  error,
+  toggleChatbot,
+  sendMessage,
+} = useChatbot();
 
-            Formazione:
-            - Diploma in Informatica/Sistemi, Bonsignori, Remedello (BS), 2010
-
-            Competenze:
-            - Linguaggi: Node.js, Solidity, Golang, Python, Vue.js, Phoenix (Elixir), JavaScript, MongoDB, SQL
-            - Esperienza con microservizi, API REST, blockchain (ERC-20/721/1155), IA/ML
-
-            Esperienza:
-            - Secarepay (Nov 2024 - presente): Software Developer (Phoenix/Angular/Python)
-            - Scaling Parrots (Apr 2020 - Ott 2024): Lead Developer (Node.js, Golang, Python, Solidity)
-            - Nextre Engineering (Gen 2017 - Mar 2020): Software Developer (Java/Grails)
-            - Margor SRL (Mar 2014 - Dic 2016): Developer PLC, progetti IoT
-            ` },
-      ],
-      isTyping: false,
-    };
-  },
-  methods: {
-    toggleChatbot() {
-      this.isOpen = !this.isOpen;
-    },
-    async sendMessage() {
-      const text = this.userMessage.trim();
-      if (!text) return;
-      // Aggiungi messaggio utente alla UI
-      this.chatMessages.push({ id: Date.now(), text, isUser: true });
-      // Aggiungi messaggio utente alla history API
-      this.apiMessages.push({ role: 'user', content: text });
-      this.$nextTick(() => {
-        const container = this.$refs.messagesContainer;
-        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-      });
-      this.userMessage = '';
-      // Avvia indicatore di digitazione
-      this.isTyping = true;
-
-      try {
-        const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-          {
-            model: 'gpt-4o-mini',
-            messages: this.apiMessages
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${OPENAI_KEY}`
-            }
-          }
-        );
-        const answer = response.data.choices[0].message.content.trim();
-        this.isTyping = false;
-        // Aggiungi risposta bot a UI e history API
-        this.chatMessages.push({ id: Date.now()+2, text: answer, isUser: false });
-        this.$nextTick(() => {
-          const container = this.$refs.messagesContainer;
-          container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-        });
-        this.apiMessages.push({ role: 'assistant', content: answer });
-      } catch (error) {
-        console.error('Error getting response from API:', error);
-        this.isTyping = false;
-        this.chatMessages.push({
-          id: Date.now()+3,
-          text: "Mi dispiace, c'è stato un errore.",
-          isUser: false
-        });
-      }
-    },
-  }
+const handleSendMessage = async () => {
+  if (!userMessage.value.trim() || isTyping.value) return;
+  
+  const text = userMessage.value;
+  userMessage.value = '';
+  
+  await sendMessage(text, messagesContainer.value);
 };
 </script>
 

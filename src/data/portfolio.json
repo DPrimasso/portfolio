@@ -1,0 +1,142 @@
+{
+  "skills": [
+    { "title": "JavaScript", "icon": "fab fa-js", "level": 90, "description": "ES6+, DOM manipulation, async/await" },
+    { "title": "TypeScript", "icon": "fab fa-js", "level": 80, "description": "Static typing, interfaces, generics, strict mode su codebase reali (frontend + backend)" },
+    { "title": "React", "icon": "fab fa-react", "level": 80, "description": "React 19, Context API, architettura feature-oriented, lazy loading, Testing Library, Vitest" },
+    { "title": "Vue.js", "icon": "fab fa-vuejs", "level": 70, "description": "Vue 3 Composition API, Vuex, Vue Router" },
+    { "title": "Node.js", "icon": "fab fa-node-js", "level": 90, "description": "Express, REST API, pipeline di elaborazione file, integrazione FTP, logging strutturato in produzione" },
+    { "title": "Python", "icon": "fab fa-python", "level": 75, "description": "Flask, Django, scripting" },
+    { "title": "Golang", "icon": "fas fa-code", "level": 70, "description": "Gin framework, microservices" },
+    { "title": "Docker", "icon": "fab fa-docker", "level": 50, "description": "Containerization, Docker Compose" },
+    { "title": "MongoDB", "icon": "fas fa-database", "level": 80, "description": "Schema design, aggregation pipeline" },
+    { "title": "SQL", "icon": "fas fa-database", "level": 75, "description": "MySQL, PostgreSQL, joins, indexing" },
+    { "title": "Git", "icon": "fab fa-git-alt", "level": 90, "description": "Branching, merging, rebasing" },
+    { "title": "Build & Tooling", "icon": "fas fa-wrench", "level": 75, "description": "Vite, code splitting ottimizzato, ESLint moderno, build Node.js portable/eseguibili con pkg" }
+  ],
+  "projects": [
+    {
+      "title": "Tracciato Maker",
+      "description": "Applicazione React/TypeScript per automatizzare la conversione di file Excel/PDF in tracciati TXT standard per il trasporto: architettura feature-oriented (parsing, orders, export, file-upload, ftp-config), backend Express/Node per orchestrare parsing, generazione TXT e upload FTP, logging strutturato con Winston e distribuzione come eseguibile Windows o bundle Node.js portable per utenti non tecnici.",
+      "technologies": "React 19, TypeScript, Vite, Node.js, Express, XLSX, pdf-parse, basic-ftp, Vitest, Testing Library, Winston",
+      "link": "Privato"
+    },
+    {
+      "title": "Primo Code Assistant",
+      "description": "Applicazione Python che utilizza le API di OpenAI per fornire supporto di codifica in tempo reale",
+      "technologies": "Python, OpenAI",
+      "link": "https://github.com/DPrimasso/primo-code-assistant"
+    },
+    {
+      "title": "Portfolio Project",
+      "description": "Portfolio basato su Vue.js con layout responsive, caricamento dinamico dei progetti, design delle card interattivo con effetti hover e struttura modulare dei componenti.",
+      "technologies": "Vue.js, HTML5, CSS3, JavaScript",
+      "link": "https://github.com/DPrimasso/portfolio"
+    },
+    {
+      "title": "Node js Backend",
+      "description": "Backend in Node.js con Express e MongoDB: autenticazione JWT, CRUD per utenti, prodotti e ordini, integrazione Stripe per pagamenti, validazione con Joi, rate limiting, sicurezza HTTP con Helmet, logging con Morgan, test end-to-end con Jest e SuperTest, e containerizzazione Docker.",
+      "technologies": "Node.js, Express, MongoDB, Mongoose, JWT, Stripe, Joi, Jest, SuperTest, Docker, Docker Compose",
+      "link": "Privato"
+    },
+    {
+      "title": "Engine Golang",
+      "description": "Backend in Go: API REST con Gorilla Mux, connessione MongoDB, interazioni con smart contract Ethereum (go-ethereum), scheduler Cron, documentazione Swagger (Swaggo) e gestione di statistiche e snapshot tramite endpoint.",
+      "technologies": "Go, Gorilla Mux, MongoDB, go-ethereum, Robfig Cron, Swaggo (Swagger), godotenv",
+      "link": "Privato"
+    },
+    {
+      "title": "Engine GraphQL CRUD",
+      "description": "GraphQL CRUD engine per entità User e Project con Node.js e Apollo Server v3: operazioni CRUD complete, TypeScript per tipizzazione, datastore in-memory, configurazione ESLint/Prettier e gestione delle variabili con dotenv.",
+      "technologies": "Node.js, TypeScript, Apollo Server v3, GraphQL, ESLint, Prettier, dotenv",
+      "link": ""
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Developer e Data Analyst",
+      "company": "Transfilms SRL",
+      "from": "Settembre 2025",
+      "to": "Presente",
+      "location": "Brescia, Italia",
+      "bullets": [
+        "Sviluppo di Tracciato Maker: applicazione React/TypeScript + Node.js per automatizzare la generazione e l'invio FTP di tracciati TXT a partire da Excel/PDF multi-cliente.",
+        "Analisi e normalizzazione dei dati logistici (ordini, indirizzi, note di ritiro) con pipeline di parsing e modelli di dominio tipizzati.",
+        "Monitoraggio e troubleshooting in produzione tramite logging strutturato, metriche applicative e tracciamento degli errori."
+      ]
+    },
+    {
+      "title": "Software Developer",
+      "company": "Secarepay",
+      "from": "Ottobre 2024",
+      "to": "Settembre 2025",
+      "location": "Brescia, Italia",
+      "bullets": [
+        "Sviluppo e manutenzione piattaforma rivendita auto in Phoenix (Elixir) con front-end in Angular.",
+        "Microservizi in Python per integrazioni e processi backend di supporto alla piattaforma."
+      ]
+    },
+    {
+      "title": "Lead Software Developer",
+      "company": "Scaling Parrots",
+      "from": "Aprile 2020",
+      "to": "Ottobre 2024",
+      "location": "Brescia, Italia",
+      "bullets": [
+        "Sviluppo applicativi back-end in Node.js e Golang.",
+        "Microservizi in Python.",
+        "Utilizzo standard blockchain (ERC20, ERC721, ERC1155, ERC1271, ERC4337) e protocolli (Masterchef, VotingEscrow).",
+        "Solidity per progetti emergenti: CurveCompound, Zapper: Stablecomp."
+      ]
+    },
+    {
+      "title": "Software Developer",
+      "company": "Nextre Engineering",
+      "from": "Gennaio 2017",
+      "to": "Marzo 2020",
+      "location": "Milano, Italia",
+      "bullets": [
+        "Manutenzione e sviluppo software agenzia viaggi Expedia con Java (Grails).",
+        "Progetto Tech Companies Lab 2019 (Menzione speciale Cloud, Big Data, IoT).",
+        "Manutenzione e migrazione software gestionale per HP."
+      ]
+    },
+    {
+      "title": "Developer PLC",
+      "company": "Margor SRL",
+      "from": "Marzo 2014",
+      "to": "Dicembre 2016",
+      "location": "Calcinato (BS), Italia",
+      "bullets": [
+        "Sviluppo software per automazione macchine aziendali con PLC.",
+        "Prototipi IoT per smaltimento rifiuti.",
+        "Prototipi per digitalizzazione processi di catalogazione pezzi meccanici."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "period": "2005 - 2010",
+      "degree": "Diploma in Informatica / Sistemi",
+      "institution": "Istituto Tecnico Industriale \"Bonsignori\", Remedello (BS)",
+      "details": "Studio di reti, sistemi operativi, programmazione e basi di dati."
+    },
+    {
+      "period": "2018",
+      "degree": "Oracle Database & SQL - Badge",
+      "institution": "Oracle / Credly",
+      "details": "Badge Oracle per competenze su Oracle Database e SQL.",
+      "badgeUrl": "https://www.credly.com/badges/26135217-a577-40ff-be66-f761cef095cf/linked_in",
+      "badgeLabel": "Vedi badge Oracle su Credly"
+    }
+  ],
+  "contact": {
+    "email": "primo.note4@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/daniele-primasso-695ab8158/",
+    "github": "https://github.com/DPrimasso?preview=true"
+  },
+  "stats": [
+    { "value": "7+", "label": "Anni di esperienza" },
+    { "value": "50+", "label": "Progetti completati" },
+    { "value": "1000+", "label": "Ore di coding" }
+  ]
+}
