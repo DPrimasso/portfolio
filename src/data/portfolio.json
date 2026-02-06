@@ -1,17 +1,77 @@
 {
   "skills": [
-    { "title": "JavaScript", "icon": "fab fa-js", "level": 90, "description": "ES6+, DOM manipulation, async/await" },
-    { "title": "TypeScript", "icon": "fab fa-js", "level": 80, "description": "Static typing, interfaces, generics, strict mode su codebase reali (frontend + backend)" },
-    { "title": "React", "icon": "fab fa-react", "level": 80, "description": "React 19, Context API, architettura feature-oriented, lazy loading, Testing Library, Vitest" },
-    { "title": "Vue.js", "icon": "fab fa-vuejs", "level": 70, "description": "Vue 3 Composition API, Vuex, Vue Router" },
-    { "title": "Node.js", "icon": "fab fa-node-js", "level": 90, "description": "Express, REST API, pipeline di elaborazione file, integrazione FTP, logging strutturato in produzione" },
-    { "title": "Python", "icon": "fab fa-python", "level": 75, "description": "Flask, Django, scripting" },
-    { "title": "Golang", "icon": "fas fa-code", "level": 70, "description": "Gin framework, microservices" },
-    { "title": "Docker", "icon": "fab fa-docker", "level": 50, "description": "Containerization, Docker Compose" },
-    { "title": "MongoDB", "icon": "fas fa-database", "level": 80, "description": "Schema design, aggregation pipeline" },
-    { "title": "SQL", "icon": "fas fa-database", "level": 75, "description": "MySQL, PostgreSQL, joins, indexing" },
-    { "title": "Git", "icon": "fab fa-git-alt", "level": 90, "description": "Branching, merging, rebasing" },
-    { "title": "Build & Tooling", "icon": "fas fa-wrench", "level": 75, "description": "Vite, code splitting ottimizzato, ESLint moderno, build Node.js portable/eseguibili con pkg" }
+    {
+      "title": "JavaScript",
+      "icon": "fab fa-js",
+      "level": 90,
+      "description": "ES6+, DOM manipulation, async/await"
+    },
+    {
+      "title": "TypeScript",
+      "icon": "fab fa-js",
+      "level": 80,
+      "description": "Static typing, interfaces, generics, strict mode su codebase reali (frontend + backend)"
+    },
+    {
+      "title": "React",
+      "icon": "fab fa-react",
+      "level": 80,
+      "description": "React 19, Context API, architettura feature-oriented, lazy loading, Testing Library, Vitest"
+    },
+    {
+      "title": "Vue.js",
+      "icon": "fab fa-vuejs",
+      "level": 70,
+      "description": "Vue 3 Composition API, Vuex, Vue Router"
+    },
+    {
+      "title": "Node.js",
+      "icon": "fab fa-node-js",
+      "level": 90,
+      "description": "Express, REST API, pipeline di elaborazione file, integrazione FTP, logging strutturato in produzione"
+    },
+    {
+      "title": "Python",
+      "icon": "fab fa-python",
+      "level": 75,
+      "description": "Flask, Django, scripting"
+    },
+    {
+      "title": "Golang",
+      "icon": "fas fa-code",
+      "level": 70,
+      "description": "Gin framework, microservices"
+    },
+    {
+      "title": "Docker",
+      "icon": "fab fa-docker",
+      "level": 50,
+      "description": "Containerization, Docker Compose"
+    },
+    {
+      "title": "MongoDB",
+      "icon": "fas fa-database",
+      "level": 80,
+      "description": "Schema design, aggregation pipeline"
+    },
+    {
+      "title": "SQL",
+      "icon": "fas fa-database",
+      "level": 75,
+      "description": "MySQL, PostgreSQL, joins, indexing"
+    },
+    {
+      "title": "Git",
+      "icon": "fab fa-git-alt",
+      "level": 90,
+      "description": "Branching, merging, rebasing"
+    },
+    {
+      "title": "Build & Tooling",
+      "icon": "fas fa-wrench",
+      "level": 75,
+      "description": "Vite, code splitting ottimizzato, ESLint moderno, build Node.js portable/eseguibili con pkg"
+    }
   ],
   "projects": [
     {
