@@ -239,8 +239,10 @@ async function handleChatbotRequest({ messages, apiKey }) {
 
 /**
  * Crea CORS headers con whitelist
+ * Se ALLOWED_ORIGINS non è impostato, riflette l'origin della richiesta (qualsiasi https o localhost)
+ * così il deploy su Vercel/altro dominio funziona senza configurare env.
  * @param {string} origin - Origin della richiesta
- * @param {Array<string>} allowedOrigins - Lista di origins permessi
+ * @param {Array<string>} allowedOrigins - Lista di origins permessi (es. da process.env.ALLOWED_ORIGINS)
  * @returns {Object} CORS headers
  */
 function createCorsHeaders(origin, allowedOrigins = []) {
@@ -251,7 +253,20 @@ function createCorsHeaders(origin, allowedOrigins = []) {
   ]
 
   const origins = allowedOrigins.length > 0 ? allowedOrigins : defaultOrigins
-  const allowedOrigin = origin && origins.includes(origin) ? origin : origins[0] || '*'
+  let allowedOrigin
+
+  if (origin && origins.includes(origin)) {
+    allowedOrigin = origin
+  } else if (
+    allowedOrigins.length === 0 &&
+    origin &&
+    (origin.startsWith('https://') || origin.startsWith('http://localhost'))
+  ) {
+    // Nessun ALLOWED_ORIGINS: rifletti l'origin così funziona su qualsiasi deploy (Vercel, etc.)
+    allowedOrigin = origin
+  } else {
+    allowedOrigin = origins[0] || '*'
+  }
 
   return {
     'Access-Control-Allow-Origin': allowedOrigin,
