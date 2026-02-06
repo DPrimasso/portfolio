@@ -9,6 +9,15 @@ interface PerformanceMetrics {
   ttfb?: number
 }
 
+interface PerformanceEventTimingLike extends PerformanceEntry {
+  processingStart: number
+}
+
+interface LayoutShiftLike extends PerformanceEntry {
+  value: number
+  hadRecentInput: boolean
+}
+
 /**
  * Composable per monitorare le performance e Core Web Vitals
  */
@@ -31,7 +40,7 @@ export function usePerformance() {
         metrics.lcp = lastEntry.renderTime || lastEntry.loadTime || 0
       })
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
-    } catch (e) {
+    } catch {
       // LCP not supported
     }
 
@@ -40,12 +49,12 @@ export function usePerformance() {
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         entries.forEach((entry) => {
-          const fidEntry = entry as PerformanceEventTiming
+          const fidEntry = entry as PerformanceEventTimingLike
           metrics.fid = fidEntry.processingStart - fidEntry.startTime
         })
       })
       fidObserver.observe({ entryTypes: ['first-input'] })
-    } catch (e) {
+    } catch {
       // FID not supported
     }
 
@@ -55,7 +64,7 @@ export function usePerformance() {
       const clsObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         entries.forEach((entry) => {
-          const layoutShift = entry as LayoutShift
+          const layoutShift = entry as LayoutShiftLike
           if (!layoutShift.hadRecentInput) {
             clsValue += layoutShift.value
           }
@@ -63,7 +72,7 @@ export function usePerformance() {
         metrics.cls = clsValue
       })
       clsObserver.observe({ entryTypes: ['layout-shift'] })
-    } catch (e) {
+    } catch {
       // CLS not supported
     }
 
@@ -78,7 +87,7 @@ export function usePerformance() {
         })
       })
       fcpObserver.observe({ entryTypes: ['paint'] })
-    } catch (e) {
+    } catch {
       // FCP not supported
     }
 

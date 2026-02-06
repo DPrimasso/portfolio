@@ -19,7 +19,7 @@ describe('Skills.vue', () => {
     store.loading = true
 
     const wrapper = mount(Skills)
-    expect(wrapper.text()).toContain('Caricamento')
+    expect(wrapper.find('.skeleton-loader').exists()).toBe(true)
   })
 
   it('loads skills on mount if empty', async () => {

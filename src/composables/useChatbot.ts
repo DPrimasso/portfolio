@@ -218,7 +218,7 @@ export function useChatbot() {
           const apiUrl = getApiUrl()
           
           // Se è 404 in dev e l'URL è relativo, è probabile che l'endpoint non esista
-          if (config.isDev && apiUrl === '/api/chatbot' && err.response?.status === 404) {
+          if (config.isDev && apiUrl === '/api/chatbot') {
             userFriendlyMessage = 
               '⚠️ Endpoint API non disponibile in sviluppo locale.\n\n' +
               'Per testare il chatbot:\n' +
@@ -236,7 +236,6 @@ export function useChatbot() {
             code: err.code,
             message: err.message,
             url: apiUrl,
-            status: err.response?.status,
           })
         } else {
           // Errore nella configurazione della richiesta

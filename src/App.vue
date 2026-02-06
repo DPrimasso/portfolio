@@ -67,16 +67,13 @@
 <script setup>
 import { onMounted } from 'vue';
 import Navbar from "./components/Navbar.vue";
-import Sidebar from "./components/Sidebar.vue";
 import Hero from "./components/Hero.vue";
-import Stats from "./components/Stats.vue";
 import Divider from "./components/Divider.vue";
 import About from "./components/About.vue";
 import Skills from "./components/Skills.vue";
 import Experience from "./components/Experience.vue";
 import Education from "./components/Education.vue";
 import CTA from "./components/CTA.vue";
-import Contact from "./components/Contact.vue";
 import { defineAsyncComponent } from 'vue';
 import Chatbot from "./components/Chatbot.vue";
 // Lazy load heavy components

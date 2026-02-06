@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { usePortfolioStore } from '../portfolio'
+import { DataService } from '../../services/dataService'
 
 describe('Portfolio Store', () => {
   beforeEach(() => {
@@ -48,17 +49,15 @@ describe('Portfolio Store', () => {
 
   it('should handle errors gracefully', async () => {
     const store = usePortfolioStore()
-    // Mock DataService per testare error handling
-    const originalLoad = store.loadSkills
-    store.loadSkills = async () => {
-      throw new Error('Test error')
-    }
-    
+
+    const loadSkillsSpy = vi
+      .spyOn(DataService, 'loadSkills')
+      .mockRejectedValue(new Error('Test error'))
+
     await store.loadSkills()
     expect(store.error).toBeTruthy()
     expect(store.loading).toBe(false)
-    
-    // Restore
-    store.loadSkills = originalLoad
+
+    loadSkillsSpy.mockRestore()
   })
 })

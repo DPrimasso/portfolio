@@ -77,7 +77,7 @@
 import { onMounted, ref, computed, onUnmounted, watch, nextTick } from 'vue';
 import { usePortfolioStore } from '../stores/portfolio'
 import 'vue3-carousel/carousel.css';
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
 import { Navigation as CarouselNavigation } from 'vue3-carousel';
 
 const portfolioStore = usePortfolioStore();

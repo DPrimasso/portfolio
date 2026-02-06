@@ -66,7 +66,6 @@ const {
   chatMessages,
   isTyping,
   isOpen,
-  error,
   toggleChatbot,
   sendMessage,
 } = useChatbot();

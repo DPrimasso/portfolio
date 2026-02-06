@@ -1,5 +1,3 @@
-import { onMounted, onUnmounted } from 'vue'
-
 /**
  * Composable per gestire eventi keyboard
  */

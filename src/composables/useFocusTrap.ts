@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, type Ref } from 'vue'
+import type { Ref } from 'vue'
 
 /**
  * Composable per implementare focus trap (utile per modali, chatbot, etc.)

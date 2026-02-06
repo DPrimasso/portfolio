@@ -17,16 +17,17 @@ export interface Experience {
   company: string
   from: string
   to: string
-  description: string
+  location?: string
+  description?: string
+  bullets?: string[]
   technologies?: string[]
 }
 
 export interface Education {
-  title: string
+  period: string
+  degree: string
   institution: string
-  from: string
-  to: string
-  description?: string
+  details: string
   badgeUrl?: string
   badgeLabel?: string
 }
