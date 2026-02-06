@@ -10,8 +10,7 @@
       </div>
 
       <h1 class="hero-title">
-        <span class="typing">Daniele Primasso</span
-        ><span class="cursor" aria-hidden="true"></span>
+        <span class="typing">Daniele Primasso</span><span class="cursor" aria-hidden="true"></span>
       </h1>
 
       <p class="hero-subtitle">
@@ -35,9 +34,7 @@
       </div>
 
       <div class="hero-actions">
-        <a href="#projects" class="hero-btn-primary">
-          Guarda i progetti
-        </a>
+        <a href="#projects" class="hero-btn-primary"> Guarda i progetti </a>
         <a href="#contact" class="hero-btn-secondary" @click.prevent="scrollToContact">
           Contattami
         </a>
@@ -53,17 +50,18 @@
 
 <script setup>
 const scrollToContact = () => {
-  const el = document.getElementById('contact');
-  if (!el) return;
+  const el = document.getElementById('contact')
+  if (!el) return
 
-  const rect = el.getBoundingClientRect();
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  const headerOffset = 70; // offset per navbar / padding-top body
-  const targetY = rect.top + scrollTop - headerOffset;
+  const rect = el.getBoundingClientRect()
+  const scrollTop =
+    window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+  const headerOffset = 70 // offset per navbar / padding-top body
+  const targetY = rect.top + scrollTop - headerOffset
 
   window.scrollTo({
     top: targetY,
     behavior: 'smooth',
-  });
-};
+  })
+}
 </script>

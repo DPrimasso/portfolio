@@ -1,10 +1,10 @@
 <template>
   <section class="stats py-5" aria-labelledby="stats-heading">
     <div class="container d-flex justify-content-around" role="list">
-      <div 
-        class="stat text-center" 
-        v-for="(item, i) in portfolioStore.stats" 
+      <div
+        v-for="(item, i) in portfolioStore.stats"
         :key="i"
+        class="stat text-center"
         role="listitem"
       >
         <h3>{{ item.value }}</h3>
@@ -15,16 +15,16 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { usePortfolioStore } from '../stores/portfolio';
+import { onMounted } from 'vue'
+import { usePortfolioStore } from '../stores/portfolio'
 
-const portfolioStore = usePortfolioStore();
+const portfolioStore = usePortfolioStore()
 
 onMounted(() => {
   if (portfolioStore.stats.length === 0) {
-    portfolioStore.loadStats();
+    portfolioStore.loadStats()
   }
-});
+})
 </script>
 
 <style scoped>

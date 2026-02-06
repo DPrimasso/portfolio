@@ -251,8 +251,7 @@ function createCorsHeaders(origin, allowedOrigins = []) {
   ]
 
   const origins = allowedOrigins.length > 0 ? allowedOrigins : defaultOrigins
-  const allowedOrigin =
-    origin && origins.includes(origin) ? origin : origins[0] || '*'
+  const allowedOrigin = origin && origins.includes(origin) ? origin : origins[0] || '*'
 
   return {
     'Access-Control-Allow-Origin': allowedOrigin,

@@ -6,11 +6,9 @@ const {
   createCorsHeaders,
 } = require('../../shared/chatbot-core')
 
-exports.handler = async (event) => {
+exports.handler = async event => {
   const origin = event.headers?.origin || event.headers?.Origin
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',')
-    : []
+  const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : []
   const headers = createCorsHeaders(origin, allowedOrigins)
 
   // Handle preflight
@@ -66,10 +64,7 @@ exports.handler = async (event) => {
     if (error.code === 'API_KEY_VALIDATION_FAILED') {
       statusCode = 500
       errorMessage = 'API key configuration error'
-    } else if (
-      error.message.includes('required') ||
-      error.message.includes('too long')
-    ) {
+    } else if (error.message.includes('required') || error.message.includes('too long')) {
       statusCode = 400
       errorMessage = 'Bad request'
     } else if (error.code === 'INVALID_API_KEY') {

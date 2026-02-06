@@ -5,12 +5,12 @@
       <div v-if="portfolioStore.loading">
         <SkeletonLoader :lines="6" variant="card" />
       </div>
-      <div v-else class="row" ref="skillsContainer">
-        <div 
-          v-for="(skill, index) in portfolioStore.skills" 
-          :key="index" 
+      <div v-else ref="skillsContainer" class="row">
+        <div
+          v-for="(skill, index) in portfolioStore.skills"
+          :key="index"
+          :ref="el => (skillRefs[index] = el)"
           class="col-md-6 col-lg-4 mb-4"
-          :ref="el => skillRefs[index] = el"
         >
           <div class="skill-card card fade-in-up" :class="{ visible: animatedSkills[index] }">
             <div class="card-body">
@@ -23,12 +23,12 @@
                   {{ skill.level }}%
                 </div>
               </div>
-              <div 
-                class="progress mb-3" 
-                role="progressbar" 
-                :aria-valuenow="animatedSkills[index] ? skill.level : 0" 
-                aria-valuemin="0" 
-                aria-valuemax="100" 
+              <div
+                class="progress mb-3"
+                role="progressbar"
+                :aria-valuenow="animatedSkills[index] ? skill.level : 0"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 :aria-label="`${skill.title}: ${skill.level}%`"
               >
                 <div
@@ -46,37 +46,43 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue'
 import { usePortfolioStore } from '../stores/portfolio'
-import SkeletonLoader from './SkeletonLoader.vue';
+import SkeletonLoader from './SkeletonLoader.vue'
 
-const portfolioStore = usePortfolioStore();
-const skillsContainer = ref(null);
-const skillRefs = ref([]);
-const animatedSkills = ref({});
+const portfolioStore = usePortfolioStore()
+const skillsContainer = ref(null)
+const skillRefs = ref([])
+const animatedSkills = ref({})
 
 onMounted(() => {
   if (portfolioStore.skills.length === 0) {
-    portfolioStore.loadSkills();
+    portfolioStore.loadSkills()
   }
-  
+
   // Animate skills when they come into view
-  watch(() => portfolioStore.skills, (skills) => {
-    if (skills.length > 0) {
-      setTimeout(() => {
-        skills.forEach((_, index) => {
-          animatedSkills.value[index] = true;
-        });
-      }, 200);
-    }
-  }, { immediate: true });
-});
+  watch(
+    () => portfolioStore.skills,
+    skills => {
+      if (skills.length > 0) {
+        setTimeout(() => {
+          skills.forEach((_, index) => {
+            animatedSkills.value[index] = true
+          })
+        }, 200)
+      }
+    },
+    { immediate: true }
+  )
+})
 </script>
 
 <style scoped>
 .skill-card {
   height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .skill-card:hover {
@@ -91,7 +97,9 @@ onMounted(() => {
 .skill-icon {
   font-size: 1.25rem;
   color: var(--accent);
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .skill-card:hover .skill-icon {
@@ -133,7 +141,9 @@ onMounted(() => {
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {

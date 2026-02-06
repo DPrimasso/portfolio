@@ -51,25 +51,25 @@ export function useChatbot() {
   // Determina l'URL dell'API in base all'ambiente
   const getApiUrl = (): string => {
     const url = config.apiUrl
-    
+
     // Se è un URL completo (inizia con http/https), usalo direttamente
     if (url.startsWith('http://') || url.startsWith('https://')) {
       return url
     }
-    
+
     // In sviluppo, se l'URL è relativo e non c'è un server locale,
     // mostra un warning e usa l'URL relativo (potrebbe non funzionare)
     if (config.isDev && url === '/api/chatbot') {
       console.warn(
         '⚠️ Chatbot API: In sviluppo locale, /api/chatbot non è disponibile.\n' +
-        'Opzioni:\n' +
-        '1. Configura VITE_CHATBOT_API_URL nel file .env per puntare a un endpoint esterno\n' +
-        '   Esempio: VITE_CHATBOT_API_URL=https://tuodominio.vercel.app/api/chatbot\n' +
-        '2. Usa Vercel CLI per testare le functions localmente: vercel dev\n' +
-        '3. Testa direttamente in produzione dopo il deploy'
+          'Opzioni:\n' +
+          '1. Configura VITE_CHATBOT_API_URL nel file .env per puntare a un endpoint esterno\n' +
+          '   Esempio: VITE_CHATBOT_API_URL=https://tuodominio.vercel.app/api/chatbot\n' +
+          '2. Usa Vercel CLI per testare le functions localmente: vercel dev\n' +
+          '3. Testa direttamente in produzione dopo il deploy'
       )
     }
-    
+
     return url
   }
 
@@ -85,7 +85,10 @@ export function useChatbot() {
     }
   }
 
-  const sendMessage = async (text: string, messagesContainer: HTMLElement | null): Promise<void> => {
+  const sendMessage = async (
+    text: string,
+    messagesContainer: HTMLElement | null
+  ): Promise<void> => {
     if (!text.trim()) return
 
     // Reset error
@@ -140,7 +143,9 @@ export function useChatbot() {
 
       if (!response) {
         // Se retry ha fallito, l'errore è già stato loggato
-        throw new Error('Impossibile ottenere risposta dopo i tentativi. Controlla la console per i dettagli.')
+        throw new Error(
+          'Impossibile ottenere risposta dopo i tentativi. Controlla la console per i dettagli.'
+        )
       }
 
       const answer = response.data.message?.trim()
@@ -178,7 +183,7 @@ export function useChatbot() {
             case 404:
               // 404 in dev locale significa endpoint non disponibile
               if (config.isDev && getApiUrl() === '/api/chatbot') {
-                userFriendlyMessage = 
+                userFriendlyMessage =
                   '⚠️ Endpoint API non disponibile in sviluppo locale.\n\n' +
                   'Configura VITE_CHATBOT_API_URL nel file .env per testare localmente, ' +
                   'oppure testa in produzione dopo il deploy.'
@@ -216,22 +221,24 @@ export function useChatbot() {
         } else if (err.request) {
           // Richiesta fatta ma nessuna risposta (timeout, network error, etc.)
           const apiUrl = getApiUrl()
-          
+
           // Se è 404 in dev e l'URL è relativo, è probabile che l'endpoint non esista
           if (config.isDev && apiUrl === '/api/chatbot') {
-            userFriendlyMessage = 
+            userFriendlyMessage =
               '⚠️ Endpoint API non disponibile in sviluppo locale.\n\n' +
               'Per testare il chatbot:\n' +
               '1. Configura VITE_CHATBOT_API_URL nel file .env\n' +
               '2. Oppure testa in produzione dopo il deploy'
             errorMessage = 'API endpoint not available in local development'
           } else {
-            userFriendlyMessage = 'Impossibile connettersi al server. Verifica la connessione e riprova.'
-            errorMessage = err.code === 'ECONNABORTED' 
-              ? 'Timeout: il server non ha risposto in tempo'
-              : err.message || 'Network error'
+            userFriendlyMessage =
+              'Impossibile connettersi al server. Verifica la connessione e riprova.'
+            errorMessage =
+              err.code === 'ECONNABORTED'
+                ? 'Timeout: il server non ha risposto in tempo'
+                : err.message || 'Network error'
           }
-          
+
           console.error('Network error:', {
             code: err.code,
             message: err.message,

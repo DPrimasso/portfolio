@@ -1,16 +1,27 @@
 <template>
-  <section id="projects" class="projects-section py-5" aria-labelledby="projects-heading" ref="projectsSection">
+  <section
+    id="projects"
+    ref="projectsSection"
+    class="projects-section py-5"
+    aria-labelledby="projects-heading"
+  >
     <div class="container">
-      <h2 id="projects-heading" class="fw-bold mb-5 text-center fade-in-up" :class="{ visible: isVisible }">I miei progetti</h2>
+      <h2
+        id="projects-heading"
+        class="fw-bold mb-5 text-center fade-in-up"
+        :class="{ visible: isVisible }"
+      >
+        I miei progetti
+      </h2>
 
       <div v-if="portfolioStore.loading" class="text-center">
         <p>Caricamento progetti...</p>
       </div>
-      <Carousel 
-        v-else 
+      <Carousel
+        v-else
         ref="carouselRef"
-        v-bind="carouselConfig" 
-        class="projects-carousel" 
+        v-bind="carouselConfig"
+        class="projects-carousel"
         aria-label="Carosello progetti"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
@@ -22,12 +33,12 @@
               <div class="flex-grow-1">
                 <h3 class="card-title mb-3">{{ project.title }}</h3>
                 <p class="card-text mb-3">{{ project.description }}</p>
-                
+
                 <!-- Tech tags -->
                 <div v-if="project.technologies" class="tech-tags mb-3">
-                  <span 
-                    v-for="(tech, idx) in getTechTags(project.technologies)" 
-                    :key="idx" 
+                  <span
+                    v-for="(tech, idx) in getTechTags(project.technologies)"
+                    :key="idx"
                     class="tech-tag"
                   >
                     {{ tech }}
@@ -38,12 +49,12 @@
               <!-- CTA row aligned to the end / side -->
               <div class="action-row d-flex justify-content-end mt-auto">
                 <a
-                    v-if="project.link && project.link !== 'Privato' && project.link !== ''"
-                    :href="project.link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-project-link"
-                    :aria-label="`Vai al progetto ${project.title}`"
+                  v-if="project.link && project.link !== 'Privato' && project.link !== ''"
+                  :href="project.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-project-link"
+                  :aria-label="`Vai al progetto ${project.title}`"
                 >
                   <i class="fab fa-github me-2"></i>
                   Vai al progetto
@@ -74,17 +85,17 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed, onUnmounted, watch, nextTick } from 'vue';
+import { onMounted, ref, computed, onUnmounted, watch, nextTick } from 'vue'
 import { usePortfolioStore } from '../stores/portfolio'
-import 'vue3-carousel/carousel.css';
-import { Carousel, Slide, Pagination } from 'vue3-carousel';
-import { Navigation as CarouselNavigation } from 'vue3-carousel';
+import 'vue3-carousel/carousel.css'
+import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import { Navigation as CarouselNavigation } from 'vue3-carousel'
 
-const portfolioStore = usePortfolioStore();
-const projectsSection = ref(null);
-const isVisible = ref(false);
-const carouselRef = ref(null);
-let autoplayInterval = null;
+const portfolioStore = usePortfolioStore()
+const projectsSection = ref(null)
+const isVisible = ref(false)
+const carouselRef = ref(null)
+let autoplayInterval = null
 
 const carouselConfig = {
   itemsToShow: 2.5,
@@ -92,93 +103,99 @@ const carouselConfig = {
   snapAlign: 'center',
   mouseDrag: true,
   transition: 800,
-};
+}
 
 // Duplica i progetti per effetto seamless infinito
 const duplicatedProjects = computed(() => {
-  const projects = portfolioStore.projects;
-  if (projects.length === 0) return [];
+  const projects = portfolioStore.projects
+  if (projects.length === 0) return []
   // Duplica 3 volte per garantire continuità
-  return [...projects, ...projects, ...projects];
-});
+  return [...projects, ...projects, ...projects]
+})
 
-const getTechTags = (technologies) => {
-  if (!technologies) return [];
-  return technologies.split(',').map(tech => tech.trim()).slice(0, 4);
-};
+const getTechTags = technologies => {
+  if (!technologies) return []
+  return technologies
+    .split(',')
+    .map(tech => tech.trim())
+    .slice(0, 4)
+}
 
 const startAutoplay = () => {
-  if (autoplayInterval) clearInterval(autoplayInterval);
-  if (!carouselRef.value) return;
-  
+  if (autoplayInterval) clearInterval(autoplayInterval)
+  if (!carouselRef.value) return
+
   autoplayInterval = setInterval(() => {
     if (carouselRef.value) {
       // Prova diversi metodi dell'API vue3-carousel
       if (typeof carouselRef.value.next === 'function') {
-        carouselRef.value.next();
+        carouselRef.value.next()
       } else if (typeof carouselRef.value.slideTo === 'function') {
-        const currentSlide = carouselRef.value.currentSlide || 0;
-        const totalSlides = duplicatedProjects.value.length;
-        const nextSlide = (currentSlide + 1) % totalSlides;
-        carouselRef.value.slideTo(nextSlide);
+        const currentSlide = carouselRef.value.currentSlide || 0
+        const totalSlides = duplicatedProjects.value.length
+        const nextSlide = (currentSlide + 1) % totalSlides
+        carouselRef.value.slideTo(nextSlide)
       } else if (carouselRef.value.$el) {
         // Fallback: usa il DOM direttamente
-        const nextButton = carouselRef.value.$el.querySelector('.carousel__next');
+        const nextButton = carouselRef.value.$el.querySelector('.carousel__next')
         if (nextButton) {
-          nextButton.click();
+          nextButton.click()
         }
       }
     }
-  }, 3000);
-};
+  }, 3000)
+}
 
 const stopAutoplay = () => {
   if (autoplayInterval) {
-    clearInterval(autoplayInterval);
-    autoplayInterval = null;
+    clearInterval(autoplayInterval)
+    autoplayInterval = null
   }
-};
+}
 
 const handleMouseEnter = () => {
-  stopAutoplay();
-};
+  stopAutoplay()
+}
 
 const handleMouseLeave = () => {
-  startAutoplay();
-};
+  startAutoplay()
+}
 
 // Watch per avviare autoplay quando i progetti sono caricati
-watch(() => portfolioStore.projects.length, (newLength) => {
-  if (newLength > 0) {
-    nextTick(() => {
-      setTimeout(() => {
-        startAutoplay();
-      }, 800);
-    });
+watch(
+  () => portfolioStore.projects.length,
+  newLength => {
+    if (newLength > 0) {
+      nextTick(() => {
+        setTimeout(() => {
+          startAutoplay()
+        }, 800)
+      })
+    }
   }
-});
+)
 
 onMounted(() => {
   if (portfolioStore.projects.length === 0) {
-    portfolioStore.loadProjects();
+    portfolioStore.loadProjects()
   }
-  
+
   setTimeout(() => {
-    isVisible.value = true;
+    isVisible.value = true
     // Avvia autoplay dopo che il carosello è renderizzato
     if (portfolioStore.projects.length > 0) {
       nextTick(() => {
         setTimeout(() => {
-          startAutoplay();
-        }, 800);
-      });
+          startAutoplay()
+        }, 800)
+      })
     }
-  }, 100);
-});
+  }, 100)
+})
 
 onUnmounted(() => {
-  stopAutoplay();
-});
+  stopAutoplay()
+})
 </script>
 
 <style scoped>
@@ -238,7 +255,10 @@ onUnmounted(() => {
 
 /* ---- Modern aesthetic ---- */
 .project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .project-card:hover {
@@ -365,7 +385,9 @@ onUnmounted(() => {
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {
@@ -382,5 +404,4 @@ onUnmounted(() => {
 .projects-carousel:hover :deep(.carousel__track) {
   transition-duration: 0.3s;
 }
-
 </style>

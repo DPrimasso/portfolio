@@ -1,14 +1,22 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-modern" role="navigation" aria-label="Navigazione principale">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark fixed-top navbar-modern"
+    role="navigation"
+    aria-label="Navigazione principale"
+  >
     <div class="container">
-      <a class="navbar-brand fw-bold d-flex align-items-center" href="#" aria-label="Home - Daniele Primasso">
+      <a
+        class="navbar-brand fw-bold d-flex align-items-center"
+        href="#"
+        aria-label="Home - Daniele Primasso"
+      >
         <img :src="parrots" alt="Parrot Logo" class="me-2 navbar-logo" loading="eager" />
         Daniele Primasso
       </a>
-      <button 
-        class="navbar-toggler" 
-        type="button" 
-        data-bs-toggle="collapse" 
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
         data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
@@ -16,14 +24,32 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div id="navbarNav" class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#about" aria-label="Vai alla sezione About">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills" aria-label="Vai alla sezione Competenze">Competenze</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience" aria-label="Vai alla sezione Esperienza">Esperienza</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education" aria-label="Vai alla sezione Formazione">Formazione</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects" aria-label="Vai alla sezione Progetti">Progetti</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact" aria-label="Vai alla sezione Contatti">Contatti</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" aria-label="Vai alla sezione About">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills" aria-label="Vai alla sezione Competenze"
+              >Competenze</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#experience" aria-label="Vai alla sezione Esperienza"
+              >Esperienza</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#education" aria-label="Vai alla sezione Formazione"
+              >Formazione</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects" aria-label="Vai alla sezione Progetti">Progetti</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" aria-label="Vai alla sezione Contatti">Contatti</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -31,7 +57,7 @@
 </template>
 
 <script setup>
-import parrots from '../assets/images/parrots.png';
+import parrots from '../assets/images/parrots.png'
 </script>
 
 <style scoped>

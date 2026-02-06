@@ -19,7 +19,11 @@ export function useErrorHandler() {
     }
 
     if (err && typeof err === 'object') {
-      const errorObj = err as { message?: string; response?: { data?: unknown; status?: number }; code?: string }
+      const errorObj = err as {
+        message?: string
+        response?: { data?: unknown; status?: number }
+        code?: string
+      }
       error.value = {
         message: message || errorObj.message || 'Si è verificato un errore',
         details: errorObj.response?.data || errorObj.message,
@@ -46,19 +50,19 @@ export function useErrorHandler() {
 
     try {
       retryCount.value++
-      await new Promise((resolve) => setTimeout(resolve, delay * retryCount.value))
+      await new Promise(resolve => setTimeout(resolve, delay * retryCount.value))
       const result = await fn()
       clearError()
       return result
     } catch (err) {
       // Log dettagliato dell'errore per debugging
       console.error(`Retry attempt ${retryCount.value}/${maxRetries} failed:`, err)
-      
+
       if (retryCount.value < maxRetries) {
         console.log(`Retrying in ${delay * (retryCount.value + 1)}ms...`)
         return retry(fn, delay)
       }
-      
+
       // Ultimo tentativo fallito, salva l'errore originale
       console.error('All retry attempts exhausted. Last error:', err)
       setError(err)

@@ -1,5 +1,13 @@
 import portfolioData from '../data/portfolio.json'
-import type { PortfolioData, Skill, Project, Experience, Education, Contact, Stat } from '../types/portfolio'
+import type {
+  PortfolioData,
+  Skill,
+  Project,
+  Experience,
+  Education,
+  Contact,
+  Stat,
+} from '../types/portfolio'
 
 /**
  * Servizio per caricare i dati del portfolio

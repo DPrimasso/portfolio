@@ -23,8 +23,8 @@ export function useIntersectionObserver(
     }
 
     observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             callback(entry)
             if (options.once && observer) {

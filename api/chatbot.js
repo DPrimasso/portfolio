@@ -8,13 +8,11 @@ const {
 
 export default async function handler(req, res) {
   const origin = req.headers.origin || req.headers.Origin
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',')
-    : []
+  const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : []
   const headers = createCorsHeaders(origin, allowedOrigins)
 
   // Set CORS headers
-  Object.keys(headers).forEach((key) => {
+  Object.keys(headers).forEach(key => {
     res.setHeader(key, headers[key])
   })
 
@@ -55,10 +53,7 @@ export default async function handler(req, res) {
     if (error.code === 'API_KEY_VALIDATION_FAILED') {
       statusCode = 500
       errorMessage = 'API key configuration error'
-    } else if (
-      error.message.includes('required') ||
-      error.message.includes('too long')
-    ) {
+    } else if (error.message.includes('required') || error.message.includes('too long')) {
       statusCode = 400
       errorMessage = 'Bad request'
     } else if (error.code === 'INVALID_API_KEY') {

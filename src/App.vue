@@ -2,7 +2,7 @@
   <div>
     <!-- Navigation & sections -->
     <Navbar />
-    
+
     <main id="main-content">
       <!--    <Sidebar />-->
       <Hero />
@@ -18,7 +18,7 @@
       <Divider />
       <CTA />
       <Divider />
-      <Chatbot/>
+      <Chatbot />
     </main>
 
     <!-- Footer ----------------------------------------------------------- -->
@@ -28,23 +28,26 @@
           <div id="contact" class="col-12 col-md-8 col-lg-6 text-center">
             <h3 class="footer-heading">Contatti</h3>
             <div v-if="portfolioStore.contact" class="footer-contacts-row">
-              <a :href="'mailto:' + portfolioStore.contact.email" class="footer-link footer-email-link">
+              <a
+                :href="'mailto:' + portfolioStore.contact.email"
+                class="footer-link footer-email-link"
+              >
                 <i class="fas fa-envelope me-2"></i>
                 {{ portfolioStore.contact.email }}
               </a>
               <div class="footer-social">
-                <a 
-                  :href="portfolioStore.contact.linkedin" 
-                  target="_blank" 
+                <a
+                  :href="portfolioStore.contact.linkedin"
+                  target="_blank"
                   rel="noopener noreferrer"
                   class="footer-social-link linkedin"
                   aria-label="Visita il profilo LinkedIn"
                 >
                   <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a 
-                  :href="portfolioStore.contact.github" 
-                  target="_blank" 
+                <a
+                  :href="portfolioStore.contact.github"
+                  target="_blank"
                   rel="noopener noreferrer"
                   class="footer-social-link github"
                   aria-label="Visita il profilo GitHub"
@@ -65,38 +68,38 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import Navbar from "./components/Navbar.vue";
-import Hero from "./components/Hero.vue";
-import Divider from "./components/Divider.vue";
-import About from "./components/About.vue";
-import Skills from "./components/Skills.vue";
-import Experience from "./components/Experience.vue";
-import Education from "./components/Education.vue";
-import CTA from "./components/CTA.vue";
-import { defineAsyncComponent } from 'vue';
-import Chatbot from "./components/Chatbot.vue";
+import { onMounted } from 'vue'
+import Navbar from './components/Navbar.vue'
+import Hero from './components/Hero.vue'
+import Divider from './components/Divider.vue'
+import About from './components/About.vue'
+import Skills from './components/Skills.vue'
+import Experience from './components/Experience.vue'
+import Education from './components/Education.vue'
+import CTA from './components/CTA.vue'
+import { defineAsyncComponent } from 'vue'
+import Chatbot from './components/Chatbot.vue'
 // Lazy load heavy components
-const Projects = defineAsyncComponent(() => import("./components/Projects.vue"));
+const Projects = defineAsyncComponent(() => import('./components/Projects.vue'))
 import { usePortfolioStore } from './stores/portfolio'
 import { useSEO } from './composables/useSEO'
 
-const portfolioStore = usePortfolioStore();
-const { setMetaTags, setStructuredData } = useSEO();
+const portfolioStore = usePortfolioStore()
+const { setMetaTags, setStructuredData } = useSEO()
 
 // Setup SEO on mount
 onMounted(() => {
-  setMetaTags();
+  setMetaTags()
 
   // Wait for contact data to be loaded
   if (portfolioStore.contact) {
-    setStructuredData(portfolioStore.contact);
+    setStructuredData(portfolioStore.contact)
   } else {
     portfolioStore.loadContact().then(() => {
-      setStructuredData(portfolioStore.contact);
-    });
+      setStructuredData(portfolioStore.contact)
+    })
   }
-});
+})
 </script>
 
 <style scoped>
@@ -105,7 +108,7 @@ onMounted(() => {
   padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
   border-radius: 0.5rem;
-  margin: 0.4em
+  margin: 0.4em;
 }
 
 /* Footer moderno */

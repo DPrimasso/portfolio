@@ -2,9 +2,9 @@
   <section class="cta py-5 text-center" aria-labelledby="cta-heading">
     <div class="container">
       <h2 id="cta-heading" class="fw-bold mb-3">Scarica il mio CV</h2>
-      <a 
-        href="/Curriculum_Vitae_Primasso_Daniele.pdf" 
-        class="btn btn-lg btn-cta" 
+      <a
+        href="/Curriculum_Vitae_Primasso_Daniele.pdf"
+        class="btn btn-lg btn-cta"
         download="Curriculum_Vitae_Primasso_Daniele.pdf"
         aria-label="Scarica il curriculum vitae di Daniele Primasso"
       >
@@ -27,7 +27,9 @@
   background: var(--bg);
   color: var(--accent);
   border: 2px solid var(--bg);
-  transition: background 0.3s, color 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s;
 }
 .btn-cta:hover {
   background: var(--bg);

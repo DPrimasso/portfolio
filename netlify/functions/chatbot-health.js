@@ -1,9 +1,7 @@
 // Health check endpoint per verificare la configurazione del chatbot
-const {
-  validateApiKey,
-} = require('../../shared/chatbot-core')
+const { validateApiKey } = require('../../shared/chatbot-core')
 
-exports.handler = async (event) => {
+exports.handler = async event => {
   // Solo GET permesso
   if (event.httpMethod !== 'GET') {
     return {

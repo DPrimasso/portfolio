@@ -9,9 +9,9 @@
         <article
           v-for="(item, index) in portfolioStore.experience"
           :key="`${item.company}-${item.from}`"
+          :ref="el => (itemRefs[index] = el)"
           class="timeline-item fade-in-up"
           :class="{ visible: animatedItems[index] }"
-          :ref="el => itemRefs[index] = el"
           role="listitem"
         >
           <div class="experience-card card">
@@ -23,7 +23,7 @@
                 <div class="experience-meta">
                   <span class="experience-badge">
                     <i class="fas fa-calendar-alt me-1"></i>
-                    <time :datetime="item.from">{{ item.from }}</time> - 
+                    <time :datetime="item.from">{{ item.from }}</time> -
                     <time :datetime="item.to">{{ item.to }}</time>
                   </span>
                   <span class="experience-location">
@@ -46,35 +46,41 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
-import { usePortfolioStore } from '../stores/portfolio';
+import { onMounted, ref, watch } from 'vue'
+import { usePortfolioStore } from '../stores/portfolio'
 
-const portfolioStore = usePortfolioStore();
-const itemRefs = ref([]);
-const animatedItems = ref({});
+const portfolioStore = usePortfolioStore()
+const itemRefs = ref([])
+const animatedItems = ref({})
 
 onMounted(() => {
   if (portfolioStore.experience.length === 0) {
-    portfolioStore.loadExperience();
+    portfolioStore.loadExperience()
   }
-  
+
   // Animate items when they come into view
-  watch(() => portfolioStore.experience, (experience) => {
-    if (experience.length > 0) {
-      setTimeout(() => {
-        experience.forEach((_, index) => {
-          animatedItems.value[index] = true;
-        });
-      }, 200);
-    }
-  }, { immediate: true });
-});
+  watch(
+    () => portfolioStore.experience,
+    experience => {
+      if (experience.length > 0) {
+        setTimeout(() => {
+          experience.forEach((_, index) => {
+            animatedItems.value[index] = true
+          })
+        }, 200)
+      }
+    },
+    { immediate: true }
+  )
+})
 </script>
 
 <style scoped>
 .experience-card {
   margin-left: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .experience-card:hover {
@@ -150,7 +156,9 @@ onMounted(() => {
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {

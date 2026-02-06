@@ -27,7 +27,7 @@ describe('Skills.vue', () => {
     const loadSkillsSpy = vi.spyOn(store, 'loadSkills')
 
     mount(Skills)
-    await new Promise((resolve) => setTimeout(resolve, 100))
+    await new Promise(resolve => setTimeout(resolve, 100))
 
     expect(loadSkillsSpy).toHaveBeenCalled()
   })

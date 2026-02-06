@@ -26,7 +26,7 @@ export const config = {
 export function validateEnv(requiredVars: string[] = []): void {
   if (!config.isProd) return
 
-  const missing = requiredVars.filter((varName) => {
+  const missing = requiredVars.filter(varName => {
     const value = import.meta.env[varName]
     return !value || value === ''
   })

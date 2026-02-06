@@ -18,7 +18,7 @@ export function generateSitemap(): string {
 
   const urlEntries = routes
     .map(
-      (route) => `  <url>
+      route => `  <url>
     <loc>${baseUrl}${route.path}</loc>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>

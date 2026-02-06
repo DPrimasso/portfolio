@@ -1,7 +1,13 @@
 <template>
-  <section id="contact" class="py-5" aria-labelledby="contact-heading" ref="contactSection">
+  <section id="contact" ref="contactSection" class="py-5" aria-labelledby="contact-heading">
     <div class="container">
-      <h2 id="contact-heading" class="fw-bold mb-5 text-center fade-in-up" :class="{ visible: isVisible }">Contatti</h2>
+      <h2
+        id="contact-heading"
+        class="fw-bold mb-5 text-center fade-in-up"
+        :class="{ visible: isVisible }"
+      >
+        Contatti
+      </h2>
       <div v-if="portfolioStore.loading" class="text-center">
         <p>Caricamento contatti...</p>
       </div>
@@ -9,8 +15,8 @@
         <div class="row g-4 justify-content-center">
           <!-- Email Card -->
           <div class="col-md-6 col-lg-4">
-            <a 
-              :href="'mailto:' + portfolioStore.contact.email" 
+            <a
+              :href="'mailto:' + portfolioStore.contact.email"
               class="contact-card card text-decoration-none"
               aria-label="Invia email a Daniele Primasso"
             >
@@ -26,9 +32,9 @@
 
           <!-- LinkedIn Card -->
           <div class="col-md-6 col-lg-4">
-            <a 
-              :href="portfolioStore.contact.linkedin" 
-              target="_blank" 
+            <a
+              :href="portfolioStore.contact.linkedin"
+              target="_blank"
               rel="noopener noreferrer"
               class="contact-card card text-decoration-none"
               aria-label="Visita il profilo LinkedIn di Daniele Primasso"
@@ -45,9 +51,9 @@
 
           <!-- GitHub Card -->
           <div class="col-md-6 col-lg-4">
-            <a 
-              :href="portfolioStore.contact.github" 
-              target="_blank" 
+            <a
+              :href="portfolioStore.contact.github"
+              target="_blank"
               rel="noopener noreferrer"
               class="contact-card card text-decoration-none"
               aria-label="Visita il profilo GitHub di Daniele Primasso"
@@ -68,22 +74,22 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { usePortfolioStore } from '../stores/portfolio';
+import { onMounted, ref } from 'vue'
+import { usePortfolioStore } from '../stores/portfolio'
 
-const portfolioStore = usePortfolioStore();
-const contactSection = ref(null);
-const isVisible = ref(false);
+const portfolioStore = usePortfolioStore()
+const contactSection = ref(null)
+const isVisible = ref(false)
 
 onMounted(() => {
   if (!portfolioStore.contact) {
-    portfolioStore.loadContact();
+    portfolioStore.loadContact()
   }
-  
+
   setTimeout(() => {
-    isVisible.value = true;
-  }, 100);
-});
+    isVisible.value = true
+  }, 100)
+})
 </script>
 
 <style scoped>
@@ -94,7 +100,9 @@ onMounted(() => {
 
 .contact-card {
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   color: inherit;
 }
 
@@ -173,7 +181,9 @@ onMounted(() => {
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {

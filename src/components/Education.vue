@@ -9,9 +9,9 @@
         <article
           v-for="(edu, index) in portfolioStore.education"
           :key="index"
+          :ref="el => (itemRefs[index] = el)"
           class="timeline-item fade-in-up"
           :class="{ visible: animatedItems[index] }"
-          :ref="el => itemRefs[index] = el"
           role="listitem"
         >
           <div class="education-card card">
@@ -48,35 +48,41 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
-import { usePortfolioStore } from '../stores/portfolio';
+import { onMounted, ref, watch } from 'vue'
+import { usePortfolioStore } from '../stores/portfolio'
 
-const portfolioStore = usePortfolioStore();
-const itemRefs = ref([]);
-const animatedItems = ref({});
+const portfolioStore = usePortfolioStore()
+const itemRefs = ref([])
+const animatedItems = ref({})
 
 onMounted(() => {
   if (portfolioStore.education.length === 0) {
-    portfolioStore.loadEducation();
+    portfolioStore.loadEducation()
   }
-  
+
   // Animate items when they come into view
-  watch(() => portfolioStore.education, (education) => {
-    if (education.length > 0) {
-      setTimeout(() => {
-        education.forEach((_, index) => {
-          animatedItems.value[index] = true;
-        });
-      }, 200);
-    }
-  }, { immediate: true });
-});
+  watch(
+    () => portfolioStore.education,
+    education => {
+      if (education.length > 0) {
+        setTimeout(() => {
+          education.forEach((_, index) => {
+            animatedItems.value[index] = true
+          })
+        }, 200)
+      }
+    },
+    { immediate: true }
+  )
+})
 </script>
 
 <style scoped>
 .education-card {
   margin-left: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .education-card:hover {
@@ -143,7 +149,9 @@ onMounted(() => {
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {

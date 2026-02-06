@@ -31,7 +31,7 @@ export function usePerformance() {
 
     // Measure LCP (Largest Contentful Paint)
     try {
-      const lcpObserver = new PerformanceObserver((list) => {
+      const lcpObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
         const lastEntry = entries[entries.length - 1] as PerformanceEntry & {
           renderTime?: number
@@ -46,9 +46,9 @@ export function usePerformance() {
 
     // Measure FID (First Input Delay)
     try {
-      const fidObserver = new PerformanceObserver((list) => {
+      const fidObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           const fidEntry = entry as PerformanceEventTimingLike
           metrics.fid = fidEntry.processingStart - fidEntry.startTime
         })
@@ -61,9 +61,9 @@ export function usePerformance() {
     // Measure CLS (Cumulative Layout Shift)
     try {
       let clsValue = 0
-      const clsObserver = new PerformanceObserver((list) => {
+      const clsObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           const layoutShift = entry as LayoutShiftLike
           if (!layoutShift.hadRecentInput) {
             clsValue += layoutShift.value
@@ -78,9 +78,9 @@ export function usePerformance() {
 
     // Measure FCP (First Contentful Paint)
     try {
-      const fcpObserver = new PerformanceObserver((list) => {
+      const fcpObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           if (entry.name === 'first-contentful-paint') {
             metrics.fcp = entry.startTime
           }

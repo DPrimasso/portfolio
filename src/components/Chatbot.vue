@@ -1,21 +1,31 @@
 <template>
-  <div id="chatbot" v-if="isOpen" class="chatbot" role="dialog" aria-labelledby="chatbot_header" aria-modal="true">
+  <div
+    v-if="isOpen"
+    id="chatbot"
+    class="chatbot"
+    role="dialog"
+    aria-labelledby="chatbot_header"
+    aria-modal="true"
+  >
     <div id="chatbot_header" class="chatbot-header">
       <strong>PrimoBot</strong>
-      <button 
-        @click="toggleChatbot" 
-        aria-label="Chiudi chatbot"
-        :aria-expanded="isOpen"
-      >
+      <button aria-label="Chiudi chatbot" :aria-expanded="isOpen" @click="toggleChatbot">
         {{ isOpen ? '➖' : '➕' }}
       </button>
     </div>
-    <div id="messages" class="chatbot-messages" ref="messagesContainer" role="log" aria-live="polite" aria-atomic="false">
+    <div
+      id="messages"
+      ref="messagesContainer"
+      class="chatbot-messages"
+      role="log"
+      aria-live="polite"
+      aria-atomic="false"
+    >
       <div
-          v-for="msg in chatMessages"
-          :key="msg.id"
-          :class="['message', msg.isUser ? 'user' : 'bot']"
-          :role="msg.isUser ? 'user' : 'assistant'"
+        v-for="msg in chatMessages"
+        :key="msg.id"
+        :class="['message', msg.isUser ? 'user' : 'bot']"
+        :role="msg.isUser ? 'user' : 'assistant'"
       >
         <div class="text">{{ msg.text }}</div>
       </div>
@@ -25,59 +35,53 @@
     </div>
     <div class="chatbot-input">
       <input
-          type="text"
-          v-model="userMessage"
-          @keyup.enter="handleSendMessage"
-          placeholder="Scrivi un messaggio..."
-          aria-label="Messaggio per il chatbot"
-          :disabled="isTyping"
+        v-model="userMessage"
+        type="text"
+        placeholder="Scrivi un messaggio..."
+        aria-label="Messaggio per il chatbot"
+        :disabled="isTyping"
+        @keyup.enter="handleSendMessage"
       />
-      <button 
-        @click="handleSendMessage" 
+      <button
         aria-label="Invia messaggio"
         :disabled="isTyping || !userMessage.trim()"
+        @click="handleSendMessage"
       >
         <i class="fas fa-paper-plane"></i>
       </button>
     </div>
   </div>
-  <div 
-    id="chatbot_minimize" 
-    class="minimized-chatbot" 
-    v-else 
-    @click="toggleChatbot"
+  <div
+    v-else
+    id="chatbot_minimize"
+    class="minimized-chatbot"
     role="button"
     aria-label="Apri chatbot PrimoBot"
     tabindex="0"
+    @click="toggleChatbot"
     @keyup.enter="toggleChatbot"
   >
-    CHATTA CON PRIMOBOT  💬
+    CHATTA CON PRIMOBOT 💬
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { useChatbot } from '../composables/useChatbot'
 
-const userMessage = ref('');
-const messagesContainer = ref(null);
+const userMessage = ref('')
+const messagesContainer = ref(null)
 
-const {
-  chatMessages,
-  isTyping,
-  isOpen,
-  toggleChatbot,
-  sendMessage,
-} = useChatbot();
+const { chatMessages, isTyping, isOpen, toggleChatbot, sendMessage } = useChatbot()
 
 const handleSendMessage = async () => {
-  if (!userMessage.value.trim() || isTyping.value) return;
-  
-  const text = userMessage.value;
-  userMessage.value = '';
-  
-  await sendMessage(text, messagesContainer.value);
-};
+  if (!userMessage.value.trim() || isTyping.value) return
+
+  const text = userMessage.value
+  userMessage.value = ''
+
+  await sendMessage(text, messagesContainer.value)
+}
 </script>
 
 <style scoped>
@@ -90,11 +94,14 @@ const handleSendMessage = async () => {
   background: #c9d1d9;
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   font-family: 'Inter', sans-serif;
-  transition: bottom 0.3s ease, right 0.3s ease, opacity 0.3s ease;
+  transition:
+    bottom 0.3s ease,
+    right 0.3s ease,
+    opacity 0.3s ease;
   z-index: 9999;
 }
 .chatbot-header {
@@ -120,10 +127,20 @@ const handleSendMessage = async () => {
   border-radius: 12px;
   max-width: 100%;
 }
-.message.user { align-self: flex-end; }
-.message.user .text { background: #007bff; color: #fff; }
-.message.bot { align-self: flex-start; }
-.message.bot .text { background: #e9ecef; color: #333; }
+.message.user {
+  align-self: flex-end;
+}
+.message.user .text {
+  background: #007bff;
+  color: #fff;
+}
+.message.bot {
+  align-self: flex-start;
+}
+.message.bot .text {
+  background: #e9ecef;
+  color: #333;
+}
 .chatbot-input {
   display: flex;
 }
@@ -133,7 +150,7 @@ const handleSendMessage = async () => {
   outline: none;
   font-family: 'Inter', sans-serif;
   border-radius: 20px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 12px;
   margin: 5px;
 }
@@ -161,7 +178,7 @@ const handleSendMessage = async () => {
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 9999;
 }
 .typing-indicator {
@@ -175,14 +192,24 @@ const handleSendMessage = async () => {
   display: block;
   width: 6px;
   height: 6px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   animation: bounce 1s infinite ease-in-out;
 }
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
 @keyframes bounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-6px); }
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
 }
 </style>
