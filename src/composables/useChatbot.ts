@@ -24,7 +24,7 @@ const SYSTEM_PROMPT: ApiMessage = {
     Nome: Daniele Primasso
     Data di nascita: 27/09/1993
     Posizione: Software Developer
-    Contatti: primo.note4@gmail.com, +39 3272404432
+    Contatti: daniele.primasso@gmail.com, +39 3272404432
 
     Formazione:
     - Diploma in Informatica/Sistemi, Bonsignori, Remedello (BS), 2010

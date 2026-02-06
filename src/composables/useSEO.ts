@@ -87,7 +87,7 @@ export function useSEO() {
       '@type': 'Person',
       name: 'Daniele Primasso',
       jobTitle: 'Software Developer',
-      email: 'primo.note4@gmail.com',
+      email: 'daniele.primasso@gmail.com',
       url: url,
       sameAs: [data?.linkedin || '', data?.github || ''].filter(Boolean),
       ...data,
