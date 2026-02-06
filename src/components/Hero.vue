@@ -41,7 +41,7 @@
       </div>
 
       <div class="hero-hints">
-        <span class="hero-hint-pill">⌘K · Chatbot per farmi domande</span>
+        <span class="hero-hint-pill">⌘K · Naviga velocemente nel sito</span>
         <span class="hero-hint-pill">Scrolla per esplorare il codice</span>
       </div>
     </div>

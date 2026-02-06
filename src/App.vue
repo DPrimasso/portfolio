@@ -17,8 +17,6 @@
       <Projects />
       <Divider />
       <CTA />
-      <Divider />
-      <Chatbot />
     </main>
 
     <!-- Footer ----------------------------------------------------------- -->
@@ -78,7 +76,6 @@ import Experience from './components/Experience.vue'
 import Education from './components/Education.vue'
 import CTA from './components/CTA.vue'
 import { defineAsyncComponent } from 'vue'
-import Chatbot from './components/Chatbot.vue'
 // Lazy load heavy components
 const Projects = defineAsyncComponent(() => import('./components/Projects.vue'))
 import { usePortfolioStore } from './stores/portfolio'
