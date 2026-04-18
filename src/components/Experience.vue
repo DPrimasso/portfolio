@@ -1,5 +1,5 @@
 <template>
-  <section id="experience" class="py-5" aria-labelledby="experience-heading">
+  <section id="experience" ref="target" class="py-5" aria-labelledby="experience-heading">
     <div class="container">
       <h2 id="experience-heading" class="fw-bold mb-5 text-center">Esperienza</h2>
       <div v-if="portfolioStore.loading" class="text-center">
@@ -9,9 +9,9 @@
         <article
           v-for="(item, index) in portfolioStore.experience"
           :key="`${item.company}-${item.from}`"
-          :ref="el => (itemRefs[index] = el)"
           class="timeline-item fade-in-up"
-          :class="{ visible: animatedItems[index] }"
+          :class="{ visible: isVisible }"
+          :style="{ transitionDelay: isVisible ? index * 80 + 'ms' : '0ms' }"
           role="listitem"
         >
           <div class="experience-card card">
@@ -46,33 +46,23 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 import { usePortfolioStore } from '../stores/portfolio'
+import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 
 const portfolioStore = usePortfolioStore()
-const itemRefs = ref([])
-const animatedItems = ref({})
 
-onMounted(() => {
-  if (portfolioStore.experience.length === 0) {
-    portfolioStore.loadExperience()
-  }
+const isVisible = ref(false)
 
-  // Animate items when they come into view
-  watch(
-    () => portfolioStore.experience,
-    experience => {
-      if (experience.length > 0) {
-        setTimeout(() => {
-          experience.forEach((_, index) => {
-            animatedItems.value[index] = true
-          })
-        }, 200)
-      }
-    },
-    { immediate: true }
-  )
-})
+const { target } = useIntersectionObserver(
+  () => {
+    isVisible.value = true
+    if (portfolioStore.experience.length === 0) {
+      portfolioStore.loadExperience()
+    }
+  },
+  { once: true, threshold: 0.08 }
+)
 </script>
 
 <style scoped>

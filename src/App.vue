@@ -16,6 +16,8 @@
       <Divider />
       <Projects />
       <Divider />
+      <Contact />
+      <Divider />
       <CTA />
     </main>
 
@@ -23,8 +25,7 @@
     <footer id="footer" class="footer-modern py-5" role="contentinfo">
       <div class="container">
         <div class="row g-4 justify-content-center">
-          <div id="contact" class="col-12 col-md-8 col-lg-6 text-center">
-            <h3 class="footer-heading">Contatti</h3>
+          <div class="col-12 col-md-8 col-lg-6 text-center">
             <div v-if="portfolioStore.contact" class="footer-contacts-row">
               <a
                 :href="'mailto:' + portfolioStore.contact.email"
@@ -74,6 +75,7 @@ import About from './components/About.vue'
 import Skills from './components/Skills.vue'
 import Experience from './components/Experience.vue'
 import Education from './components/Education.vue'
+import Contact from './components/Contact.vue'
 import CTA from './components/CTA.vue'
 import { defineAsyncComponent } from 'vue'
 // Lazy load heavy components

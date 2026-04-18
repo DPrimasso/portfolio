@@ -4,7 +4,7 @@
   --bg: #050816;
   --bg-alt: #0b1020;
   --text: #e2e8f0;
-  --muted: #94a3b8;
+  --muted: #9cadc4;
   --accent: #7c3aed;
   --accent-soft: rgba(124, 58, 237, 0.18);
   --accent-strong: #a855f7;
@@ -43,8 +43,7 @@ body::before {
 body {
   background: radial-gradient(circle at 0 0, #020617, #020617 35%, #020617 100%);
   background-color: #020617 !important;
-  color: var(--text) !important;
-  color: #e2e8f0 !important;
+  color: var(--text);
   font-family:
     'Inter',
     system-ui,
@@ -197,7 +196,7 @@ body {
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: var(--muted);
   margin-bottom: 0.3rem;
 }
@@ -443,26 +442,6 @@ a:focus-visible {
   white-space: nowrap;
   margin-left: 0.5rem;
   font-size: 0.875rem;
-}
-
-/* Profile image con glow */
-#about .profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border: 3px solid var(--border-subtle);
-  box-shadow:
-    0 0 0 4px var(--bg-alt),
-    0 0 30px var(--accent-soft);
-  transition: all 0.3s ease;
-}
-#about .profile-img:hover {
-  box-shadow:
-    0 0 0 4px var(--bg-alt),
-    0 0 40px var(--accent-strong);
-  transform: scale(1.05);
 }
 
 /* Scroll reveal animations */

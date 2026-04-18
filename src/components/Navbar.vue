@@ -10,7 +10,7 @@
         href="#"
         aria-label="Home - Daniele Primasso"
       >
-        <img :src="parrots" alt="Parrot Logo" class="me-2 navbar-logo" loading="eager" />
+        <span class="navbar-initials me-2" aria-hidden="true">DP</span>
         Daniele Primasso
       </a>
       <button
@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-import parrots from '../assets/images/parrots.png'
+// No imports needed
 </script>
 
 <style scoped>
@@ -70,12 +70,23 @@ import parrots from '../assets/images/parrots.png'
   transition: all 0.3s ease;
 }
 
-.navbar-logo {
-  height: 30px;
+.navbar-initials {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: white;
+  letter-spacing: -0.03em;
+  flex-shrink: 0;
   transition: transform 0.2s ease;
 }
 
-.navbar-logo:hover {
+.navbar-brand:hover .navbar-initials {
   transform: scale(1.1);
 }
 

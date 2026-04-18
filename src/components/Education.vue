@@ -1,5 +1,5 @@
 <template>
-  <section id="education" class="py-5" aria-labelledby="education-heading">
+  <section id="education" ref="target" class="py-5" aria-labelledby="education-heading">
     <div class="container">
       <h2 id="education-heading" class="fw-bold mb-5 text-center">Formazione</h2>
       <div v-if="portfolioStore.loading" class="text-center">
@@ -9,9 +9,9 @@
         <article
           v-for="(edu, index) in portfolioStore.education"
           :key="index"
-          :ref="el => (itemRefs[index] = el)"
           class="timeline-item fade-in-up"
-          :class="{ visible: animatedItems[index] }"
+          :class="{ visible: isVisible }"
+          :style="{ transitionDelay: isVisible ? index * 100 + 'ms' : '0ms' }"
           role="listitem"
         >
           <div class="education-card card">
@@ -48,33 +48,23 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 import { usePortfolioStore } from '../stores/portfolio'
+import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 
 const portfolioStore = usePortfolioStore()
-const itemRefs = ref([])
-const animatedItems = ref({})
 
-onMounted(() => {
-  if (portfolioStore.education.length === 0) {
-    portfolioStore.loadEducation()
-  }
+const isVisible = ref(false)
 
-  // Animate items when they come into view
-  watch(
-    () => portfolioStore.education,
-    education => {
-      if (education.length > 0) {
-        setTimeout(() => {
-          education.forEach((_, index) => {
-            animatedItems.value[index] = true
-          })
-        }, 200)
-      }
-    },
-    { immediate: true }
-  )
-})
+const { target } = useIntersectionObserver(
+  () => {
+    isVisible.value = true
+    if (portfolioStore.education.length === 0) {
+      portfolioStore.loadEducation()
+    }
+  },
+  { once: true, threshold: 0.1 }
+)
 </script>
 
 <style scoped>

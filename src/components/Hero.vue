@@ -14,22 +14,15 @@
       </h1>
 
       <p class="hero-subtitle">
-        Costruisco prodotti web curando <strong>architettura</strong>,
-        <strong>performance</strong> e <strong>design</strong>.
+        Backend engineer specializzato in <strong>Node.js</strong>, <strong>Golang</strong> e
+        sistemi distribuiti — dall'automazione industriale ai
+        <strong>protocolli blockchain</strong>.
       </p>
 
       <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">anni di esperienza</span>
-          <span class="hero-meta-value">7+</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">progetti production-ready</span>
-          <span class="hero-meta-value">10+</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">stack principale</span>
-          <span class="hero-meta-value">Vue · Node · Cloud</span>
+        <div v-for="(stat, i) in portfolioStore.stats" :key="i" class="hero-meta-item">
+          <span class="hero-meta-label">{{ stat.label }}</span>
+          <span class="hero-meta-value">{{ stat.value }}</span>
         </div>
       </div>
 
@@ -40,24 +33,32 @@
         </a>
       </div>
 
-      <div class="hero-hints">
-        <span class="hero-hint-pill">⌘K · Naviga velocemente nel sito</span>
-        <span class="hero-hint-pill">Scrolla per esplorare il codice</span>
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span class="hero-scroll-arrow">↓</span>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
+import { usePortfolioStore } from '../stores/portfolio'
+
+const portfolioStore = usePortfolioStore()
+
+onMounted(() => {
+  if (portfolioStore.stats.length === 0) {
+    portfolioStore.loadStats()
+  }
+})
+
 const scrollToContact = () => {
   const el = document.getElementById('contact')
   if (!el) return
 
   const rect = el.getBoundingClientRect()
-  const scrollTop =
-    window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-  const headerOffset = 70 // offset per navbar / padding-top body
-  const targetY = rect.top + scrollTop - headerOffset
+  const headerOffset = 70
+  const targetY = rect.top + window.scrollY - headerOffset
 
   window.scrollTo({
     top: targetY,
@@ -65,3 +66,30 @@ const scrollToContact = () => {
   })
 }
 </script>
+
+<style scoped>
+.hero-scroll-indicator {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-scroll-arrow {
+  font-size: 1.4rem;
+  color: var(--muted);
+  animation: hero-scroll-bounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes hero-scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" ref="contactSection" class="py-5" aria-labelledby="contact-heading">
+  <section id="contact" ref="target" class="py-5" aria-labelledby="contact-heading">
     <div class="container">
       <h2
         id="contact-heading"
@@ -17,7 +17,9 @@
           <div class="col-md-6 col-lg-4">
             <a
               :href="'mailto:' + portfolioStore.contact.email"
-              class="contact-card card text-decoration-none"
+              class="contact-card card text-decoration-none fade-in-up"
+              :class="{ visible: isVisible }"
+              style="transition-delay: 80ms"
               aria-label="Invia email a Daniele Primasso"
             >
               <div class="card-body text-center">
@@ -36,7 +38,9 @@
               :href="portfolioStore.contact.linkedin"
               target="_blank"
               rel="noopener noreferrer"
-              class="contact-card card text-decoration-none"
+              class="contact-card card text-decoration-none fade-in-up"
+              :class="{ visible: isVisible }"
+              style="transition-delay: 160ms"
               aria-label="Visita il profilo LinkedIn di Daniele Primasso"
             >
               <div class="card-body text-center">
@@ -55,7 +59,9 @@
               :href="portfolioStore.contact.github"
               target="_blank"
               rel="noopener noreferrer"
-              class="contact-card card text-decoration-none"
+              class="contact-card card text-decoration-none fade-in-up"
+              :class="{ visible: isVisible }"
+              style="transition-delay: 240ms"
               aria-label="Visita il profilo GitHub di Daniele Primasso"
             >
               <div class="card-body text-center">
@@ -74,22 +80,23 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { usePortfolioStore } from '../stores/portfolio'
+import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 
 const portfolioStore = usePortfolioStore()
-const contactSection = ref(null)
+
 const isVisible = ref(false)
 
-onMounted(() => {
-  if (!portfolioStore.contact) {
-    portfolioStore.loadContact()
-  }
-
-  setTimeout(() => {
+const { target } = useIntersectionObserver(
+  () => {
     isVisible.value = true
-  }, 100)
-})
+    if (!portfolioStore.contact) {
+      portfolioStore.loadContact()
+    }
+  },
+  { once: true, threshold: 0.1 }
+)
 </script>
 
 <style scoped>
@@ -102,7 +109,8 @@ onMounted(() => {
   height: 100%;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    opacity 0.6s ease-out;
   color: inherit;
 }
 
@@ -123,7 +131,6 @@ onMounted(() => {
   justify-content: center;
   font-size: 2rem;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .email-icon {
@@ -139,9 +146,9 @@ onMounted(() => {
 }
 
 .github-icon {
-  background: linear-gradient(135deg, rgba(36, 41, 46, 0.2), rgba(36, 41, 46, 0.3));
-  color: #24292e;
-  border: 2px solid rgba(36, 41, 46, 0.3);
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(148, 163, 184, 0.25));
+  color: var(--text);
+  border: 2px solid var(--border-subtle);
 }
 
 .contact-card:hover .contact-icon {
@@ -160,8 +167,9 @@ onMounted(() => {
 }
 
 .contact-card:hover .github-icon {
-  background: linear-gradient(135deg, rgba(36, 41, 46, 0.3), rgba(36, 41, 46, 0.4));
-  border-color: #24292e;
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .contact-title {

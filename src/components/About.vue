@@ -1,5 +1,5 @@
 <template>
-  <section id="about" ref="aboutSection" class="py-5" aria-labelledby="about-heading">
+  <section id="about" ref="target" class="py-5" aria-labelledby="about-heading">
     <div class="container">
       <h2
         id="about-heading"
@@ -10,48 +10,39 @@
       </h2>
 
       <div class="about-content fade-in-up" :class="{ visible: isVisible }">
-        <!-- Immagini profilo decorative -->
-        <div class="about-images mb-5 d-flex justify-content-center flex-wrap gap-4">
+        <div class="about-profile-row">
           <div class="profile-image-wrapper">
             <img
               :src="profile1"
               alt="Daniele Primasso - Ritratto professionale"
               class="profile-img"
               loading="lazy"
-              width="180"
-              height="180"
+              width="220"
+              height="220"
             />
           </div>
-          <div class="profile-image-wrapper">
-            <img
-              :src="profile2"
-              alt="Daniele Primasso - Foto profilo"
-              class="profile-img"
-              loading="lazy"
-              width="180"
-              height="180"
-            />
-          </div>
-        </div>
 
-        <!-- Testo descrittivo -->
-        <div class="about-text">
-          <div class="about-card card">
-            <div class="card-body">
-              <p class="about-paragraph">
-                Software Developer orientato alla crescita continua, con oltre
-                <strong>7 anni di esperienza</strong> nella progettazione e nello sviluppo di
-                soluzioni back-end scalabili e performanti. Esperto nella creazione di
-                <strong>API REST</strong> e <strong>microservizi</strong> in Node.js, Golang e
-                Python.
-              </p>
-              <p class="about-paragraph">
-                Forte curiosità nell'esplorare tecnologie emergenti come
-                <strong>IA e Machine Learning</strong> per l'analisi di dati oppure
-                <strong>protocolli blockchain</strong> per integrare soluzioni decentralizzate.
-                Motivato da sfide tecniche e obiettivi ambiziosi, mi impegno a trasformare requisiti
-                complessi in prodotti affidabili e ad alto impatto.
-              </p>
+          <div class="about-text">
+            <div class="about-card card">
+              <div class="card-body">
+                <p class="about-paragraph">
+                  Software engineer con oltre <strong>10 anni di carriera</strong>, specializzato in
+                  architetture back-end scalabili: <strong>API REST</strong>,
+                  <strong>microservizi</strong> e pipeline di dati. Profondo in
+                  <strong>Node.js</strong>, <strong>Golang</strong> e <strong>Python</strong>, con
+                  esperienza trasversale che spazia dall'automazione industriale (PLC) ai
+                  <strong>protocolli blockchain</strong> (ERC20, ERC4337, VotingEscrow) fino alle
+                  pipeline dati aziendali.
+                </p>
+                <p class="about-paragraph">
+                  Ho guidato lo sviluppo tecnico in una startup come
+                  <strong>Lead Developer per 4 anni</strong> e portato in produzione sistemi
+                  distribuiti per clienti in settori diversi. Oggi lavoro su prodotti web complessi,
+                  integrando le mie competenze backend con un occhio attento a
+                  <strong>performance</strong>, <strong>osservabilità</strong> e
+                  <strong>qualità del codice</strong>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -61,39 +52,41 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 import profile1 from '../assets/images/daniele-primasso-profilo.webp'
-import profile2 from '../assets/images/daniele-primasso-profile2.jpeg'
 
-const aboutSection = ref(null)
 const isVisible = ref(false)
 
-onMounted(() => {
-  // Simple timeout to trigger animation
-  setTimeout(() => {
+const { target } = useIntersectionObserver(
+  () => {
     isVisible.value = true
-  }, 100)
-})
+  },
+  { once: true, threshold: 0.15 }
+)
 </script>
 
 <style scoped>
 .about-content {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-.about-images {
-  margin-bottom: 3rem;
+.about-profile-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
 }
 
 .profile-image-wrapper {
-  position: relative;
-  display: inline-block;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-img {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--border-subtle);
@@ -108,13 +101,17 @@ onMounted(() => {
   box-shadow:
     0 0 0 4px var(--bg-alt),
     0 0 40px var(--accent-strong);
-  transform: scale(1.05);
+  transform: scale(1.04);
   border-color: var(--accent);
+}
+
+.about-text {
+  flex: 1;
 }
 
 .about-card {
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .about-paragraph {
@@ -122,9 +119,6 @@ onMounted(() => {
   line-height: 1.8;
   color: var(--muted);
   margin-bottom: 1.5rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .about-paragraph:last-child {
@@ -160,13 +154,15 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .about-images {
+  .about-profile-row {
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
   }
 
   .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
   }
 }
 </style>

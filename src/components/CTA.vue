@@ -1,7 +1,8 @@
 <template>
   <section class="cta py-5 text-center" aria-labelledby="cta-heading">
     <div class="container">
-      <h2 id="cta-heading" class="fw-bold mb-3">Scarica il mio CV</h2>
+      <h2 id="cta-heading" class="fw-bold mb-2">Scarica il mio CV</h2>
+      <p class="cta-sub mb-4">Curriculum completo con esperienza, competenze e progetti.</p>
       <a
         href="/Curriculum_Vitae_Primasso_Daniele.pdf"
         class="btn btn-lg btn-cta"
@@ -20,19 +21,35 @@
 
 <style scoped>
 .cta {
-  background: var(--accent);
-  color: var(--bg);
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: white;
 }
+
+.cta-sub {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .btn-cta {
-  background: var(--bg);
+  background: white;
   color: var(--accent);
-  border: 2px solid var(--bg);
+  border: none;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
   transition:
-    background 0.3s,
-    color 0.3s;
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
 .btn-cta:hover {
-  background: var(--bg);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 </style>
