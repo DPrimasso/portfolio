@@ -218,6 +218,16 @@
         </div>
       </section>
 
+      <!-- ACADEMY -->
+      <section class="v1-h">
+        <span class="num">06</span>
+        <span class="slug"
+          ><b># academy</b> — {{ lang === 'it' ? 'corsi live' : 'live courses' }}</span
+        >
+        <span class="rule" />
+      </section>
+      <AcademyTeaser :lang="lang" @open-academy="emit('openAcademy', $event)" />
+
       <footer class="v1-foot">
         <div>© 2026 Daniele Primasso · v2.0 · built with care</div>
         <div><span class="prompt" />exit 0</div>
@@ -235,11 +245,14 @@ import {
   uniqueStack,
   matchFilter,
 } from '../data/portfolioData.js'
+import AcademyTeaser from './AcademyTeaser.vue'
 
 const props = defineProps({
   lang: { type: String, default: 'en' },
   layoutMode: { type: String, default: 'list' },
 })
+
+const emit = defineEmits(['openAcademy'])
 
 const D = PORTFOLIO
 const t = obj => tFn(obj, props.lang)

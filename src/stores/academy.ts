@@ -1,0 +1,220 @@
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  sendPasswordResetEmail,
+  updateProfile,
+  type User,
+} from 'firebase/auth'
+import { doc, getDoc, setDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore'
+import { auth, db } from '../services/firebaseService'
+
+export interface UserProfile {
+  displayName: string
+  email: string
+  enrolledCourses: string[]
+  bio?: string
+  city?: string
+}
+
+export interface ModuleProgress {
+  completed: boolean
+  quizScore: number
+  quizAnswers: number[]
+  completedAt?: Date
+}
+
+export type CourseProgress = Record<string, ModuleProgress>
+
+export const useAcademyStore = defineStore('academy', () => {
+  const user = ref<User | null>(null)
+  const userProfile = ref<UserProfile | null>(null)
+  const progress = ref<Record<string, CourseProgress>>({})
+  const authLoading = ref(true)
+  const loginError = ref('')
+
+  const isLoggedIn = computed(() => !!user.value)
+
+  // ── Listen to Firebase auth state ─────────────────────────
+  onAuthStateChanged(auth, async firebaseUser => {
+    user.value = firebaseUser
+    if (firebaseUser) {
+      await loadUserProfile()
+    } else {
+      userProfile.value = null
+      progress.value = {}
+    }
+    authLoading.value = false
+  })
+
+  // ── Auth ───────────────────────────────────────────────────
+  async function login(email: string, password: string): Promise<boolean> {
+    loginError.value = ''
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      return true
+    } catch (e: any) {
+      if (
+        e.code === 'auth/invalid-credential' ||
+        e.code === 'auth/wrong-password' ||
+        e.code === 'auth/user-not-found'
+      ) {
+        loginError.value = 'Email o password non corretti.'
+      } else if (e.code === 'auth/too-many-requests') {
+        loginError.value = 'Troppi tentativi. Riprova tra qualche minuto.'
+      } else {
+        loginError.value = 'Errore di accesso. Riprova.'
+      }
+      return false
+    }
+  }
+
+  async function logout() {
+    await signOut(auth)
+  }
+
+  async function resetPassword(email: string): Promise<boolean> {
+    try {
+      await sendPasswordResetEmail(auth, email)
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  // ── Profile ────────────────────────────────────────────────
+  async function loadUserProfile() {
+    if (!user.value) return
+    const snap = await getDoc(doc(db, 'users', user.value.uid))
+    if (snap.exists()) {
+      userProfile.value = snap.data() as UserProfile
+    } else {
+      // Fallback: crea un profilo base dal record Firebase Auth
+      userProfile.value = {
+        displayName: user.value.displayName || user.value.email?.split('@')[0] || 'Studente',
+        email: user.value.email || '',
+        enrolledCourses: [],
+      }
+    }
+  }
+
+  async function updateUserProfile(updates: Partial<UserProfile>): Promise<boolean> {
+    if (!user.value) return false
+    try {
+      const userDocRef = doc(db, 'users', user.value.uid)
+      await setDoc(userDocRef, updates, { merge: true })
+      if (updates.displayName) {
+        await updateProfile(user.value, { displayName: updates.displayName })
+      }
+      userProfile.value = { ...userProfile.value!, ...updates }
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  async function changePassword(
+    currentPassword: string,
+    newPassword: string
+  ): Promise<{ ok: boolean; error?: string }> {
+    if (!user.value?.email) return { ok: false, error: 'Utente non trovato.' }
+    try {
+      const credential = EmailAuthProvider.credential(user.value.email, currentPassword)
+      await reauthenticateWithCredential(user.value, credential)
+      await updatePassword(user.value, newPassword)
+      return { ok: true }
+    } catch (e: any) {
+      if (e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
+        return { ok: false, error: 'Password attuale non corretta.' }
+      }
+      return { ok: false, error: 'Errore durante il cambio password.' }
+    }
+  }
+
+  // ── Course progress ────────────────────────────────────────
+  async function loadProgress(courseId: string) {
+    if (!user.value) return
+    if (progress.value[courseId]) return
+    const colRef = collection(db, 'progress', user.value.uid, courseId)
+    const snap = await getDocs(colRef)
+    const data: CourseProgress = {}
+    snap.forEach(d => {
+      data[d.id] = d.data() as ModuleProgress
+    })
+    progress.value = { ...progress.value, [courseId]: data }
+  }
+
+  async function markModuleComplete(
+    courseId: string,
+    moduleId: string,
+    quizAnswers: number[],
+    correctAnswers: number[]
+  ) {
+    if (!user.value) return
+    const total = correctAnswers.length
+    const score =
+      total === 0
+        ? 100
+        : Math.round((quizAnswers.filter((a, i) => a === correctAnswers[i]).length / total) * 100)
+    const data: ModuleProgress = {
+      completed: true,
+      quizScore: score,
+      quizAnswers,
+      completedAt: new Date(),
+    }
+    await setDoc(doc(db, 'progress', user.value.uid, courseId, moduleId), {
+      ...data,
+      completedAt: serverTimestamp(),
+    })
+    progress.value = {
+      ...progress.value,
+      [courseId]: { ...(progress.value[courseId] || {}), [moduleId]: data },
+    }
+  }
+
+  function getModuleProgress(courseId: string, moduleId: string): ModuleProgress | null {
+    return progress.value[courseId]?.[moduleId] ?? null
+  }
+
+  function getCourseCompletionPercent(courseId: string, totalModules: number): number {
+    if (totalModules === 0) return 0
+    const done = Object.values(progress.value[courseId] || {}).filter(m => m.completed).length
+    return Math.round((done / totalModules) * 100)
+  }
+
+  function getCompletedModulesCount(courseId: string): number {
+    return Object.values(progress.value[courseId] || {}).filter(m => m.completed).length
+  }
+
+  function getAverageQuizScore(courseId: string): number {
+    const mods = Object.values(progress.value[courseId] || {}).filter(m => m.completed)
+    if (!mods.length) return 0
+    return Math.round(mods.reduce((sum, m) => sum + m.quizScore, 0) / mods.length)
+  }
+
+  return {
+    user,
+    userProfile,
+    progress,
+    authLoading,
+    loginError,
+    isLoggedIn,
+    login,
+    logout,
+    resetPassword,
+    loadUserProfile,
+    updateUserProfile,
+    changePassword,
+    loadProgress,
+    markModuleComplete,
+    getModuleProgress,
+    getCourseCompletionPercent,
+    getCompletedModulesCount,
+    getAverageQuizScore,
+  }
+})

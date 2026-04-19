@@ -268,6 +268,24 @@
               <div>portfolio · v2.0 · {{ lang.toUpperCase() }}</div>
             </div>
           </section>
+
+          <!-- ACADEMY -->
+          <section id="s-academy">
+            <div class="v2-sec">
+              <div class="sh">
+                <div class="sl">07</div>
+                <div class="st">
+                  <b>academy</b> — {{ lang === 'it' ? 'corsi live' : 'live courses' }}
+                </div>
+                <div class="sr" />
+              </div>
+            </div>
+            <AcademyTeaser
+              :lang="lang"
+              style="margin-top: 0"
+              @open-academy="emit('openAcademy', $event)"
+            />
+          </section>
         </main>
       </div>
     </div>
@@ -283,11 +301,14 @@ import {
   uniqueStack,
   matchFilter,
 } from '../data/portfolioData.js'
+import AcademyTeaser from './AcademyTeaser.vue'
 
 const props = defineProps({
   lang: { type: String, default: 'en' },
   layoutMode: { type: String, default: 'list' },
 })
+
+const emit = defineEmits(['openAcademy'])
 
 const D = PORTFOLIO
 const t = obj => tFn(obj, props.lang)

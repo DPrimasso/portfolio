@@ -474,3 +474,27 @@ export function matchFilter(p, filters) {
   if (!filters.length) return true
   return filters.every(f => p.stack.includes(f))
 }
+
+export const UPCOMING_COURSES = [
+  {
+    tag: 'backend',
+    title: 'Node.js in Produzione',
+    date: '28 apr 2026 · 19:00',
+    seats: 4,
+    status: 'soon',
+  },
+  {
+    tag: 'blockchain',
+    title: 'Smart Contract con Solidity',
+    date: '12 mag 2026 · 19:00',
+    seats: 12,
+    status: 'open',
+  },
+  {
+    tag: 'data',
+    title: 'Pipeline Dati con Python',
+    date: '26 mag 2026 · 19:00',
+    seats: 15,
+    status: 'open',
+  },
+]

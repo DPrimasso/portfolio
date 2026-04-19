@@ -1,0 +1,95 @@
+{
+  "id": "code-together",
+  "title": "Code Together",
+  "description": "Sessioni di coding 1:1 su un progetto reale scelto insieme. Impari costruendo qualcosa che ti interessa davvero.",
+  "language": "Vario",
+  "modules": [
+    {
+      "id": "mod-01",
+      "title": "Come funziona Code Together",
+      "content": "## Benvenuto in Code Together\n\nCode Together è un percorso di apprendimento personalizzato dove lavoriamo **insieme su un progetto reale** che tu scegli.\n\n### Come funziona\n\nNon c'è un programma fisso. Ogni sessione è costruita attorno al tuo progetto e ai tuoi obiettivi.\n\n```\nTu scegli il progetto\n    ↓\nDefiniamo insieme le milestone\n    ↓\nSessioni di coding live\n    ↓\nReview del codice + feedback\n    ↓\nIteriamo fino al risultato\n```\n\n### Cosa portiamo avanti insieme\n\n- **Il tuo progetto**: un'app web, un bot, un tool CLI, un sito — qualsiasi cosa ti appassioni\n- **Sessioni pratiche**: scriviamo codice insieme, non solo teoria\n- **Code review**: guardiamo il tuo codice, lo miglioriamo, spieghiamo il perché di ogni scelta\n- **Risorse on-demand**: documentazione, esempi, riferimenti su quello che serve\n\n### Linguaggi e tecnologie\n\nLavoreremo con ciò che serve al tuo progetto. I contesti più comuni:\n\n- **Web**: HTML, CSS, JavaScript, Vue, React\n- **Backend**: Node.js, Python, API REST\n- **Database**: SQL, Firebase, MongoDB\n- **Strumenti**: Git, terminal, VS Code\n\n### Prima di iniziare\n\nPensaci: qual è il progetto che vorresti costruire? Non serve che sia perfetto o definito — basta avere un'idea di partenza. Nelle prime sessioni la raffiniamo insieme.\n\n> 💡 **Consiglio**: scegli qualcosa che ti serve davvero o che ti farebbe piacere usare ogni giorno. Imparare è molto più facile quando costruisci qualcosa di concreto.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è il focus principale di Code Together?",
+          "options": [
+            "Seguire un curriculum fisso di lezioni",
+            "Costruire un progetto reale scelto dallo studente",
+            "Guardare video tutorial registrati",
+            "Completare esercizi standardizzati"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Come vengono strutturate le sessioni?",
+          "options": [
+            "Con un programma prefissato uguale per tutti",
+            "In base agli obiettivi e al progetto dello studente",
+            "Solo con teoria senza pratica",
+            "Con esami formali a scadenze fisse"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-02",
+      "title": "Scegliere il tuo progetto",
+      "content": "## Scegliere il progetto giusto\n\nIl progetto è il cuore di Code Together. Sceglierlo bene fa la differenza tra un percorso che ti appassiona e uno che abbandoni a metà.\n\n### Criteri per una buona scelta\n\n**1. Ti serve davvero?**\nUn tool che usi ogni giorno, un sito per la tua attività, un'app per risolvere un problema che hai. Più concreto è il bisogno, più motivazione hai.\n\n**2. È alla tua portata (con supporto)?**\nNon deve essere banale — deve essere stimolante. Insieme valutiamo se il progetto è adatto al tuo livello attuale e come dividerlo in passi fattibili.\n\n**3. Ti piace l'idea?**\nSemplice ma importante. Se l'idea ti entusiasma, sopporterai i momenti di frustrazione molto meglio.\n\n### Esempi di progetti\n\nAlcuni progetti che ho seguito con altri studenti:\n\n```\n📋 Todo app con categorie e scadenze\n🌐 Portfolio personale\n🤖 Bot Telegram per notifiche\n📊 Dashboard per tracciare le spese\n🎮 Gioco testuale in JavaScript\n📝 Blog con CMS semplice\n🔔 Tool CLI per automatizzare task ripetitivi\n```\n\n### Come presenterai il tuo progetto\n\nNella prima sessione ti chiederò:\n\n1. **Cosa vuoi costruire?** (una frase)\n2. **Chi lo userebbe?** (anche solo tu)\n3. **Qual è la funzione principale?** (la cosa senza cui non avrebbe senso)\n4. **Cosa vorresti imparare attraverso questo progetto?**\n\nNon serve avere tutte le risposte — è il punto di partenza della conversazione.\n\n> 📌 **Prossimo passo**: scrivi una briga descrizione del tuo progetto e portala alla prima sessione. Non deve essere formale — anche due righe vanno benissimo.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale criterio è più importante nella scelta del progetto?",
+          "options": [
+            "Che sia il più complesso possibile",
+            "Che sia fatto con le tecnologie più moderne",
+            "Che risponda a un bisogno reale e ti appassioni",
+            "Che sia simile a progetti già visti online"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Cosa si definisce nella prima sessione?",
+          "options": [
+            "Il curriculum completo per i prossimi 6 mesi",
+            "Il progetto, la funzione principale e gli obiettivi di apprendimento",
+            "La lista completa di tecnologie da imparare",
+            "Il piano di esami finali"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-03",
+      "title": "Come prepararsi alle sessioni",
+      "content": "## Prepararsi per una sessione\n\nPer sfruttare al massimo ogni sessione, c'è poco da fare — ma quel poco conta.\n\n### Prima della sessione\n\n**Ambiente di sviluppo pronto**\n\nAssicurati di avere:\n- VS Code installato e aperto sul tuo progetto\n- Il terminale funzionante\n- Node.js installato (se usiamo JavaScript)\n- Git configurato\n\nSe non sai come configurare qualcosa, segnalalo prima — lo facciamo insieme nella prima sessione.\n\n**Porta le tue domande**\n\nSe hai lavorato al progetto tra una sessione e l'altra, annota i punti dove ti sei bloccato. Non serve capire perché non funziona — basta sapere *dove* non funziona.\n\n```javascript\n// Esempio di nota utile per la sessione:\n// \"Questa funzione dovrebbe filtrare gli elementi\n//  ma ritorna sempre un array vuoto. Non capisco perché.\"\nfunction filtraPerCategoria(items, categoria) {\n  return items.filter(item => item.categoria === categoria)\n}\n```\n\n**Condivisione dello schermo**\n\nLavoreremo in condivisione schermo. Assicurati che:\n- La connessione sia stabile\n- VS Code sia aperto e visibile\n- Il browser sia pronto se lavoriamo sul frontend\n\n### Durante la sessione\n\n- **Scrivi il codice tu**: non copio-incollo per te. Guidare le tue mani è parte del processo.\n- **Fai domande quando non capisci**: non c'è domanda stupida, solo spiegazioni non abbastanza chiare.\n- **Prenditi tempo**: la velocità non è l'obiettivo — la comprensione sì.\n\n### Dopo la sessione\n\nPrima della sessione successiva:\n1. Rileggi il codice scritto durante la sessione\n2. Prova a estendere una funzionalità da solo\n3. Annota i dubbi che emergono\n\n> 🎯 **Obiettivo**: arrivare alla sessione con almeno una cosa da mostrare o una domanda specifica.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Chi scrive il codice durante le sessioni?",
+          "options": [
+            "Daniele, per mostrare come si fa",
+            "Lo studente, guidato da Daniele",
+            "Si usa solo codice già scritto come esempio",
+            "Entrambi in alternanza su blocchi diversi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa è utile portare in ogni sessione?",
+          "options": [
+            "Un progetto completamente nuovo ogni volta",
+            "Solo domande teoriche senza codice",
+            "I punti dove ci si è bloccati e le domande emerse",
+            "Una presentazione formale dei progressi"
+          ],
+          "correct": 2
+        }
+      ]
+    }
+  ]
+}
