@@ -1,97 +1,75 @@
 import { useHead } from '@vueuse/head'
-import type { Contact } from '../types/portfolio'
 
 interface MetaTagsOptions {
   title?: string
   description?: string
   image?: string
   url?: string
+  siteName?: string
 }
+
+export interface PersonStructuredDataInput {
+  name: string
+  jobTitle: string
+  email?: string
+  url: string
+  image?: string
+  sameAs?: string[]
+}
+
+const DEFAULT_TITLE = 'Daniele Primasso — Portfolio'
+const DEFAULT_DESCRIPTION =
+  'Daniele Primasso — Software Developer & Data Analyst. 10+ years building solid backends, data pipelines and blockchain systems in production.'
 
 export function useSEO() {
   const setMetaTags = (options: MetaTagsOptions = {}) => {
-    const baseUrl = import.meta.env.VITE_BASE_URL || ''
+    const baseUrl = (import.meta.env.VITE_BASE_URL || '').replace(/\/$/, '')
     const {
-      title = 'Portfolio di Daniele Primasso - Software Developer',
-      description = 'Portfolio di Daniele Primasso, Software Developer con oltre 7 anni di esperienza in Node.js, Golang, Python e Vue.js. Specializzato in API REST, microservizi e blockchain.',
+      title = DEFAULT_TITLE,
+      description = DEFAULT_DESCRIPTION,
       image = '/images/daniele-primasso-profilo.webp',
       url = typeof window !== 'undefined' ? window.location.href : '',
+      siteName = 'Daniele Primasso',
     } = options
 
-    // Resolve image path - use absolute URL if provided, otherwise construct from baseUrl
     const imageUrl = image.startsWith('http')
       ? image
       : image.startsWith('/')
-        ? `${baseUrl}${image}`
-        : `${baseUrl}/${image}`
+        ? `${baseUrl || (typeof window !== 'undefined' ? window.location.origin : '')}${image}`
+        : `${baseUrl || (typeof window !== 'undefined' ? window.location.origin : '')}/${image}`
 
     useHead({
       title,
       meta: [
-        {
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        {
-          property: 'og:title',
-          content: title,
-        },
-        {
-          property: 'og:description',
-          content: description,
-        },
-        {
-          property: 'og:image',
-          content: imageUrl,
-        },
-        {
-          property: 'og:url',
-          content: url,
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        },
-        // Twitter Card
-        {
-          name: 'twitter:card',
-          content: 'summary_large_image',
-        },
-        {
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          name: 'twitter:image',
-          content: imageUrl,
-        },
+        { name: 'description', content: description },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+        { property: 'og:image', content: imageUrl },
+        { property: 'og:url', content: url },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: siteName },
+        { property: 'og:locale', content: 'it_IT' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: imageUrl },
       ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
+      link: [{ rel: 'canonical', href: url }],
     })
   }
 
-  const setStructuredData = (data?: Contact | null) => {
-    const url = typeof window !== 'undefined' ? window.location.href : ''
-    const structuredData = {
+  const setStructuredData = (input: PersonStructuredDataInput) => {
+    const sameAs = (input.sameAs || []).filter(Boolean)
+    const structuredData: Record<string, unknown> = {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'Daniele Primasso',
-      jobTitle: 'Software Developer',
-      email: 'daniele.primasso@gmail.com',
-      url: url,
-      sameAs: [data?.linkedin || '', data?.github || ''].filter(Boolean),
-      ...data,
+      name: input.name,
+      jobTitle: input.jobTitle,
+      url: input.url,
     }
+    if (input.email) structuredData.email = input.email
+    if (input.image) structuredData.image = input.image
+    if (sameAs.length) structuredData.sameAs = sameAs
 
     useHead({
       script: [

@@ -1,15 +1,55 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv, type Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { VitePWA } from 'vite-plugin-pwa'
-import { resolve } from 'path'
+import { resolve, join } from 'node:path'
+import fs from 'node:fs'
+import { generateSitemapXml } from './src/composables/useSitemap'
+
+/** robots.txt + sitemap.xml in dist con URL canoniche da VITE_BASE_URL (Netlify/Vercel). */
+function seoDistPlugin(): Plugin {
+  let root = ''
+  let outDir = ''
+  let mode = 'production'
+
+  return {
+    name: 'seo-dist-files',
+    configResolved(config) {
+      root = config.root
+      outDir = resolve(config.root, config.build.outDir)
+      mode = config.mode
+    },
+    closeBundle() {
+      const env = loadEnv(mode, root, '')
+      const base = (process.env.VITE_BASE_URL || env.VITE_BASE_URL || '').trim().replace(/\/$/, '')
+
+      const robotsPath = join(outDir, 'robots.txt')
+      const sitemapPath = join(outDir, 'sitemap.xml')
+
+      if (base) {
+        const robots = `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`
+        fs.writeFileSync(robotsPath, robots, 'utf8')
+        fs.writeFileSync(sitemapPath, generateSitemapXml(base), 'utf8')
+      } else {
+        const robots = `User-agent: *\nAllow: /\n\n# Aggiungi VITE_BASE_URL in .env (build) per generare Sitemap e URL assoluti.\n`
+        fs.writeFileSync(robotsPath, robots, 'utf8')
+        try {
+          fs.unlinkSync(sitemapPath)
+        } catch {
+          /* niente sitemap in dist se non c'è base URL */
+        }
+      }
+    },
+  }
+}
 
 export default defineConfig({
   plugins: [
     vue(),
+    seoDistPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'robots.txt', 'sitemap.xml'],
+      includeAssets: ['favicon.png', 'robots.txt'],
       manifest: {
         name: 'Portfolio Daniele Primasso',
         short_name: 'Portfolio',

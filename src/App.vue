@@ -73,6 +73,10 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import V1 from './components/V1.vue'
 import V2 from './components/V2.vue'
+import { useSEO } from './composables/useSEO'
+import { PORTFOLIO } from './data/portfolioData.js'
+
+const { setMetaTags, setStructuredData } = useSEO()
 
 const variant = ref(localStorage.getItem('dp_variant') || 'v1')
 const lang = ref(localStorage.getItem('dp_lang') || 'en')
@@ -95,6 +99,30 @@ function onKey(e) {
   if (e.key.toLowerCase() === 'g') toggleLayout()
 }
 
-onMounted(() => window.addEventListener('keydown', onKey))
+onMounted(() => {
+  window.addEventListener('keydown', onKey)
+
+  const p = PORTFOLIO.profile
+  const title = `${p.name} — Portfolio`
+  const description = `${p.name} — ${p.role.en}. ${p.tagline.en}`
+  setMetaTags({
+    title,
+    description,
+    image: '/images/daniele-primasso-profilo.webp',
+    siteName: p.name,
+  })
+
+  const origin = (import.meta.env.VITE_BASE_URL || window.location.origin).replace(/\/$/, '')
+  const pageUrl = window.location.href
+  const imageAbs = `${origin}/images/daniele-primasso-profilo.webp`
+  setStructuredData({
+    name: p.name,
+    jobTitle: p.role.en,
+    email: p.email,
+    url: pageUrl,
+    image: imageAbs,
+    sameAs: [p.linkedin, p.github].filter(Boolean),
+  })
+})
 onUnmounted(() => window.removeEventListener('keydown', onKey))
 </script>
