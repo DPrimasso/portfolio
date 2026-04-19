@@ -494,6 +494,30 @@ const allCourses = {
   'code-together': codeTogether,
 }
 
+/** Catalogo corsi in app; deve coincidere con le chiavi di `allCourses`. */
+const CATALOG_COURSE_IDS = Object.keys(allCourses)
+
+function parseAdminEmails() {
+  return String(import.meta.env.VITE_ACADEMY_ADMIN_EMAILS || '')
+    .split(',')
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean)
+}
+
+/** Iscrizioni effettive: da Firestore, oppure tutto il catalogo se flag / email admin (anteprima). */
+const enrolledCourseIds = computed(() => {
+  const fromProfile = academyStore.userProfile?.enrolledCourses || []
+  if (import.meta.env.VITE_ACADEMY_ALL_COURSES === 'true') {
+    return CATALOG_COURSE_IDS
+  }
+  const email = (academyStore.userProfile?.email || '').toLowerCase()
+  const admins = parseAdminEmails()
+  if (admins.length && email && admins.includes(email)) {
+    return CATALOG_COURSE_IDS
+  }
+  return fromProfile
+})
+
 const screen = ref('s1')
 const dashSection = ref('dashboard')
 
@@ -502,9 +526,7 @@ function goTo(s) {
 }
 
 async function loadAllProgress() {
-  await Promise.all(
-    (academyStore.userProfile?.enrolledCourses || []).map(id => academyStore.loadProgress(id))
-  )
+  await Promise.all(enrolledCourseIds.value.map(id => academyStore.loadProgress(id)))
 }
 
 watch(
@@ -551,7 +573,7 @@ const firstName = computed(
 )
 
 const enrolledCourses = computed(() =>
-  (academyStore.userProfile?.enrolledCourses || []).map(id => allCourses[id]).filter(Boolean)
+  enrolledCourseIds.value.map(id => allCourses[id]).filter(Boolean)
 )
 
 const totalModules = computed(() =>

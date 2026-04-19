@@ -2,16 +2,68 @@
   "id": "programmazione-base",
   "title": "Programmazione Base",
   "subtitle": "Da zero al codice che funziona",
-  "description": "Il corso parte da zero: nessun prerequisito. Imparerai i fondamenti della programmazione usando JavaScript, il linguaggio più diffuso al mondo. Ogni lezione è pratica, con esempi reali e esercizi alla fine di ogni modulo.",
+  "description": "Corso introduttivo senza prerequisiti: pensiero computazionale, JavaScript nel browser, variabili, condizioni, cicli, funzioni, array e oggetti, poi debug e JSON. Ogni modulo ha teoria, attività guidate e quiz finale; i risultati restano sulla tua dashboard Academy.",
   "icon": "⚙",
   "color": "",
   "language": "JavaScript",
   "modules": [
     {
+      "id": "mod-00",
+      "title": "Panoramica del corso",
+      "duration": "~25 min",
+      "content": "## Teoria\n\n### Per chi è questo corso\n\nÈ pensato per **chi parte da zero** (studenti o lavoratori in reconversione). Non serve aver programmato prima: imparerai a pensare per passi, a leggere codice e a scriverne un po' alla volta.\n\n### Perché JavaScript\n\nÈ il linguaggio del **web**, gira nel **browser** con la console degli strumenti sviluppatore, e con **Node.js** può girare anche su server. Le idee che impari qui (variabili, condizioni, cicli, funzioni, dati) si ritrovano, con sintassi diversa, in molti altri linguaggi.\n\n### Come studiare ogni modulo\n\n1. **Teoria** — leggi e rileggi gli esempi; prova a copiarli nella console.\n2. **In pratica** — fai le attività proposte (anche su carta): è lì che si consolida.\n3. **Quiz** — a fine modulo; il punteggio viene salvato sulla **dashboard** così puoi vedere i tuoi progressi.\n\n### Glossario (da tenere a mente)\n\n| Termine | In due parole |\n| --- | --- |\n| **Istruzione** | Un comando che il computer esegue in ordine. |\n| **Variabile** | Un nome che contiene un valore che può cambiare. |\n| **Condizione** | Una scelta: se qualcosa è vero, fai A, altrimenti B. |\n| **Ciclo** | Ripetere un blocco di istruzioni più volte. |\n| **Funzione** | Un blocco di codice con nome, richiamabile quando serve. |\n| **Array** | Lista ordinata di valori (es. una classifica). |\n| **Oggetto** | Gruppo di proprietà etichettate (es. un utente con nome ed età). |\n| **Bug** | Errore nel programma; il messaggio in console aiuta a trovarlo. |\n| **Console** | Dove il programma può stampare output e messaggi di errore. |\n\n### Mappa: concetto → modulo\n\n| Argomento | Dove lo approfondiamo |\n| --- | --- |\n| Cos'è programmare, sequenza, Hello World | *Cos'è la programmazione* |\n| Variabili, tipi, operatori | *Variabili e tipi di dato* |\n| `if`, confronti, logica | *Condizioni e decisioni* |\n| `for`, `while`, iterazioni | *Cicli e ripetizioni* |\n| Funzioni, `return`, scope | *Funzioni* |\n| Array, oggetti, `map`/`filter` | *Array e Oggetti* |\n| Errori, `console.log`, JSON | *Debug, errori e JSON* |\n| Dopo il corso | *Code Together* (progetto guidato) |\n\n### Strumenti consigliati\n\n- **Browser** (Chrome, Firefox, Edge): tasto destro → *Ispeziona* → scheda **Console** per incollare righe di JavaScript.\n- **Editor di testo** (VS Code, Cursor, …) per salvare file `.js` quando passerai a piccoli script.\n- **Assistenti AI** (ChatGPT, Copilot, …): utili per spiegazioni o sintassi, ma **non** sostituiscono il fatto di eseguire il codice tu e leggere gli errori: quello è il mestiere.\n\n> **Nota:** Argomenti avanzati (classi, `async/await`, architetture complesse) restano fuori da questo corso base: qui costruiamo solo le fondamenta.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è l'ordine consigliato per studiare ogni modulo?",
+          "options": [
+            "Solo quiz, poi teoria se c'è tempo",
+            "Teoria → In pratica → Quiz",
+            "Quiz → teoria → saltare la pratica",
+            "Solo lettura della teoria, senza esercizi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa indica il termine \"bug\" in programmazione?",
+          "options": [
+            "Un tipo di variabile",
+            "Un errore o difetto nel programma",
+            "Un ciclo infinito obbligatorio",
+            "Il nome del linguaggio JavaScript"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Un **array** in JavaScript è principalmente:",
+          "options": [
+            "Una singola variabile numerica",
+            "Una lista ordinata di valori",
+            "Solo testo senza numeri",
+            "Un programma completo salvato su disco"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Dove vengono salvati i punteggi dei quiz che completi nell'Academy?",
+          "options": [
+            "Solo nella cache del browser, senza account",
+            "Sul tuo profilo / progressi collegati al login (Firebase)",
+            "Sul disco locale del sito web",
+            "Non vengono salvati"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
       "id": "mod-01",
       "title": "Cos'è la programmazione",
-      "duration": "~20 min",
-      "content": "## Cos'è la programmazione?\n\nProgrammare significa dare **istruzioni precise a un computer** perché esegua un compito. Il computer fa esattamente quello che gli dici — né di più, né di meno.\n\nPensa alla programmazione come a una ricetta di cucina: devi specificare ogni passaggio nel giusto ordine, altrimenti il risultato è sbagliato.\n\n### Il tuo primo programma\n\nIl programma più famoso al mondo è \"Hello, World!\". In JavaScript:\n\n```javascript\nconsole.log('Hello, World!');\n```\n\nQuesta riga dice al computer: *stampa il testo \"Hello, World!\" nella console*.\n\n### Come funziona un programma\n\nUn programma è una sequenza di **istruzioni** eseguite dall'alto verso il basso, una alla volta:\n\n```javascript\nconsole.log('Prima istruzione');\nconsole.log('Seconda istruzione');\nconsole.log('Terza istruzione');\n```\n\nL'output sarà:\n```\nPrima istruzione\nSeconda istruzione\nTerza istruzione\n```\n\n### JavaScript: perché questo linguaggio?\n\nJavaScript gira ovunque: nel browser, su server (con Node.js), nelle app mobile. Imparare JavaScript significa poter costruire **qualsiasi tipo di software**.\n\n> **Nota:** Non preoccuparti di capire tutto subito. La programmazione si impara scrivendo codice, sbagliando, e correggendo. È un processo iterativo.",
+      "duration": "~30 min",
+      "content": "## Teoria\n\n### Cos'è la programmazione?\n\nProgrammare significa dare **istruzioni precise a un computer** perché esegua un compito. Il computer fa esattamente quello che gli dici — né di più, né di meno.\n\nPensa alla programmazione come a una **ricetta di cucina**: devi specificare ogni passaggio nel giusto ordine, altrimenti il risultato è sbagliato.\n\n### Il tuo primo programma\n\nIl programma più famoso al mondo è \"Hello, World!\". In JavaScript:\n\n```javascript\nconsole.log('Hello, World!');\n```\n\nQuesta riga dice al computer: *stampa il testo \"Hello, World!\" nella console*.\n\n### Come funziona un programma\n\nUn programma è una sequenza di **istruzioni** eseguite dall'alto verso il basso, una alla volta:\n\n```javascript\nconsole.log('Prima istruzione');\nconsole.log('Seconda istruzione');\nconsole.log('Terza istruzione');\n```\n\nL'output sarà:\n```\nPrima istruzione\nSeconda istruzione\nTerza istruzione\n```\n\n### JavaScript: perché questo linguaggio?\n\nJavaScript gira ovunque: nel browser, su server (con Node.js), nelle app mobile. Imparare JavaScript significa poter costruire **molti tipi di software**.\n\n> **Nota:** Non preoccuparti di capire tutto subito. La programmazione si impara scrivendo codice, sbagliando, e correggendo. È un processo iterativo.\n\n---\n\n## In pratica\n\n1. **Console** — Apri la console del browser (F12 o tasto destro → Ispeziona → Console). Incolla `console.log('Ciao, ' + 'mondo');` e premi Invio. Osserva l'output.\n2. **Ordine** — Scrivi tre `console.log` con numeri 1, 2, 3 in ordine; poi inverti l'ordine delle righe e verifica che l'output cambi.\n3. **Commenti** — Aggiungi una riga che inizia con `// il mio primo esercizio` sopra al codice: il computer ignora i commenti, servono a te.\n4. **Sfida carta** — Scrivi a mano una \"ricetta\" in 5 passi per preparare un tè; poi chiediti: un computer potrebbe eseguirla senza ambiguità? Correggi i passi vagi.",
       "quiz": [
         {
           "id": "q1",
@@ -46,8 +98,8 @@
     {
       "id": "mod-02",
       "title": "Variabili e tipi di dato",
-      "duration": "~30 min",
-      "content": "## Variabili\n\nUna **variabile** è un contenitore con un nome, in cui puoi salvare un valore per riutilizzarlo.\n\n```javascript\nlet nome = 'Mario';\nlet eta = 30;\nlet iscritto = true;\n```\n\n- `let` dichiara una variabile che può cambiare nel tempo\n- `const` dichiara una costante (il valore non può essere riassegnato)\n\n```javascript\nconst PI = 3.14159;\nlet contatore = 0;\ncontatore = contatore + 1; // OK, let può cambiare\n// PI = 3; // ERRORE: const non può cambiare\n```\n\n### Tipi di dato fondamentali\n\n#### String (testo)\n```javascript\nlet saluto = 'Ciao!';\nlet frase = \"Come stai?\";\nlet template = `Mi chiamo ${nome}`; // template literal\n```\n\n#### Number (numero)\n```javascript\nlet intero = 42;\nlet decimale = 3.14;\nlet negativo = -10;\n```\n\n#### Boolean (vero/falso)\n```javascript\nlet attivo = true;\nlet eliminato = false;\n```\n\n#### Null e Undefined\n```javascript\nlet vuoto = null;        // valore assente intenzionalmente\nlet nonDefinito;        // undefined: non è stato assegnato nessun valore\n```\n\n### Operazioni con le variabili\n\n```javascript\nlet a = 10;\nlet b = 3;\n\nconsole.log(a + b);  // 13\nconsole.log(a - b);  // 7\nconsole.log(a * b);  // 30\nconsole.log(a / b);  // 3.333...\nconsole.log(a % b);  // 1 (resto della divisione)\n```\n\n### Concatenare stringhe\n\n```javascript\nlet nome = 'Daniele';\nlet cognome = 'Primasso';\nlet nomeCompleto = nome + ' ' + cognome;\nconsole.log(nomeCompleto); // Daniele Primasso\n\n// Meglio con template literal:\nconsole.log(`${nome} ${cognome}`); // Daniele Primasso\n```",
+      "duration": "~40 min",
+      "content": "## Teoria\n\n### Variabili\n\nUna **variabile** è un contenitore con un nome, in cui puoi salvare un valore per riutilizzarlo.\n\n```javascript\nlet nome = 'Mario';\nlet eta = 30;\nlet iscritto = true;\n```\n\n- `let` dichiara una variabile che può cambiare nel tempo\n- `const` dichiara una costante (il valore non può essere riassegnato)\n\n```javascript\nconst PI = 3.14159;\nlet contatore = 0;\ncontatore = contatore + 1; // OK, let può cambiare\n// PI = 3; // ERRORE: const non può cambiare\n```\n\n### Tipi di dato fondamentali\n\n#### String (testo)\n```javascript\nlet saluto = 'Ciao!';\nlet frase = \"Come stai?\";\nlet template = `Mi chiamo ${nome}`; // template literal\n```\n\n#### Number (numero)\n```javascript\nlet intero = 42;\nlet decimale = 3.14;\nlet negativo = -10;\n```\n\n#### Boolean (vero/falso)\n```javascript\nlet attivo = true;\nlet eliminato = false;\n```\n\n#### Null e Undefined\n```javascript\nlet vuoto = null;        // valore assente intenzionalmente\nlet nonDefinito;        // undefined: non è stato assegnato nessun valore\n```\n\n### Operazioni con le variabili\n\n```javascript\nlet a = 10;\nlet b = 3;\n\nconsole.log(a + b);  // 13\nconsole.log(a - b);  // 7\nconsole.log(a * b);  // 30\nconsole.log(a / b);  // 3.333...\nconsole.log(a % b);  // 1 (resto della divisione)\n```\n\n### Concatenare stringhe\n\n```javascript\nlet nome = 'Daniele';\nlet cognome = 'Primasso';\nlet nomeCompleto = nome + ' ' + cognome;\nconsole.log(nomeCompleto); // Daniele Primasso\n\n// Meglio con template literal:\nconsole.log(`${nome} ${cognome}`); // Daniele Primasso\n```\n\n> **Coercizione (accenno):** JavaScript a volte converte tipi in modo implicito. Per evitare sorprese, nei confronti userai `===` (lo vedrai nel modulo sulle condizioni).\n\n---\n\n## In pratica\n\n1. **Dichiarazioni** — Nella console: crea `const BASE = 10;` e `let punteggio = 0;` poi aumenta `punteggio` di 5 due volte con `punteggio = punteggio + 5;` e stampa con `console.log`.\n2. **Template literal** — Crea `let user = 'Alex';` e stampa `` `Benvenuto, ${user}!` `` usando i **backtick** (tasto accento grave).\n3. **Predici l'output** — Senza eseguire: cosa stampa `console.log('5' + 3);` vs `console.log('5' - 3);`? Poi verifica in console e leggi il risultato.\n4. **Naming** — Scegli nomi di variabile in inglese o italiano ma **descrittivi** (`etaUtente` meglio di `x`) per tre valori: giorni di corso completati, nome corso, iscritto sì/no.",
       "quiz": [
         {
           "id": "q1",
@@ -88,8 +140,8 @@
     {
       "id": "mod-03",
       "title": "Condizioni e decisioni",
-      "duration": "~35 min",
-      "content": "## if / else: prendere decisioni\n\nIl codice non scorre sempre in linea retta. Spesso deve **prendere decisioni** basate su condizioni.\n\n```javascript\nlet eta = 20;\n\nif (eta >= 18) {\n  console.log('Maggiorenne');\n} else {\n  console.log('Minorenne');\n}\n```\n\n### Operatori di confronto\n\n```javascript\n5 === 5   // true  (uguale)\n5 !== 3   // true  (diverso)\n5 > 3     // true  (maggiore)\n5 < 3     // false (minore)\n5 >= 5    // true  (maggiore o uguale)\n5 <= 4    // false (minore o uguale)\n```\n\n> **Importante:** Usa sempre `===` (tre uguale) per confrontare, non `==` (due uguale). Il triplo uguale confronta anche il tipo di dato.\n\n### else if: più condizioni\n\n```javascript\nlet voto = 75;\n\nif (voto >= 90) {\n  console.log('Ottimo');\n} else if (voto >= 70) {\n  console.log('Buono');\n} else if (voto >= 50) {\n  console.log('Sufficiente');\n} else {\n  console.log('Insufficiente');\n}\n```\n\n### Operatori logici\n\n```javascript\n// AND (&&): entrambe le condizioni devono essere vere\nif (eta >= 18 && patente === true) {\n  console.log('Può guidare');\n}\n\n// OR (||): almeno una condizione deve essere vera\nif (giorno === 'sabato' || giorno === 'domenica') {\n  console.log('È weekend!');\n}\n\n// NOT (!): inverte una condizione\nif (!iscritto) {\n  console.log('Non ancora iscritto');\n}\n```\n\n### Operatore ternario (forma breve)\n\n```javascript\n// Forma lunga:\nlet messaggio;\nif (eta >= 18) {\n  messaggio = 'adulto';\n} else {\n  messaggio = 'minore';\n}\n\n// Forma breve con operatore ternario:\nlet messaggio = eta >= 18 ? 'adulto' : 'minore';\n```",
+      "duration": "~40 min",
+      "content": "## Teoria\n\n### if / else: prendere decisioni\n\nIl codice non scorre sempre in linea retta. Spesso deve **prendere decisioni** basate su condizioni.\n\n```javascript\nlet eta = 20;\n\nif (eta >= 18) {\n  console.log('Maggiorenne');\n} else {\n  console.log('Minorenne');\n}\n```\n\n### Operatori di confronto\n\n```javascript\n5 === 5   // true  (uguale)\n5 !== 3   // true  (diverso)\n5 > 3     // true  (maggiore)\n5 < 3     // false (minore)\n5 >= 5    // true  (maggiore o uguale)\n5 <= 4    // false (minore o uguale)\n```\n\n> **Importante:** Usa sempre `===` (tre uguale) per confrontare, non `==` (due uguale). Il triplo uguale confronta anche il tipo di dato.\n\n### else if: più condizioni\n\n```javascript\nlet voto = 75;\n\nif (voto >= 90) {\n  console.log('Ottimo');\n} else if (voto >= 70) {\n  console.log('Buono');\n} else if (voto >= 50) {\n  console.log('Sufficiente');\n} else {\n  console.log('Insufficiente');\n}\n```\n\n### Operatori logici\n\n```javascript\n// AND (&&): entrambe le condizioni devono essere vere\nif (eta >= 18 && patente === true) {\n  console.log('Può guidare');\n}\n\n// OR (||): almeno una condizione deve essere vera\nif (giorno === 'sabato' || giorno === 'domenica') {\n  console.log('È weekend!');\n}\n\n// NOT (!): inverte una condizione\nif (!iscritto) {\n  console.log('Non ancora iscritto');\n}\n```\n\n### Operatore ternario (forma breve)\n\n```javascript\n// Forma lunga:\nlet messaggio;\nif (eta >= 18) {\n  messaggio = 'adulto';\n} else {\n  messaggio = 'minore';\n}\n\n// Forma breve con operatore ternario:\nlet messaggio = eta >= 18 ? 'adulto' : 'minore';\n```\n\n---\n\n## In pratica\n\n1. **Soglia di superamento** — Scrivi `let punti = 72;` e un `if` che stampa `'Promosso'` se `punti >= 60`, altrimenti `'Da recuperare'`.\n2. **Fascia OR** — Con `let ora = 14;` stampa `'Apertura'` se `ora` è tra 9 e 18 (inclusi), usando `&&`.\n3. **Ternario** — Riscrivi l'esercizio 1 in **una sola riga** con l'operatore ternario assegnando a una variabile `esito`.\n4. **Trova il bug** — `if (voto = 100) { console.log('perfetto'); }` — perché è pericoloso? (Suggerimento: `=` vs `===`.) Correggi e spiega a voce.",
       "quiz": [
         {
           "id": "q1",
@@ -124,8 +176,8 @@
     {
       "id": "mod-04",
       "title": "Cicli e ripetizioni",
-      "duration": "~30 min",
-      "content": "## Cicli: ripetere operazioni\n\nI cicli permettono di eseguire lo stesso blocco di codice più volte, evitando di riscriverlo.\n\n### for: ciclo con contatore\n\n```javascript\nfor (let i = 0; i < 5; i++) {\n  console.log('Iterazione numero ' + i);\n}\n// Output: 0, 1, 2, 3, 4\n```\n\nIl `for` ha tre parti:\n1. `let i = 0` — inizializzazione (parte una volta)\n2. `i < 5` — condizione (verificata prima di ogni iterazione)\n3. `i++` — aggiornamento (eseguito alla fine di ogni iterazione)\n\n### while: ciclo con condizione\n\n```javascript\nlet contatore = 0;\n\nwhile (contatore < 3) {\n  console.log('contatore è: ' + contatore);\n  contatore++;\n}\n// Output: 0, 1, 2\n```\n\n> **Attenzione:** Se la condizione del `while` non diventa mai `false`, il programma va in loop infinito e si blocca!\n\n### Iterare su array\n\n```javascript\nlet frutti = ['mela', 'banana', 'ciliegia'];\n\n// for classico:\nfor (let i = 0; i < frutti.length; i++) {\n  console.log(frutti[i]);\n}\n\n// for...of (più leggibile):\nfor (let frutto of frutti) {\n  console.log(frutto);\n}\n```\n\n### break e continue\n\n```javascript\n// break: esce dal ciclo\nfor (let i = 0; i < 10; i++) {\n  if (i === 5) break; // si ferma a 5\n  console.log(i);\n}\n\n// continue: salta l'iterazione corrente\nfor (let i = 0; i < 5; i++) {\n  if (i === 2) continue; // salta il 2\n  console.log(i); // stampa 0, 1, 3, 4\n}\n```",
+      "duration": "~40 min",
+      "content": "## Teoria\n\n### Cicli: ripetere operazioni\n\nI cicli permettono di eseguire lo stesso blocco di codice più volte, evitando di riscriverlo.\n\n### for: ciclo con contatore\n\n```javascript\nfor (let i = 0; i < 5; i++) {\n  console.log('Iterazione numero ' + i);\n}\n// Output: 0, 1, 2, 3, 4\n```\n\nIl `for` ha tre parti:\n1. `let i = 0` — inizializzazione (parte una volta)\n2. `i < 5` — condizione (verificata prima di ogni iterazione)\n3. `i++` — aggiornamento (eseguito alla fine di ogni iterazione)\n\n### while: ciclo con condizione\n\n```javascript\nlet contatore = 0;\n\nwhile (contatore < 3) {\n  console.log('contatore è: ' + contatore);\n  contatore++;\n}\n// Output: 0, 1, 2\n```\n\n> **Attenzione:** Se la condizione del `while` non diventa mai `false`, il programma va in loop infinito e si blocca!\n\n### Iterare su array\n\n```javascript\nlet frutti = ['mela', 'banana', 'ciliegia'];\n\n// for classico:\nfor (let i = 0; i < frutti.length; i++) {\n  console.log(frutti[i]);\n}\n\n// for...of (più leggibile):\nfor (let frutto of frutti) {\n  console.log(frutto);\n}\n```\n\n### break e continue\n\n```javascript\n// break: esce dal ciclo\nfor (let i = 0; i < 10; i++) {\n  if (i === 5) break; // si ferma a 5\n  console.log(i);\n}\n\n// continue: salta l'iterazione corrente\nfor (let i = 0; i < 5; i++) {\n  if (i === 2) continue; // salta il 2\n  console.log(i); // stampa 0, 1, 3, 4\n}\n```\n\n> **Intuizione:** Più dati attraversi in un ciclo, più \"passaggi\" fa il programma. Non serve la notazione matematica formale: conta le iterazioni mentalmente.\n\n---\n\n## In pratica\n\n1. **Conta a ritroso** — Un `for` che stampa da 10 a 1 (inclusi).\n2. **Somma 1..10** — Usa un ciclo e una variabile `somma` che parte da 0; ad ogni passo aggiungi `i`.\n3. **Solo pari** — Dato `for (let i = 0; i <= 20; i++)`, stampa solo i numeri pari (usa `if` e `%`).\n4. **while controllato** — Simula lettura input: `let tentativi = 0;` e un `while (tentativi < 3)` che incrementa `tentativi` e stampa il numero del tentativo (senza vero input va bene per capire il pattern).",
       "quiz": [
         {
           "id": "q1",
@@ -160,8 +212,8 @@
     {
       "id": "mod-05",
       "title": "Funzioni",
-      "duration": "~40 min",
-      "content": "## Funzioni: blocchi di codice riutilizzabili\n\nUna **funzione** è un blocco di codice con un nome, che puoi richiamare quante volte vuoi.\n\n```javascript\nfunction saluta() {\n  console.log('Ciao!');\n}\n\nsaluta(); // Ciao!\nsaluta(); // Ciao! (di nuovo)\n```\n\n### Parametri e argomenti\n\n```javascript\nfunction saluta(nome) {\n  console.log('Ciao, ' + nome + '!');\n}\n\nsaluta('Mario');   // Ciao, Mario!\nsaluta('Daniele'); // Ciao, Daniele!\n```\n\n### Return: restituire un valore\n\n```javascript\nfunction somma(a, b) {\n  return a + b;\n}\n\nlet risultato = somma(3, 5);\nconsole.log(risultato); // 8\n```\n\nQuando una funzione ha `return`, puoi usare il suo risultato altrove.\n\n### Arrow function (sintassi moderna)\n\n```javascript\n// Funzione tradizionale:\nfunction moltiplica(a, b) {\n  return a * b;\n}\n\n// Arrow function equivalente:\nconst moltiplica = (a, b) => a * b;\n\nconsole.log(moltiplica(4, 3)); // 12\n```\n\n### Funzioni come valori\n\nIn JavaScript, le funzioni sono valori: possono essere assegnate a variabili, passate come argomenti, restituite da altre funzioni.\n\n```javascript\nconst operazione = (a, b, fn) => fn(a, b);\n\nconst somma = (a, b) => a + b;\nconst sottrai = (a, b) => a - b;\n\nconsole.log(operazione(10, 4, somma));    // 14\nconsole.log(operazione(10, 4, sottrai));  // 6\n```\n\n### Scope: dove vive una variabile\n\n```javascript\nlet globale = 'sono ovunque';\n\nfunction esempio() {\n  let locale = 'solo qui dentro';\n  console.log(globale); // funziona\n  console.log(locale);  // funziona\n}\n\nesempio();\nconsole.log(globale); // funziona\n// console.log(locale); // ERRORE: locale non esiste fuori dalla funzione\n```",
+      "duration": "~45 min",
+      "content": "## Teoria\n\n### Funzioni: blocchi di codice riutilizzabili\n\nUna **funzione** è un blocco di codice con un nome, che puoi richiamare quante volte vuoi.\n\n```javascript\nfunction saluta() {\n  console.log('Ciao!');\n}\n\nsaluta(); // Ciao!\nsaluta(); // Ciao! (di nuovo)\n```\n\n### Parametri e argomenti\n\n```javascript\nfunction saluta(nome) {\n  console.log('Ciao, ' + nome + '!');\n}\n\nsaluta('Mario');   // Ciao, Mario!\nsaluta('Daniele'); // Ciao, Daniele!\n```\n\n### Return: restituire un valore\n\n```javascript\nfunction somma(a, b) {\n  return a + b;\n}\n\nlet risultato = somma(3, 5);\nconsole.log(risultato); // 8\n```\n\nQuando una funzione ha `return`, puoi usare il suo risultato altrove.\n\n### Arrow function (sintassi moderna)\n\n```javascript\n// Funzione tradizionale:\nfunction moltiplica(a, b) {\n  return a * b;\n}\n\n// Arrow function equivalente:\nconst moltiplica = (a, b) => a * b;\n\nconsole.log(moltiplica(4, 3)); // 12\n```\n\n### Funzioni come valori (callback leggero)\n\nIn JavaScript, le funzioni sono valori: possono essere assegnate a variabili, passate come argomenti, restituite da altre funzioni. È la base di `map` e `filter` che vedrai sugli array.\n\n```javascript\nconst operazione = (a, b, fn) => fn(a, b);\n\nconst somma = (a, b) => a + b;\nconst sottrai = (a, b) => a - b;\n\nconsole.log(operazione(10, 4, somma));    // 14\nconsole.log(operazione(10, 4, sottrai));  // 6\n```\n\n### Scope: dove vive una variabile\n\n```javascript\nlet globale = 'sono ovunque';\n\nfunction esempio() {\n  let locale = 'solo qui dentro';\n  console.log(globale); // funziona\n  console.log(locale);  // funziona\n}\n\nesempio();\nconsole.log(globale); // funziona\n// console.log(locale); // ERRORE: locale non esiste fuori dalla funzione\n```\n\n> **Moduli e file:** in progetti veri il codice si spezza in più file (`import`/`export`). Qui restiamo su un blocco alla volta; il corso *Code Together* ti avvicina a un progetto strutturato.\n\n---\n\n## In pratica\n\n1. **IVA** — Scrivi `function prezzoConIva(base, aliquota) { ... }` che restituisce `base * (1 + aliquota)` (es. aliquota `0.22`).\n2. **Arrow** — Riscrivi la stessa funzione come `const prezzoConIva = (base, aliquota) => ...`.\n3. **Composizione** — Crea `doppio(x)` e `aggiungiUno(x)`; poi una funzione `pipeline(x)` che restituisce `aggiungiUno(doppio(x))` e prova con `pipeline(5)`.\n4. **Scope quiz** — Senza eseguire: `let a = 1; function f() { let a = 2; return a; }` — cosa restituisce `f()`? Poi verifica in console.",
       "quiz": [
         {
           "id": "q1",
@@ -212,8 +264,8 @@
     {
       "id": "mod-06",
       "title": "Array e Oggetti",
-      "duration": "~45 min",
-      "content": "## Array: liste di valori\n\nUn **array** è una lista ordinata di valori, accessibili tramite indice (partendo da 0).\n\n```javascript\nlet frutti = ['mela', 'banana', 'ciliegia'];\nconsole.log(frutti[0]); // 'mela'\nconsole.log(frutti[1]); // 'banana'\nconsole.log(frutti.length); // 3\n```\n\n### Metodi fondamentali degli array\n\n```javascript\nlet numeri = [3, 1, 4, 1, 5];\n\nnumeri.push(9);        // aggiunge in fondo: [3,1,4,1,5,9]\nnumeri.pop();          // rimuove l'ultimo: [3,1,4,1,5]\nnumeri.unshift(0);     // aggiunge in testa: [0,3,1,4,1,5]\nnumeri.shift();        // rimuove il primo: [3,1,4,1,5]\n\nnumeri.includes(4);    // true\nnumeri.indexOf(1);     // 1 (primo indice trovato)\nnumeri.length;         // 5\n```\n\n### map, filter, reduce\n\nI metodi più potenti degli array:\n\n```javascript\nlet numeri = [1, 2, 3, 4, 5];\n\n// map: trasforma ogni elemento\nlet doppi = numeri.map(n => n * 2);\n// [2, 4, 6, 8, 10]\n\n// filter: mantiene solo gli elementi che passano il test\nlet pari = numeri.filter(n => n % 2 === 0);\n// [2, 4]\n\n// find: trova il primo elemento che passa il test\nlet primoPari = numeri.find(n => n % 2 === 0);\n// 2\n```\n\n## Oggetti: dati strutturati\n\nUn **oggetto** raccoglie proprietà correlate sotto un unico nome:\n\n```javascript\nlet utente = {\n  nome: 'Mario',\n  eta: 30,\n  attivo: true,\n};\n\nconsole.log(utente.nome);    // 'Mario'\nconsole.log(utente['eta']); // 30\n\nutente.email = 'mario@email.it'; // aggiunge una proprietà\nutente.eta = 31;                 // modifica\n```\n\n### Array di oggetti (il pattern più comune)\n\n```javascript\nlet studenti = [\n  { nome: 'Mario', voto: 85 },\n  { nome: 'Lucia', voto: 92 },\n  { nome: 'Carlo', voto: 74 },\n];\n\n// Trovare lo studente con il voto più alto:\nlet migliore = studenti.reduce((acc, curr) =>\n  curr.voto > acc.voto ? curr : acc\n);\nconsole.log(migliore.nome); // 'Lucia'\n\n// Filtrare solo i promossi (voto >= 75):\nlet promossi = studenti.filter(s => s.voto >= 75);\n```\n\n> **Prossimo passo:** Ora che conosci le basi, il corso *Code Together* ti permette di costruire un progetto reale applicando tutto quello che hai imparato.",
+      "duration": "~50 min",
+      "content": "## Teoria\n\n### Array: liste di valori\n\nUn **array** è una lista ordinata di valori, accessibili tramite indice (partendo da 0).\n\n```javascript\nlet frutti = ['mela', 'banana', 'ciliegia'];\nconsole.log(frutti[0]); // 'mela'\nconsole.log(frutti[1]); // 'banana'\nconsole.log(frutti.length); // 3\n```\n\n### Metodi fondamentali degli array\n\n```javascript\nlet numeri = [3, 1, 4, 1, 5];\n\nnumeri.push(9);        // aggiunge in fondo: [3,1,4,1,5,9]\nnumeri.pop();          // rimuove l'ultimo: [3,1,4,1,5]\nnumeri.unshift(0);     // aggiunge in testa: [0,3,1,4,1,5]\nnumeri.shift();        // rimuove il primo: [3,1,4,1,5]\n\nnumeri.includes(4);    // true\nnumeri.indexOf(1);     // 1 (primo indice trovato)\nnumeri.length;         // 5\n```\n\n### map, filter, find\n\nPattern quotidiani sulle liste:\n\n```javascript\nlet numeri = [1, 2, 3, 4, 5];\n\n// map: trasforma ogni elemento\nlet doppi = numeri.map(n => n * 2);\n// [2, 4, 6, 8, 10]\n\n// filter: mantiene solo gli elementi che passano il test\nlet pari = numeri.filter(n => n % 2 === 0);\n// [2, 4]\n\n// find: trova il primo elemento che passa il test\nlet primoPari = numeri.find(n => n % 2 === 0);\n// 2\n```\n\n### Oggetti: dati strutturati\n\nUn **oggetto** raccoglie proprietà correlate sotto un unico nome:\n\n```javascript\nlet utente = {\n  nome: 'Mario',\n  eta: 30,\n  attivo: true,\n};\n\nconsole.log(utente.nome);    // 'Mario'\nconsole.log(utente['eta']); // 30\n\nutente.email = 'mario@email.it'; // aggiunge una proprietà\nutente.eta = 31;                 // modifica\n```\n\n### Array di oggetti (pattern comune)\n\n```javascript\nlet studenti = [\n  { nome: 'Mario', voto: 85 },\n  { nome: 'Lucia', voto: 92 },\n  { nome: 'Carlo', voto: 74 },\n];\n\n// Filtrare solo i promossi (voto >= 75):\nlet promossi = studenti.filter(s => s.voto >= 75);\n\n// Nomi in maiuscolo per export:\nlet etichette = studenti.map(s => s.nome.toUpperCase());\n```\n\n#### Approfondimento opzionale: reduce\n\n`reduce` \"accumula\" un array in un unico valore (es. somma o massimo). È potente ma meno intuitivo all'inizio: se ti confonde, torna dopo aver fatto pratica con `map` e `filter`.\n\n```javascript\nlet studenti = [\n  { nome: 'Mario', voto: 85 },\n  { nome: 'Lucia', voto: 92 },\n  { nome: 'Carlo', voto: 74 },\n];\nlet migliore = studenti.reduce((acc, curr) =>\n  curr.voto > acc.voto ? curr : acc\n);\nconsole.log(migliore.nome); // 'Lucia'\n```\n\n> **Prossimo passo:** Dopo *Debug e JSON*, il corso *Code Together* ti guida in un progetto reale.\n\n---\n\n## In pratica\n\n1. **Lista della spesa** — Crea un array di stringhe; usa `push` per aggiungere un articolo e `pop` per togliere l'ultimo; stampa `length`.\n2. **map** — Da `[2, 4, 6]` ottieni i quadrati con `.map`.\n3. **filter** — Da un array di numeri, tieni solo quelli maggiori di 10.\n4. **Oggetto + array** — Crea un oggetto `corso` con `titolo` e `ore`; aggiungi `moduli: ['intro', 'variabili']` e stampa il secondo modulo con la notazione a punti.\n5. **Sfida (opzionale)** — Con l'array `studenti` della teoria, trova il voto massimo usando solo `reduce` oppure con un `for` e una variabile `max`.",
       "quiz": [
         {
           "id": "q1",
@@ -251,6 +303,58 @@
             "Rimuove l'ultimo elemento",
             "Aggiunge un elemento alla fine dell'array",
             "Cerca un elemento nell'array"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "mod-07",
+      "title": "Debug, errori e JSON",
+      "duration": "~35 min",
+      "content": "## Teoria\n\n### Perché il debug conta\n\nI programmi quasi mai funzionano al primo colpo. **Leggere un errore** è una competenza da sviluppatore tanto quanto scrivere sintassi: il messaggio indica spesso *tipo* di problema e *riga* (in ambienti più grandi) o almeno la natura dell'errore.\n\n### console.log mirato\n\nStampa valori intermedi per verificare le tue ipotesi:\n\n```javascript\nfunction media(a, b) {\n  console.log('argomenti', a, b);\n  const m = (a + b) / 2;\n  console.log('media calcolata', m);\n  return m;\n}\nmedia(10, 20);\n```\n\nRimuovi o commenta i log rumorosi prima di consegnare codice in team.\n\n### Errori comuni da principiante\n\n- **ReferenceError** — usi una variabile che non esiste o è fuori scope.\n- **SyntaxError** — parentesi graffe, virgolette o `;` dimenticati (il parser non capisce).\n- **TypeError** — operazione non valida sul tipo (es. chiamare come funzione qualcosa che non lo è).\n\nIn console, rileggi la **prima** riga dell'errore: è quella più utile.\n\n### Cos'è JSON\n\n**JSON** (JavaScript Object Notation) è un formato testo per scambiare dati: oggetti e array scritti in modo compatibile con la sintassi letterale JavaScript.\n\n```javascript\nconst utente = { nome: 'Sara', attiva: true };\nconst testo = JSON.stringify(utente);\nconsole.log(testo); // '{\"nome\":\"Sara\",\"attiva\":true}'\n\nconst diNuovoOggetto = JSON.parse(testo);\nconsole.log(diNuovoOggetto.nome); // Sara\n```\n\nLe **API** sul web spesso rispondono con JSON: ricevi una stringa, la parsi in oggetto e leggi le proprietà. Il dettaglio di `fetch` e HTTP è materia per corsi successivi.\n\n### Sicurezza minima (concetto)\n\nNon incollare **segreti** (password, chiavi API) nel codice che condividi o committi. In progetti reali si usano **variabili d'ambiente** (file `.env` non versionato): ne sentirai parlare in *Code Together* e oltre.\n\n### Git e repository (idea)\n\nUn **repository** è la cartella del progetto con la sua storia. **Git** tiene traccia delle versioni (`commit`). Non serve saperlo a memoria ora: sappi solo che in azienda il codice vive in repo e si collabora con branch e merge.\n\n---\n\n## In pratica\n\n1. **Provoca un errore** — In console scrivi `console.log(mistero);` senza dichiarare `mistero`. Leggi il messaggio: che tipo di errore è?\n2. **Correggi** — `const x = 5; x = 6;` — perché fallisce? Sostituisci `const` con ciò che serve.\n3. **JSON round-trip** — Crea un oggetto `{ corso: 'Programmazione Base', livello: 1 }`, stringify, parse, e verifica che `livello` sia ancora `1`.\n4. **Trova il bug** — `JSON.parse('{ nome: \"Leo\" }')` — fallisce. Cerca online la regola delle **chiavi tra virgolette** in JSON e riscrivi la stringa in modo valido.\n5. **Carta** — Disegna a mano come `studenti[0].voto` \"attraversa\" un array di oggetti (frecce da `studenti` al primo elemento, poi alla proprietà).",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "A cosa serve principalmente `JSON.stringify`?",
+          "options": [
+            "Eliminare un file dal disco",
+            "Convertire un oggetto JavaScript in una stringa JSON",
+            "Avviare un server web",
+            "Compilare TypeScript in JavaScript"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa fa `JSON.parse` su una stringa JSON valida?",
+          "options": [
+            "La comprime in un file zip",
+            "La trasforma in un valore JavaScript (oggetto o array)",
+            "La invia automaticamente a un database",
+            "La cifra per sicurezza"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Quale approccio è più adatto per capire perché una variabile ha un valore inaspettato metà funzione?",
+          "options": [
+            "Cambiare linguaggio di programmazione",
+            "Aggiungere `console.log` in punti strategici e rileggere l'output",
+            "Spegnere il computer",
+            "Rimuovere tutti i `return` dalla funzione"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "In JSON le chiavi degli oggetti devono essere:",
+          "options": [
+            "Sempre numeri",
+            "Senza virgolette, come in JavaScript puro",
+            "Stringhe tra virgolette doppie (standard JSON)",
+            "Solo emoji"
           ],
           "correct": 2
         }

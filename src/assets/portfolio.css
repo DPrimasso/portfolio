@@ -3707,6 +3707,27 @@ button {
   border-top: 1px solid var(--line);
   margin: 24px 0;
 }
+.lesson-content hr + h2 {
+  margin-top: 8px;
+}
+.lesson-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 22px;
+  font-size: 14px;
+}
+.lesson-content th,
+.lesson-content td {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.lesson-content thead th {
+  background: var(--bg-card);
+  color: var(--fg);
+  font-weight: 600;
+}
 
 /* ── Quiz ── */
 .quiz-block {

@@ -22,6 +22,7 @@ export interface UserProfile {
   city?: string
 }
 
+/** Fields persisted under `progress/{uid}/{courseId}/{moduleId}` in Firestore. */
 export interface ModuleProgress {
   completed: boolean
   quizScore: number
@@ -149,6 +150,7 @@ export const useAcademyStore = defineStore('academy', () => {
     progress.value = { ...progress.value, [courseId]: data }
   }
 
+  /** Writes `completed`, `quizScore`, `quizAnswers`, `completedAt` (server). Firestore rules should allow access only when `request.auth.uid == userId` for path `progress/{userId}/…`. */
   async function markModuleComplete(
     courseId: string,
     moduleId: string,
