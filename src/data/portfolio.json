@@ -24,9 +24,9 @@
     {
       "title": "Vue.js",
       "icon": "fab fa-vuejs",
-      "level": 70,
+      "level": 82,
       "category": "Frontend",
-      "description": "Vue 3 Composition API, Pinia, Vue Router"
+      "description": "Vue 3 Composition API, dashboard dati, Pinia, Vue Router, Vite"
     },
     {
       "title": "Node.js",
@@ -38,9 +38,9 @@
     {
       "title": "Python",
       "icon": "fab fa-python",
-      "level": 75,
+      "level": 82,
       "category": "Backend",
-      "description": "Flask, Django, scripting e automazione"
+      "description": "CLI e pipeline dati, Flask, Django, integrazione API esterne, automazione"
     },
     {
       "title": "Golang",
@@ -83,9 +83,42 @@
       "level": 75,
       "category": "Infrastruttura",
       "description": "Vite, code splitting ottimizzato, ESLint moderno, build Node.js portable/eseguibili con pkg"
+    },
+    {
+      "title": "Remotion",
+      "icon": "fas fa-film",
+      "level": 68,
+      "category": "Media",
+      "description": "Composizione video in React, render locale e orchestrazione job di rendering"
+    },
+    {
+      "title": "AWS Lambda",
+      "icon": "fab fa-aws",
+      "level": 65,
+      "category": "Infrastruttura",
+      "description": "Funzioni serverless per rendering video, integrazione S3 per artefatti"
+    },
+    {
+      "title": "OpenAI",
+      "icon": "fas fa-robot",
+      "level": 80,
+      "category": "AI",
+      "description": "Integrazione API GPT, prompt engineering, analisi transcript e output strutturati"
     }
   ],
   "projects": [
+    {
+      "title": "Media Advisor",
+      "description": "Sistema open source (MIT) per analisi AI di video YouTube: pipeline Python che scarica transcript (TranscriptAPI, yt-dlp), analizza temi/claim/bias con OpenAI, moduli calciomercato, server Node con API e dashboard Vue/Vite per esplorare i risultati.",
+      "technologies": "Python, TypeScript, Vue.js, Node.js, OpenAI, Vite, REST API, TranscriptAPI",
+      "link": "https://github.com/DPrimasso/media-advisor"
+    },
+    {
+      "title": "My Goal Video App",
+      "description": "Applicazione React e TypeScript per generare video personalizzati di gol calcistici con Remotion, overlay e anteprima. Sviluppo locale con Express (React 3000, API 4000), build Docker/nginx; in produzione rendering serverless su AWS Lambda con storage su Amazon S3.",
+      "technologies": "React, TypeScript, Remotion, Node.js, Express, AWS Lambda, Amazon S3, Docker",
+      "link": "https://github.com/DPrimasso/my-goal-video-app"
+    },
     {
       "title": "Tracciato Maker",
       "description": "Applicazione React/TypeScript per automatizzare la conversione di file Excel/PDF in tracciati TXT standard per il trasporto: architettura feature-oriented (parsing, orders, export, file-upload, ftp-config), backend Express/Node per orchestrare parsing, generazione TXT e upload FTP, logging strutturato con Winston e distribuzione come eseguibile Windows o bundle Node.js portable per utenti non tecnici.",

@@ -45,7 +45,9 @@
               >● {{ lang === 'it' ? 'disponibile per collaborazioni' : 'open to opportunities' }}</b
             >
           </div>
-          <div class="row"><span>stack</span><b>Node · Go · Python · React · TS</b></div>
+          <div class="row">
+            <span>stack</span><b>Node · Go · Python · React · TS · Remotion · AI APIs</b>
+          </div>
           <div class="row">
             <span>focus</span
             ><b>{{ lang === 'it' ? 'backend, data, automazione' : 'backend, data, automation' }}</b>

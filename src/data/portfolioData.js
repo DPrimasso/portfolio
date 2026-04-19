@@ -15,8 +15,8 @@ export const PORTFOLIO = {
       en: '10+ years building solid backends, data pipelines and blockchain systems in production.',
     },
     bio: {
-      it: 'Sviluppatore full-stack con radici forti sul backend. Ho guidato team per 4 anni come Lead, progettato microservizi Node e Go, integrato smart contract Ethereum (ERC20/721/1155/4337) e oggi mi concentro su automazione dati e tooling interno con React e TypeScript.',
-      en: 'Full-stack developer with strong backend roots. I led teams for 4 years as Lead, designed Node and Go microservices, integrated Ethereum smart contracts (ERC20/721/1155/4337) and today I focus on data automation and internal tooling with React and TypeScript.',
+      it: 'Sviluppatore full-stack con radici forti sul backend. Ho guidato team per 4 anni come Lead, progettato microservizi Node e Go, integrato smart contract Ethereum (ERC20/721/1155/4337) e oggi mi concentro su automazione dati e tooling interno con React e TypeScript. Su GitHub pubblico anche lavori su generazione video programmatica (Remotion) e pipeline di analisi AI su contenuti YouTube.',
+      en: 'Full-stack developer with strong backend roots. I led teams for 4 years as Lead, designed Node and Go microservices, integrated Ethereum smart contracts (ERC20/721/1155/4337) and today I focus on data automation and internal tooling with React and TypeScript. On GitHub I also ship open work on programmatic video (Remotion) and AI pipelines for YouTube content analysis.',
     },
   },
   stats: [
@@ -55,9 +55,12 @@ export const PORTFOLIO = {
     },
     {
       title: 'Vue.js',
-      level: 'Intermediate',
+      level: 'Advanced',
       category: 'Frontend',
-      desc: { it: 'Vue 3 Composition, Pinia, Router', en: 'Vue 3 Composition, Pinia, Router' },
+      desc: {
+        it: 'Vue 3 Composition, dashboard dati, Vite, integrazione API',
+        en: 'Vue 3 Composition, data dashboards, Vite, API integration',
+      },
     },
     {
       title: 'Node.js',
@@ -70,11 +73,11 @@ export const PORTFOLIO = {
     },
     {
       title: 'Python',
-      level: 'Intermediate',
+      level: 'Advanced',
       category: 'Backend',
       desc: {
-        it: 'Flask, Django, scripting, automazione',
-        en: 'Flask, Django, scripting, automation',
+        it: 'CLI e pipeline dati, Flask/Django, scraping/API esterne, automazione',
+        en: 'CLI and data pipelines, Flask/Django, external APIs/scraping, automation',
       },
     },
     {
@@ -128,8 +131,74 @@ export const PORTFOLIO = {
         en: 'Code splitting, portable Node builds',
       },
     },
+    {
+      title: 'Remotion',
+      level: 'Intermediate',
+      category: 'Media',
+      desc: {
+        it: 'Composizione video React, render locale e orchestrazione job',
+        en: 'React-based video composition, local render and job orchestration',
+      },
+    },
+    {
+      title: 'AWS Lambda',
+      level: 'Intermediate',
+      category: 'Infra',
+      desc: {
+        it: 'Render serverless, integrazione S3 per artefatti e CDN',
+        en: 'Serverless rendering, S3 artifacts and CDN-oriented workflows',
+      },
+    },
+    {
+      title: 'OpenAI',
+      level: 'Advanced',
+      category: 'AI',
+      desc: {
+        it: 'Prompt engineering, output strutturato, analisi testi e transcript',
+        en: 'Prompt engineering, structured outputs, transcript and text analysis',
+      },
+    },
   ],
   projects: [
+    {
+      title: 'Media Advisor',
+      year: '2025',
+      status: { it: 'Open source (MIT)', en: 'Open source (MIT)' },
+      summary: {
+        it: 'Pipeline Python + dashboard Vue: transcript YouTube, analisi GPT (temi, claim, bias) e moduli calciomercato.',
+        en: 'Python pipeline + Vue dashboard: YouTube transcripts, GPT analysis (themes, claims, bias) and football transfer modules.',
+      },
+      detail: {
+        it: 'Progetto modulare con fetch transcript (TranscriptAPI / yt-dlp), analisi canali, server Node per API e dashboard Vite. Include valutazioni, batch scan e tooling npm per pipeline giornaliera.',
+        en: 'Modular project with transcript fetching (TranscriptAPI / yt-dlp), channel analysis, Node server for APIs and a Vite dashboard. Includes eval flows, batch scans and npm tooling for daily pipelines.',
+      },
+      stack: ['Python', 'TypeScript', 'Vue.js', 'Node.js', 'OpenAI', 'Vite', 'REST API'],
+      link: 'https://github.com/DPrimasso/media-advisor',
+    },
+    {
+      title: 'My Goal Video App',
+      year: '2024',
+      status: { it: 'Open source', en: 'Open source' },
+      summary: {
+        it: 'App React/TS per video di gol personalizzati: Remotion, preview, overlay e export; dev con Express, prod su Lambda + S3.',
+        en: 'React/TS app for personalized goal videos: Remotion, preview, overlays and export; dev Express stack, production on Lambda + S3.',
+      },
+      detail: {
+        it: 'Frontend React con generazione video Remotion, server Express in locale (porte 3000/4000), packaging Docker/nginx e funzioni Lambda per il render in cloud con storage su bucket.',
+        en: 'React frontend with Remotion video generation, local Express server (ports 3000/4000), Docker/nginx packaging and Lambda functions for cloud rendering with bucket storage.',
+      },
+      stack: [
+        'React',
+        'TypeScript',
+        'Remotion',
+        'Node.js',
+        'Express',
+        'AWS Lambda',
+        'Amazon S3',
+        'Docker',
+      ],
+      link: 'https://github.com/DPrimasso/my-goal-video-app',
+    },
     {
       title: 'Tracciato Maker',
       year: '2025',
