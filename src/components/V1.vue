@@ -6,7 +6,7 @@
         <div class="crt">
           <span><span class="prompt" />whoami</span>
           <span><b>session:</b> portfolio.v2.0</span>
-          <span><b>host:</b> dprimasso.dev</span>
+          <span><b>host:</b> www.danieleprimasso.it</span>
           <span><b>ts:</b> {{ timestamp }} UTC</span>
           <span><b>uptime:</b> 10y 4mo</span>
         </div>
