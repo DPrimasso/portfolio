@@ -107,8 +107,8 @@ export function usePerformance() {
       console.log('Performance metrics:', metrics)
       return
     }
-
-    // In production, puoi inviare a un endpoint
+    // TODO: implement production metrics endpoint.
+    // Uncomment and configure once /api/metrics is available:
     // fetch('/api/metrics', { method: 'POST', body: JSON.stringify(metrics) })
   }
 

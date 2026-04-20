@@ -1,5 +1,7 @@
 # Contributing Guidelines
 
+Per l'indice completo della documentazione: `README.md`.
+
 Grazie per il tuo interesse nel contribuire a questo progetto!
 
 ## Getting Started
@@ -33,6 +35,7 @@ Grazie per il tuo interesse nel contribuire a questo progetto!
 ### Git Hooks
 
 Il progetto usa Husky per git hooks:
+
 - Pre-commit: esegue lint-staged (lint + format)
 - Pre-push: esegue test coverage check
 

@@ -5,7 +5,9 @@
   "main": "public/index.html",
   "scripts": {
     "dev": "vite",
+    "clean": "node -e \"const fs=require('fs');['dist','coverage'].forEach(d=>fs.rmSync(d,{recursive:true,force:true}))\"",
     "build": "vue-tsc --noEmit && vite build",
+    "rebuild": "npm run clean && npm run build",
     "serve": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx --fix",
     "lint:check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx",

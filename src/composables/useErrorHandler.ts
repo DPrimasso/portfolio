@@ -33,7 +33,7 @@ export function useErrorHandler() {
     } else {
       error.value = message || (typeof err === 'string' ? err : 'Si è verificato un errore')
     }
-    console.error('Error:', error.value)
+    if (import.meta.env.DEV) console.error('Error:', error.value)
   }
 
   const clearError = (): void => {
@@ -56,15 +56,15 @@ export function useErrorHandler() {
       return result
     } catch (err) {
       // Log dettagliato dell'errore per debugging
-      console.error(`Retry attempt ${retryCount.value}/${maxRetries} failed:`, err)
+      if (import.meta.env.DEV)
+        console.error(`Retry attempt ${retryCount.value}/${maxRetries} failed:`, err)
 
       if (retryCount.value < maxRetries) {
-        console.log(`Retrying in ${delay * (retryCount.value + 1)}ms...`)
+        if (import.meta.env.DEV) console.log(`Retrying in ${delay * (retryCount.value + 1)}ms...`)
         return retry(fn, delay)
       }
 
-      // Ultimo tentativo fallito, salva l'errore originale
-      console.error('All retry attempts exhausted. Last error:', err)
+      if (import.meta.env.DEV) console.error('All retry attempts exhausted. Last error:', err)
       setError(err)
       return null
     }

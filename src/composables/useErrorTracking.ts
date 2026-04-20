@@ -26,11 +26,9 @@ export function useErrorTracking() {
 
     if (config.isDev) {
       console.error('Error tracked:', errorInfo)
-    } else {
-      // In production, puoi inviare a un endpoint
-      // fetch('/api/errors', { method: 'POST', body: JSON.stringify(errorInfo) })
-      console.error('Error:', errorInfo)
     }
+    // TODO: production error reporting endpoint
+    // fetch('/api/errors', { method: 'POST', body: JSON.stringify(errorInfo) })
   }
 
   return {

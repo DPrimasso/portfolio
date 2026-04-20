@@ -1,6 +1,6 @@
 /**
- * Sitemap XML (solo URL reali; niente hash — per Google sono comunque la home).
- * Usata in build (`vite.config`) e disponibile lato app se serve.
+ * Build-time utility — imported by vite.config.ts (`seoDistPlugin`) to write sitemap.xml during `vite build`.
+ * This is NOT a runtime Vue composable. Do not rename/move without updating vite.config.ts.
  */
 export function generateSitemapXml(baseOrigin: string): string {
   const base = baseOrigin.replace(/\/$/, '')

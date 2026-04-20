@@ -1,19 +1,4 @@
 {
-  "functions": {
-    "api/chatbot.js": {
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/chatbot",
-      "destination": "/api/chatbot.js"
-    },
-    {
-      "source": "/api/chatbot/health",
-      "destination": "/api/chatbot-health.js"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

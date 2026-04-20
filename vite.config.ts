@@ -6,7 +6,7 @@ import { resolve, join } from 'node:path'
 import fs from 'node:fs'
 import { generateSitemapXml } from './src/composables/useSitemap'
 
-/** robots.txt + sitemap.xml in dist con URL canoniche da VITE_BASE_URL (Netlify/Vercel). */
+/** robots.txt + sitemap.xml in dist con URL canoniche da VITE_BASE_URL. */
 function seoDistPlugin(): Plugin {
   let root = ''
   let outDir = ''
@@ -72,19 +72,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/api\.openai\.com\/.*/i,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'openai-api-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60, // 1 hour
-              },
-            },
-          },
-        ],
+        runtimeCaching: [],
       },
     }),
     visualizer({
@@ -102,17 +90,6 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
-    // Proxy per API in sviluppo (opzionale)
-    // Se VITE_CHATBOT_API_URL è un URL completo, verrà usato direttamente
-    // Altrimenti, puoi configurare un proxy qui per testare localmente
-    proxy: {
-      // Esempio: proxy a un endpoint di produzione per test
-      // '/api/chatbot': {
-      //   target: 'https://tuodominio.vercel.app',
-      //   changeOrigin: true,
-      //   secure: true,
-      // },
-    },
   },
   build: {
     cssCodeSplit: true,

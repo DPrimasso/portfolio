@@ -289,8 +289,8 @@ export const PORTFOLIO = {
       year: '2024',
       status: { it: 'Open source', en: 'Open source' },
       summary: {
-        it: 'Portfolio Vue 3 con Pinia, Composition API e chatbot serverless.',
-        en: 'Vue 3 portfolio with Pinia, Composition API and serverless chatbot.',
+        it: 'Portfolio Vue 3 con Pinia, Composition API e Academy integrata.',
+        en: 'Vue 3 portfolio with Pinia, Composition API and integrated Academy.',
       },
       detail: {
         it: 'Layout responsive, caricamento dinamico progetti, componenti modulari.',

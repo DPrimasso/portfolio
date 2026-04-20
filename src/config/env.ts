@@ -7,9 +7,6 @@ export const config = {
   // Base URL del sito
   baseUrl: import.meta.env.VITE_BASE_URL || '',
 
-  // URL dell'API chatbot
-  apiUrl: import.meta.env.VITE_CHATBOT_API_URL || '/api/chatbot',
-
   // Environment flags
   isDev: import.meta.env.DEV,
   isProd: import.meta.env.PROD,

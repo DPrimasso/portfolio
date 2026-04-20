@@ -57,8 +57,11 @@
   </div>
 </template>
 
-<script setup>
-const emit = defineEmits(['go-portfolio', 'go-academy'])
+<script setup lang="ts">
+const emit = defineEmits<{
+  'go-portfolio': []
+  'go-academy': []
+}>()
 const email = 'daniele.primasso@gmail.com'
 </script>
 

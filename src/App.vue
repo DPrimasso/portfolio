@@ -20,22 +20,13 @@
           role="navigation"
           :aria-label="lang === 'it' ? 'Navigazione vista' : 'View navigation'"
         >
-          <button
-            :class="['topbar-nav-btn', { active: currentView === 'landing' }]"
-            @click="goLanding"
-          >
+          <button class="topbar-nav-btn" @click="goLanding">
             {{ lang === 'it' ? 'home' : 'home' }}
           </button>
-          <button
-            :class="['topbar-nav-btn', { active: currentView === 'portfolio' }]"
-            @click="goPortfolio"
-          >
+          <button class="topbar-nav-btn active" @click="goPortfolio">
             {{ lang === 'it' ? 'portfolio' : 'portfolio' }}
           </button>
-          <button
-            :class="['topbar-nav-btn', { active: currentView === 'academy' }]"
-            @click="goAcademy()"
-          >
+          <button class="topbar-nav-btn" @click="goAcademy()">
             {{ lang === 'it' ? 'academy' : 'academy' }}
           </button>
         </div>
@@ -76,7 +67,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import V2 from './components/V2.vue'
 import Academy from './components/Academy.vue'
@@ -86,11 +77,13 @@ import { PORTFOLIO } from './data/portfolioData.js'
 
 const { setMetaTags, setStructuredData } = useSEO()
 
-const currentView = ref('landing')
-const academyReturnView = ref('landing')
-const lang = ref(localStorage.getItem('dp_lang') || 'it')
-const layoutMode = ref(localStorage.getItem('dp_layout') || 'list')
-const academyScreen = ref('s0')
+const currentView = ref<'landing' | 'portfolio' | 'academy'>('landing')
+const academyReturnView = ref<'landing' | 'portfolio'>('landing')
+const lang = ref<'it' | 'en'>((localStorage.getItem('dp_lang') as 'it' | 'en') || 'it')
+const layoutMode = ref<'list' | 'grid'>(
+  (localStorage.getItem('dp_layout') as 'list' | 'grid') || 'list'
+)
+const academyScreen = ref<string>('s0')
 
 function goAcademy(screen = 's0') {
   academyReturnView.value =
@@ -108,10 +101,10 @@ function goPortfolio() {
 }
 
 function closeAcademy() {
-  currentView.value = academyReturnView.value === 'academy' ? 'landing' : academyReturnView.value
+  currentView.value = academyReturnView.value
 }
 
-async function jumpToSection(sectionId) {
+async function jumpToSection(sectionId: string) {
   if (currentView.value !== 'portfolio') {
     currentView.value = 'portfolio'
     await nextTick()
@@ -129,8 +122,9 @@ function toggleLayout() {
   layoutMode.value = layoutMode.value === 'list' ? 'grid' : 'list'
 }
 
-function onKey(e) {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+function onKey(e: KeyboardEvent) {
+  const tag = (e.target as HTMLElement | null)?.tagName
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return
   if (e.key === 'Escape' && currentView.value !== 'landing') currentView.value = 'landing'
   if (currentView.value === 'portfolio') {
     if (e.key.toLowerCase() === 'l') lang.value = lang.value === 'it' ? 'en' : 'it'

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import type { FirebaseError } from 'firebase/app'
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -70,7 +71,7 @@ export const useAcademyStore = defineStore('academy', () => {
           }
           authInitError.value = ''
         } catch (e) {
-          console.error('Academy auth initialization failed', e)
+          if (import.meta.env.DEV) console.error('Academy auth initialization failed', e)
           authInitError.value =
             "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
           userProfile.value = null
@@ -84,7 +85,7 @@ export const useAcademyStore = defineStore('academy', () => {
       authInitError.value =
         "Academy non riesce ad avviare l'autenticazione. Verifica dominio autorizzato e config Firebase."
       authLoading.value = false
-      console.error('Academy onAuthStateChanged registration failed', e)
+      if (import.meta.env.DEV) console.error('Academy onAuthStateChanged registration failed', e)
     }
   }
 
@@ -98,14 +99,15 @@ export const useAcademyStore = defineStore('academy', () => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       return true
-    } catch (e: any) {
+    } catch (e: unknown) {
+      const code = (e as FirebaseError)?.code ?? ''
       if (
-        e.code === 'auth/invalid-credential' ||
-        e.code === 'auth/wrong-password' ||
-        e.code === 'auth/user-not-found'
+        code === 'auth/invalid-credential' ||
+        code === 'auth/wrong-password' ||
+        code === 'auth/user-not-found'
       ) {
         loginError.value = 'Email o password non corretti.'
-      } else if (e.code === 'auth/too-many-requests') {
+      } else if (code === 'auth/too-many-requests') {
         loginError.value = 'Troppi tentativi. Riprova tra qualche minuto.'
       } else {
         loginError.value = 'Errore di accesso. Riprova.'
@@ -145,7 +147,8 @@ export const useAcademyStore = defineStore('academy', () => {
         }
       }
     } catch (e) {
-      console.error('Failed to load academy profile, using fallback profile', e)
+      if (import.meta.env.DEV)
+        console.error('Failed to load academy profile, using fallback profile', e)
       userProfile.value = {
         displayName: user.value.displayName || user.value.email?.split('@')[0] || 'Studente',
         email: user.value.email || '',
@@ -179,8 +182,9 @@ export const useAcademyStore = defineStore('academy', () => {
       await reauthenticateWithCredential(user.value, credential)
       await updatePassword(user.value, newPassword)
       return { ok: true }
-    } catch (e: any) {
-      if (e.code === 'auth/wrong-password' || e.code === 'auth/invalid-credential') {
+    } catch (e: unknown) {
+      const code = (e as FirebaseError)?.code ?? ''
+      if (code === 'auth/wrong-password' || code === 'auth/invalid-credential') {
         return { ok: false, error: 'Password attuale non corretta.' }
       }
       return { ok: false, error: 'Errore durante il cambio password.' }
