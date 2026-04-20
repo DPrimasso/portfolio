@@ -317,7 +317,6 @@ const navItems = computed(() => [
   ['experience', props.lang === 'it' ? 'esperienza' : 'experience'],
   ['education', props.lang === 'it' ? 'formazione' : 'education'],
   ['contact', props.lang === 'it' ? 'contatti' : 'contact'],
-  ['academy', props.lang === 'it' ? 'academy' : 'academy'],
 ])
 
 const mobileNavItems = computed(() => [
@@ -348,7 +347,7 @@ function isPrivate(p) {
 }
 
 function onScroll() {
-  const ids = ['about', 'skills', 'projects', 'experience', 'education', 'contact', 'academy']
+  const ids = ['about', 'skills', 'projects', 'experience', 'education', 'contact']
   for (let i = ids.length - 1; i >= 0; i--) {
     const el = document.getElementById('s-' + ids[i])
     if (el && el.getBoundingClientRect().top < 160) {
