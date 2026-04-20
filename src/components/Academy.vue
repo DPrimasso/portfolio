@@ -2,6 +2,7 @@
   <div class="academy-app">
     <div v-if="academyStore.authLoading" class="ac-loading">
       <div class="ac-spinner" />
+      <div class="ac-loading-text">inizializzazione academy...</div>
     </div>
 
     <div v-else-if="academyStore.authInitError" class="ac-init-error">

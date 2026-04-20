@@ -58,26 +58,34 @@ export const useAcademyStore = defineStore('academy', () => {
       }
     }, 8000)
 
-    onAuthStateChanged(auth, async firebaseUser => {
-      try {
-        user.value = firebaseUser
-        if (firebaseUser) {
-          await loadUserProfile()
-        } else {
+    try {
+      onAuthStateChanged(auth, async firebaseUser => {
+        try {
+          user.value = firebaseUser
+          if (firebaseUser) {
+            await loadUserProfile()
+          } else {
+            userProfile.value = null
+            progress.value = {}
+          }
+          authInitError.value = ''
+        } catch (e) {
+          console.error('Academy auth initialization failed', e)
+          authInitError.value =
+            "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
           userProfile.value = null
-          progress.value = {}
+        } finally {
+          if (authInitTimer) clearTimeout(authInitTimer)
+          authLoading.value = false
         }
-        authInitError.value = ''
-      } catch (e) {
-        console.error('Academy auth initialization failed', e)
-        authInitError.value =
-          "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
-        userProfile.value = null
-      } finally {
-        if (authInitTimer) clearTimeout(authInitTimer)
-        authLoading.value = false
-      }
-    })
+      })
+    } catch (e) {
+      if (authInitTimer) clearTimeout(authInitTimer)
+      authInitError.value =
+        "Academy non riesce ad avviare l'autenticazione. Verifica dominio autorizzato e config Firebase."
+      authLoading.value = false
+      console.error('Academy onAuthStateChanged registration failed', e)
+    }
   }
 
   // ── Auth ───────────────────────────────────────────────────

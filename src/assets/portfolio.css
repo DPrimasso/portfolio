@@ -3594,9 +3594,18 @@ button {
 /* ── Loading state ── */
 .ac-loading {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+.ac-loading-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-mute);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .ac-init-error,
 .ac-fallback-screen {
