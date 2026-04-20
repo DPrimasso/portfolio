@@ -12,7 +12,7 @@ import {
   type User,
 } from 'firebase/auth'
 import { doc, getDoc, setDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore'
-import { auth, db } from '../services/firebaseService'
+import { auth, db, firebaseInitError } from '../services/firebaseService'
 
 export interface UserProfile {
   displayName: string
@@ -42,29 +42,50 @@ export const useAcademyStore = defineStore('academy', () => {
 
   const isLoggedIn = computed(() => !!user.value)
 
+  if (!auth || !db) {
+    authInitError.value = firebaseInitError || 'Firebase non disponibile.'
+    authLoading.value = false
+  }
+
   // ── Listen to Firebase auth state ─────────────────────────
-  onAuthStateChanged(auth, async firebaseUser => {
-    try {
-      user.value = firebaseUser
-      if (firebaseUser) {
-        await loadUserProfile()
-      } else {
-        userProfile.value = null
-        progress.value = {}
+  let authInitTimer: ReturnType<typeof setTimeout> | null = null
+  if (auth) {
+    authInitTimer = setTimeout(() => {
+      if (authLoading.value) {
+        authInitError.value =
+          'Academy sta impiegando troppo tempo a inizializzarsi. Verifica configurazione Firebase e rete.'
+        authLoading.value = false
       }
-      authInitError.value = ''
-    } catch (e) {
-      console.error('Academy auth initialization failed', e)
-      authInitError.value =
-        "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
-      userProfile.value = null
-    } finally {
-      authLoading.value = false
-    }
-  })
+    }, 8000)
+
+    onAuthStateChanged(auth, async firebaseUser => {
+      try {
+        user.value = firebaseUser
+        if (firebaseUser) {
+          await loadUserProfile()
+        } else {
+          userProfile.value = null
+          progress.value = {}
+        }
+        authInitError.value = ''
+      } catch (e) {
+        console.error('Academy auth initialization failed', e)
+        authInitError.value =
+          "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
+        userProfile.value = null
+      } finally {
+        if (authInitTimer) clearTimeout(authInitTimer)
+        authLoading.value = false
+      }
+    })
+  }
 
   // ── Auth ───────────────────────────────────────────────────
   async function login(email: string, password: string): Promise<boolean> {
+    if (!auth) {
+      loginError.value = 'Academy non configurata correttamente.'
+      return false
+    }
     loginError.value = ''
     try {
       await signInWithEmailAndPassword(auth, email, password)
@@ -86,10 +107,12 @@ export const useAcademyStore = defineStore('academy', () => {
   }
 
   async function logout() {
+    if (!auth) return
     await signOut(auth)
   }
 
   async function resetPassword(email: string): Promise<boolean> {
+    if (!auth) return false
     try {
       await sendPasswordResetEmail(auth, email)
       return true
@@ -100,7 +123,7 @@ export const useAcademyStore = defineStore('academy', () => {
 
   // ── Profile ────────────────────────────────────────────────
   async function loadUserProfile() {
-    if (!user.value) return
+    if (!user.value || !db) return
     try {
       const snap = await getDoc(doc(db, 'users', user.value.uid))
       if (snap.exists()) {
@@ -124,7 +147,7 @@ export const useAcademyStore = defineStore('academy', () => {
   }
 
   async function updateUserProfile(updates: Partial<UserProfile>): Promise<boolean> {
-    if (!user.value) return false
+    if (!user.value || !db) return false
     try {
       const userDocRef = doc(db, 'users', user.value.uid)
       await setDoc(userDocRef, updates, { merge: true })
@@ -158,7 +181,7 @@ export const useAcademyStore = defineStore('academy', () => {
 
   // ── Course progress ────────────────────────────────────────
   async function loadProgress(courseId: string) {
-    if (!user.value) return
+    if (!user.value || !db) return
     if (progress.value[courseId]) return
     const colRef = collection(db, 'progress', user.value.uid, courseId)
     const snap = await getDocs(colRef)
@@ -176,7 +199,7 @@ export const useAcademyStore = defineStore('academy', () => {
     quizAnswers: number[],
     correctAnswers: number[]
   ) {
-    if (!user.value) return
+    if (!user.value || !db) return
     const total = correctAnswers.length
     const score =
       total === 0
