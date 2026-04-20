@@ -3598,6 +3598,40 @@ button {
   justify-content: center;
   height: 100vh;
 }
+.ac-init-error,
+.ac-fallback-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.ac-init-card,
+.ac-fallback-card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+}
+.ac-init-card h2,
+.ac-fallback-card h3 {
+  margin: 0 0 10px;
+  color: var(--fg);
+}
+.ac-init-card p,
+.ac-fallback-card p {
+  margin: 0;
+  color: var(--fg-dim);
+  line-height: 1.6;
+}
+.ac-init-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 .ac-spinner {
   width: 32px;
   height: 32px;

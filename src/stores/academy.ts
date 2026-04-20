@@ -37,20 +37,30 @@ export const useAcademyStore = defineStore('academy', () => {
   const userProfile = ref<UserProfile | null>(null)
   const progress = ref<Record<string, CourseProgress>>({})
   const authLoading = ref(true)
+  const authInitError = ref('')
   const loginError = ref('')
 
   const isLoggedIn = computed(() => !!user.value)
 
   // ── Listen to Firebase auth state ─────────────────────────
   onAuthStateChanged(auth, async firebaseUser => {
-    user.value = firebaseUser
-    if (firebaseUser) {
-      await loadUserProfile()
-    } else {
+    try {
+      user.value = firebaseUser
+      if (firebaseUser) {
+        await loadUserProfile()
+      } else {
+        userProfile.value = null
+        progress.value = {}
+      }
+      authInitError.value = ''
+    } catch (e) {
+      console.error('Academy auth initialization failed', e)
+      authInitError.value =
+        "Errore durante l'inizializzazione Academy. Ricarica la pagina o riprova più tardi."
       userProfile.value = null
-      progress.value = {}
+    } finally {
+      authLoading.value = false
     }
-    authLoading.value = false
   })
 
   // ── Auth ───────────────────────────────────────────────────
@@ -91,11 +101,20 @@ export const useAcademyStore = defineStore('academy', () => {
   // ── Profile ────────────────────────────────────────────────
   async function loadUserProfile() {
     if (!user.value) return
-    const snap = await getDoc(doc(db, 'users', user.value.uid))
-    if (snap.exists()) {
-      userProfile.value = snap.data() as UserProfile
-    } else {
-      // Fallback: crea un profilo base dal record Firebase Auth
+    try {
+      const snap = await getDoc(doc(db, 'users', user.value.uid))
+      if (snap.exists()) {
+        userProfile.value = snap.data() as UserProfile
+      } else {
+        // Fallback: crea un profilo base dal record Firebase Auth
+        userProfile.value = {
+          displayName: user.value.displayName || user.value.email?.split('@')[0] || 'Studente',
+          email: user.value.email || '',
+          enrolledCourses: [],
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load academy profile, using fallback profile', e)
       userProfile.value = {
         displayName: user.value.displayName || user.value.email?.split('@')[0] || 'Studente',
         email: user.value.email || '',
@@ -204,6 +223,7 @@ export const useAcademyStore = defineStore('academy', () => {
     userProfile,
     progress,
     authLoading,
+    authInitError,
     loginError,
     isLoggedIn,
     login,

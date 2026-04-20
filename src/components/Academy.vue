@@ -4,6 +4,17 @@
       <div class="ac-spinner" />
     </div>
 
+    <div v-else-if="academyStore.authInitError" class="ac-init-error">
+      <div class="ac-init-card">
+        <h2>Academy temporaneamente non disponibile</h2>
+        <p>{{ academyStore.authInitError }}</p>
+        <div class="ac-init-actions">
+          <button class="btn-submit" @click="reloadPage">ricarica pagina</button>
+          <button class="s0-back-btn" @click="emit('close')">torna al portfolio</button>
+        </div>
+      </div>
+    </div>
+
     <div v-else-if="screen === 's0'" class="ac-screen s0">
       <div class="s0-wrap">
         <div class="s0-brand"><span class="ac-dot" />dprimasso · academy</div>
@@ -572,6 +583,14 @@
           </div>
         </div>
       </div>
+
+      <div v-else class="ac-screen ac-fallback-screen">
+        <div class="ac-fallback-card">
+          <h3>Vista academy non valida</h3>
+          <p>La sezione richiesta non è disponibile. Ti riporto alla schermata iniziale.</p>
+          <button class="btn-submit" @click="goTo('s0')">vai all'inizio</button>
+        </div>
+      </div>
     </template>
   </div>
 </template>
@@ -590,6 +609,7 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 
 const academyStore = useAcademyStore()
+const VALID_SCREENS = ['s0', 's1', 's2', 's3', 's4', 's5']
 
 const allCourses = {
   'programmazione-base': programmazioneBase,
@@ -618,12 +638,16 @@ const enrolledCourseIds = computed(() => {
   return fromProfile
 })
 
-const screen = ref(props.initialScreen)
+const screen = ref(VALID_SCREENS.includes(props.initialScreen) ? props.initialScreen : 's0')
 const dashSection = ref('dashboard')
 const moduleFilter = ref('all')
 
 function goTo(s) {
-  screen.value = s
+  screen.value = VALID_SCREENS.includes(s) ? s : 's0'
+}
+
+function reloadPage() {
+  window.location.reload()
 }
 
 async function loadAllProgress() {
