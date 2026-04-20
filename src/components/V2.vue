@@ -14,6 +14,7 @@
               :key="id"
               :href="'#s-' + id"
               :class="{ cur: curSection === id }"
+              @click.prevent="scrollToSection(id)"
             >
               <span>{{ label }}</span>
               <span class="n">{{ String(i + 1).padStart(2, '0') }}</span>
@@ -270,6 +271,16 @@
           </section>
         </main>
       </div>
+      <nav class="v2-mobile-nav" aria-label="Navigazione rapida">
+        <button
+          v-for="[id, label] in mobileNavItems"
+          :key="id"
+          :class="{ cur: curSection === id }"
+          @click="scrollToSection(id)"
+        >
+          {{ label }}
+        </button>
+      </nav>
     </div>
   </div>
 </template>
@@ -306,6 +317,14 @@ const navItems = computed(() => [
   ['experience', props.lang === 'it' ? 'esperienza' : 'experience'],
   ['education', props.lang === 'it' ? 'formazione' : 'education'],
   ['contact', props.lang === 'it' ? 'contatti' : 'contact'],
+  ['academy', props.lang === 'it' ? 'academy' : 'academy'],
+])
+
+const mobileNavItems = computed(() => [
+  ['about', props.lang === 'it' ? 'profilo' : 'profile'],
+  ['projects', props.lang === 'it' ? 'progetti' : 'projects'],
+  ['experience', props.lang === 'it' ? 'esperienza' : 'experience'],
+  ['contact', props.lang === 'it' ? 'contatti' : 'contact'],
 ])
 
 const groupedSkills = computed(() => {
@@ -329,7 +348,7 @@ function isPrivate(p) {
 }
 
 function onScroll() {
-  const ids = ['about', 'skills', 'projects', 'experience', 'education', 'contact']
+  const ids = ['about', 'skills', 'projects', 'experience', 'education', 'contact', 'academy']
   for (let i = ids.length - 1; i >= 0; i--) {
     const el = document.getElementById('s-' + ids[i])
     if (el && el.getBoundingClientRect().top < 160) {
@@ -337,6 +356,12 @@ function onScroll() {
       return
     }
   }
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById('s-' + id)
+  if (!el) return
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))

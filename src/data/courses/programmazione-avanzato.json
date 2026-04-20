@@ -1,0 +1,369 @@
+{
+  "id": "programmazione-avanzato",
+  "title": "Programmazione Avanzata",
+  "subtitle": "Dal codice che funziona al codice che scala",
+  "description": "Corso per chi ha già le basi: OOP, closures, programmazione asincrona, Fetch API, gestione degli errori, moduli ES6 e pattern avanzati. Ogni modulo ha teoria, esempi pratici e quiz finale.",
+  "icon": "{ }",
+  "color": "blue",
+  "language": "JavaScript",
+  "modules": [
+    {
+      "id": "mod-00",
+      "title": "Panoramica del corso",
+      "duration": "~20 min",
+      "content": "## Teoria\n\n### Prerequisiti\n\nQuesto corso parte dal punto in cui finisce il corso base: **variabili, condizioni, cicli, funzioni, array e oggetti**. Se ti senti sicuro su quei concetti, sei nel posto giusto.\n\n### Cosa impareremo\n\n| Modulo | Argomento |\n| --- | --- |\n| 01 | OOP — Classi, oggetti, ereditarietà |\n| 02 | Scope, closures e prototype chain |\n| 03 | Programmazione asincrona — callback, Promise, async/await |\n| 04 | Fetch API e chiamate REST |\n| 05 | Gestione degli errori — try/catch, custom errors |\n| 06 | Moduli ES6 — import/export, bundling |\n| 07 | Pattern avanzati — destructuring, spread, optional chaining |\n\n### Perché questi argomenti\n\nSono quelli che separano chi \"sa scrivere codice\" da chi sa **costruire sistemi**. Un modulo su OOP ti spiega come pensare in termini di entità riusabili; le closures ti fanno capire come JavaScript gestisce davvero la memoria; async/await è oggi lo standard de facto per tutto ciò che tocca la rete.\n\n### Come lavorare con questo corso\n\n- Ogni modulo ha teoria + esempi da provare nella console o su [jsfiddle.net](https://jsfiddle.net) / VS Code.\n- I concetti si costruiscono uno sull'altro: non saltare moduli.\n- Se qualcosa non è chiaro, il corso **Code Together** è pensato esattamente per questo: lo affrontiamo insieme su un progetto reale.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è il prerequisito consigliato per questo corso?",
+          "options": [
+            "Nessuno, si parte da zero",
+            "Aver completato il corso Programmazione Base (o conoscere variabili, cicli, funzioni)",
+            "Conoscere già React o Vue",
+            "Avere esperienza con database SQL"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Quale dei seguenti argomenti NON è trattato in questo corso?",
+          "options": ["Closures e scope", "async/await", "Moduli ES6", "CSS Grid Layout"],
+          "correct": 3
+        },
+        {
+          "id": "q3",
+          "question": "Cosa distingue principalmente chi 'sa scrivere codice' da chi sa 'costruire sistemi'?",
+          "options": [
+            "Il numero di linguaggi conosciuti",
+            "La velocità di digitazione",
+            "La comprensione di pattern, gestione degli errori e struttura del codice",
+            "L'uso di un editor specifico"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "mod-01",
+      "title": "OOP — Classi, oggetti, ereditarietà",
+      "duration": "~50 min",
+      "content": "## Teoria\n\n### Cos'è la programmazione orientata agli oggetti\n\nL'**OOP** (Object-Oriented Programming) è un modo di organizzare il codice attorno a **entità** che hanno *proprietà* (dati) e *comportamenti* (metodi). In JavaScript moderno si usano le `class`.\n\n### Classi e istanze\n\n```js\nclass Animale {\n  constructor(nome, suono) {\n    this.nome = nome\n    this.suono = suono\n  }\n\n  parla() {\n    console.log(`${this.nome} dice: ${this.suono}`)\n  }\n}\n\nconst cane = new Animale('Rex', 'Bau')\ncane.parla() // Rex dice: Bau\n```\n\n- `constructor` è chiamato automaticamente con `new`.\n- `this` si riferisce all'istanza corrente.\n- `new Animale(...)` crea un nuovo oggetto (istanza) della classe.\n\n### Ereditarietà con `extends`\n\n```js\nclass Cane extends Animale {\n  constructor(nome) {\n    super(nome, 'Bau') // chiama il constructor del genitore\n  }\n\n  recupera(oggetto) {\n    console.log(`${this.nome} recupera ${oggetto}!`)\n  }\n}\n\nconst rex = new Cane('Rex')\nrex.parla()           // Rex dice: Bau  (ereditato)\nrex.recupera('palla') // Rex recupera palla!\n```\n\n### Getter e setter\n\n```js\nclass Cerchio {\n  constructor(raggio) {\n    this._raggio = raggio\n  }\n\n  get area() {\n    return Math.PI * this._raggio ** 2\n  }\n\n  set raggio(r) {\n    if (r < 0) throw new Error('Raggio negativo')\n    this._raggio = r\n  }\n}\n\nconst c = new Cerchio(5)\nconsole.log(c.area)  // 78.53...\nc.raggio = 10\n```\n\n### Metodi statici\n\n```js\nclass MathUtils {\n  static somma(a, b) { return a + b }\n}\n\nMathUtils.somma(3, 4) // 7\n// Non serve creare un'istanza per usarli\n```\n\n### Quando usare OOP\n\n- Quando hai **entità con stato** che devono essere create in più copie (utenti, prodotti, giocatori).\n- Quando vuoi **raggruppare dati e comportamenti** correlati.\n- **Non** è sempre la scelta giusta: a volte funzioni semplici bastano.\n\n## In pratica\n\n1. Crea una classe `Persona` con `nome` e `eta`. Aggiungi un metodo `saluta()` che stampa 'Ciao, sono [nome] e ho [eta] anni'.\n2. Crea una sottoclasse `Studente` che estende `Persona` con un campo `corso`. Aggiungi un metodo `studia()`.\n3. Crea 3 istanze e chiamale entrambi i metodi.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cosa fa la parola chiave `super()` all'interno di un costruttore di una sottoclasse?",
+          "options": [
+            "Crea una nuova istanza della sottoclasse",
+            "Chiama il costruttore della classe genitore",
+            "Dichiara un metodo statico",
+            "Elimina l'istanza dalla memoria"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Come si crea un'istanza di una classe `Auto` in JavaScript?",
+          "options": ["Auto.create()", "create Auto()", "new Auto()", "Auto.new()"],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Un metodo `static` su una classe può essere chiamato:",
+          "options": [
+            "Solo su un'istanza creata con `new`",
+            "Direttamente sulla classe, senza creare un'istanza",
+            "Solo dall'interno di `constructor`",
+            "Solo se la classe non ha ereditarietà"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "A cosa si riferisce `this` all'interno di un metodo di classe?",
+          "options": [
+            "Alla classe stessa (non all'istanza)",
+            "All'oggetto globale `window`",
+            "All'istanza corrente della classe",
+            "Al modulo in cui è definita la classe"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "mod-02",
+      "title": "Scope, closures e prototype chain",
+      "duration": "~45 min",
+      "content": "## Teoria\n\n### Scope\n\nLo **scope** (ambito) definisce dove una variabile è accessibile.\n\n```js\nlet x = 10 // scope globale\n\nfunction esterna() {\n  let y = 20 // scope di esterna\n\n  function interna() {\n    let z = 30 // scope di interna\n    console.log(x, y, z) // 10 20 30 — vede tutto\n  }\n\n  interna()\n  // console.log(z) → ReferenceError: z non esiste qui\n}\n```\n\nRegola: le funzioni interne vedono le variabili dei livelli superiori (scope chain), ma non viceversa.\n\n### `let` vs `var` vs `const`\n\n| | scope | hoisting | reassign |\n| --- | --- | --- | --- |\n| `var` | funzione | sì (inizializzato a `undefined`) | sì |\n| `let` | blocco `{}` | sì (ma non inizializzato) | sì |\n| `const` | blocco `{}` | sì (ma non inizializzato) | no |\n\nUsa sempre `const` di default. Passa a `let` se devi riassegnare. Dimentica `var`.\n\n### Closures\n\nUna **closure** è una funzione che \"ricorda\" le variabili del suo scope anche dopo che la funzione esterna è terminata.\n\n```js\nfunction creaContatore() {\n  let count = 0\n\n  return function () {\n    count++\n    return count\n  }\n}\n\nconst contatore = creaContatore()\nconsole.log(contatore()) // 1\nconsole.log(contatore()) // 2\nconsole.log(contatore()) // 3\n// `count` è incapsulato — non accessibile dall'esterno\n```\n\nLe closures sono usate ovunque: event listener, moduli, factory functions, memoization.\n\n### Prototype chain\n\nIn JavaScript ogni oggetto ha un collegamento nascosto al suo **prototype**. Quando cerchi una proprietà su un oggetto e non la trova lì, JavaScript risale la catena.\n\n```js\nconst animale = {\n  parla() { console.log('...') }\n}\n\nconst cane = Object.create(animale)\ncane.nome = 'Rex'\ncane.parla() // trovato su animale tramite prototype\n```\n\nLe classi ES6 sono zucchero sintattico sopra questo meccanismo.\n\n## In pratica\n\n1. Scrivi una funzione `creaMultiplicatore(n)` che ritorna una funzione. La funzione ritornata, quando chiamata con un numero `x`, ritorna `n * x`.\n   ```js\n   const doppio = creaMultiplicatore(2)\n   doppio(5) // 10\n   doppio(8) // 16\n   ```\n2. Spiega con parole tue cosa succede in memoria quando chiami `creaMultiplicatore(2)`.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cosa definisce lo 'scope' di una variabile?",
+          "options": [
+            "Il tipo di dato che può contenere",
+            "La porzione di codice in cui la variabile è accessibile",
+            "Il numero di volte che può essere riassegnata",
+            "Il file in cui è dichiarata"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Una closure è:",
+          "options": [
+            "Un modo per chiudere un file JavaScript",
+            "Una funzione che ricorda le variabili del suo scope anche dopo che la funzione esterna è terminata",
+            "Un metodo per eliminare variabili dalla memoria",
+            "Una parola chiave ES6"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Quale keyword di dichiarazione variabile è consigliata come default?",
+          "options": ["var", "let", "const", "static"],
+          "correct": 2
+        },
+        {
+          "id": "q4",
+          "question": "Cosa succede quando cerchi una proprietà su un oggetto e non viene trovata?",
+          "options": [
+            "JavaScript lancia sempre un TypeError",
+            "JavaScript cerca la proprietà risalendo la prototype chain",
+            "JavaScript restituisce 0",
+            "JavaScript cerca la proprietà nel DOM"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-03",
+      "title": "Programmazione asincrona — callback, Promise, async/await",
+      "duration": "~55 min",
+      "content": "## Teoria\n\n### Perché il codice asincrono\n\nJavaScript gira su **un solo thread**. Se dovesse aspettare una risposta di rete bloccando tutto il programma, la UI si bloccherebbe. La soluzione: operazioni lente vengono *schedulate* e il resto del codice continua ad eseguire.\n\n### Callback (il vecchio modo)\n\n```js\nsetTimeout(function () {\n  console.log('Eseguito dopo 1 secondo')\n}, 1000)\n\nconsole.log('Questo appare prima!')\n```\n\nProblema: il **callback hell** — callback annidate diventano illeggibili.\n\n```js\nfetch(url, function(err, data) {\n  parse(data, function(err, parsed) {\n    save(parsed, function(err, result) {\n      // piramide della desolazione\n    })\n  })\n})\n```\n\n### Promise\n\nUna **Promise** rappresenta un valore che sarà disponibile *in futuro* (o fallirà).\n\n```js\nconst promessa = new Promise((resolve, reject) => {\n  setTimeout(() => resolve('Fatto!'), 1000)\n})\n\npromessa\n  .then(valore => console.log(valore))  // 'Fatto!' dopo 1s\n  .catch(err => console.error(err))\n```\n\nStati di una Promise: **pending** → **fulfilled** oppure **rejected**.\n\n### async/await (il modo moderno)\n\n`async/await` è zucchero sintattico sulle Promise — rende il codice asincrono leggibile come se fosse sincrono.\n\n```js\nasync function caricaDati() {\n  try {\n    const risposta = await fetch('https://api.example.com/dati')\n    const dati = await risposta.json()\n    console.log(dati)\n  } catch (errore) {\n    console.error('Errore:', errore)\n  }\n}\n\ncaricaDati()\n```\n\n- `async` davanti alla funzione: ora ritorna sempre una Promise.\n- `await` sospende l'esecuzione *di quella funzione* finché la Promise non si risolve.\n- Il resto del programma non si blocca.\n\n### Promise.all — eseguire più operazioni in parallelo\n\n```js\nconst [utenti, prodotti] = await Promise.all([\n  fetch('/api/utenti').then(r => r.json()),\n  fetch('/api/prodotti').then(r => r.json()),\n])\n// aspetta che entrambe finiscano\n```\n\n## In pratica\n\n1. Scrivi una funzione `attendi(ms)` che ritorna una Promise che si risolve dopo `ms` millisecondi.\n2. Usa `async/await` per chiamare `attendi(2000)` e poi stampare 'Pronto!' sulla console.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Perché JavaScript usa la programmazione asincrona?",
+          "options": [
+            "Perché i server sono sempre lenti",
+            "Perché JavaScript gira su un solo thread e non può bloccarsi aspettando operazioni lente",
+            "Perché le variabili async sono più veloci",
+            "Perché è richiesto dai browser moderni"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Quali sono i possibili stati di una Promise?",
+          "options": [
+            "aperta, chiusa, in errore",
+            "pending, fulfilled, rejected",
+            "loading, done, failed",
+            "start, running, end"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cosa fa `await` all'interno di una funzione `async`?",
+          "options": [
+            "Blocca l'intero programma finché la Promise non si risolve",
+            "Sospende l'esecuzione di quella funzione finché la Promise non si risolve, senza bloccare il resto",
+            "Converte una Promise in un valore sincrono per sempre",
+            "Chiama automaticamente .catch() sulla Promise"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "A cosa serve `Promise.all([...])`?",
+          "options": [
+            "Esegue più Promise in sequenza, una alla volta",
+            "Aspetta che tutte le Promise passate si risolvano in parallelo",
+            "Cancella tutte le Promise in esecuzione",
+            "Converte un array normale in una Promise"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-04",
+      "title": "Fetch API e chiamate REST",
+      "duration": "~45 min",
+      "content": "## Teoria\n\n### Cos'è una API REST\n\nUna **API REST** è un'interfaccia web che espone dati tramite URL e metodi HTTP. Il client (browser, app) fa *richieste*, il server risponde con dati — solitamente in formato **JSON**.\n\n| Metodo HTTP | Significato |\n| --- | --- |\n| `GET` | Leggi una risorsa |\n| `POST` | Crea una nuova risorsa |\n| `PUT` / `PATCH` | Aggiorna una risorsa |\n| `DELETE` | Elimina una risorsa |\n\n### Fetch API\n\n`fetch` è la funzione nativa del browser per fare richieste HTTP. Ritorna una Promise.\n\n```js\n// GET\nasync function getUtenti() {\n  const res = await fetch('https://jsonplaceholder.typicode.com/users')\n  if (!res.ok) throw new Error(`HTTP ${res.status}`)\n  const utenti = await res.json()\n  return utenti\n}\n```\n\n### POST con body JSON\n\n```js\nasync function creaPost(titolo, corpo) {\n  const res = await fetch('https://jsonplaceholder.typicode.com/posts', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ title: titolo, body: corpo, userId: 1 }),\n  })\n  const nuovoPost = await res.json()\n  return nuovoPost\n}\n```\n\n### Gestire gli errori di rete\n\n```js\nasync function chiamata() {\n  try {\n    const res = await fetch('/api/dati')\n    if (!res.ok) throw new Error(`Errore server: ${res.status}`)\n    return await res.json()\n  } catch (err) {\n    if (err instanceof TypeError) {\n      console.error('Problema di rete (nessuna connessione?)')\n    } else {\n      console.error(err.message)\n    }\n  }\n}\n```\n\n**Attenzione:** `fetch` non lancia un'eccezione per errori HTTP (404, 500) — devi controllare `res.ok` manualmente.\n\n### Headers di autorizzazione\n\nMolte API richiedono un token:\n\n```js\nconst res = await fetch('/api/privato', {\n  headers: {\n    'Authorization': `Bearer ${token}`,\n    'Content-Type': 'application/json',\n  }\n})\n```\n\n## In pratica\n\nUsa l'API pubblica `https://jsonplaceholder.typicode.com`:\n1. Fai una GET su `/posts/1` e stampa il titolo.\n2. Fai una GET su `/users` e stampa solo i nomi degli utenti (`users.map(u => u.name)`).\n3. (Bonus) Fai un POST su `/posts` con titolo e corpo a tua scelta e stampa l'oggetto ritornato.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale metodo HTTP si usa per LEGGERE una risorsa?",
+          "options": ["POST", "DELETE", "GET", "PATCH"],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Quando `fetch` lancia automaticamente un'eccezione?",
+          "options": [
+            "Quando il server risponde con un codice 404",
+            "Quando il server risponde con un codice 500",
+            "Solo in caso di problemi di rete (es. nessuna connessione), non per errori HTTP",
+            "Sempre se la risposta non è 200"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Come si include un corpo JSON in una richiesta POST con `fetch`?",
+          "options": [
+            "Si passa l'oggetto direttamente come secondo argomento di fetch",
+            "Si usa body: JSON.stringify(oggetto) e header Content-Type: application/json",
+            "Si aggiunge il JSON come parametro nell'URL",
+            "fetch non supporta il metodo POST"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Cosa verifica `res.ok` nella risposta di fetch?",
+          "options": [
+            "Che la risposta contenga almeno un byte di dati",
+            "Che il codice di stato HTTP sia nel range 200-299",
+            "Che il JSON sia valido",
+            "Che la richiesta abbia impiegato meno di 1 secondo"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-05",
+      "title": "Gestione degli errori — try/catch, custom errors",
+      "duration": "~35 min",
+      "content": "## Teoria\n\n### try/catch/finally\n\n```js\ntry {\n  const dati = JSON.parse('testo non valido')\n} catch (err) {\n  console.error('Parsing fallito:', err.message)\n} finally {\n  console.log('Questo esegue sempre')\n}\n```\n\n- `try`: codice che potrebbe lanciare un'eccezione.\n- `catch (err)`: gestisci l'errore. `err` è un oggetto `Error` con `.message`, `.name`, `.stack`.\n- `finally`: esegue sempre, utile per pulizia (chiudere connessioni, nascondere loader).\n\n### Tipi di errori built-in\n\n| Tipo | Quando appare |\n| --- | --- |\n| `TypeError` | Operazione su valore del tipo sbagliato |\n| `ReferenceError` | Variabile non definita |\n| `SyntaxError` | Codice non valido (di solito al parse) |\n| `RangeError` | Valore fuori dai range ammessi |\n\n### Custom errors\n\nPuoi creare classi di errore personalizzate per avere codici e messaggi semantici:\n\n```js\nclass ApiError extends Error {\n  constructor(statusCode, message) {\n    super(message)\n    this.name = 'ApiError'\n    this.statusCode = statusCode\n  }\n}\n\nasync function fetchDati(url) {\n  const res = await fetch(url)\n  if (!res.ok) throw new ApiError(res.status, `Errore server: ${res.status}`)\n  return res.json()\n}\n\ntry {\n  await fetchDati('/api/inesistente')\n} catch (err) {\n  if (err instanceof ApiError) {\n    console.error(`Errore API [${err.statusCode}]: ${err.message}`)\n  } else {\n    throw err // rilancia errori inaspettati\n  }\n}\n```\n\n### Errori nelle Promise\n\n```js\n// Con .catch()\npromessa.then(dati => usa(dati)).catch(err => console.error(err))\n\n// Con async/await (preferito)\ntry {\n  const dati = await promessa\n  usa(dati)\n} catch (err) {\n  console.error(err)\n}\n```\n\n## In pratica\n\n1. Scrivi una funzione `dividi(a, b)` che lancia un `Error` con messaggio 'Divisione per zero' se `b === 0`.\n2. Chiamala con `b = 0` dentro un `try/catch` e gestisci l'errore.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quando viene eseguito il blocco `finally`?",
+          "options": [
+            "Solo se non ci sono errori",
+            "Solo se c'è un errore",
+            "Sempre, sia in caso di successo che di errore",
+            "Solo se il catch rilancia l'errore"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Quale tipo di errore viene lanciato se usi una variabile non dichiarata?",
+          "options": ["TypeError", "SyntaxError", "ReferenceError", "RangeError"],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Perché creare custom error classes (es. `class ApiError extends Error`)?",
+          "options": [
+            "Per rendere il codice più lento",
+            "Per poter distinguere tipi di errori con `instanceof` e aggiungere proprietà semantiche",
+            "Perché JavaScript non ha errori built-in",
+            "Per evitare di usare try/catch"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-06",
+      "title": "Moduli ES6 — import/export",
+      "duration": "~35 min",
+      "content": "## Teoria\n\n### Perché i moduli\n\nSenza moduli, tutto il codice condivide lo stesso scope globale — variabili in conflitto, dipendenze implicite, impossibile testare in isolamento. I moduli ES6 risolvono questo.\n\n### Named export / import\n\n```js\n// math.js\nexport function somma(a, b) { return a + b }\nexport function moltiplica(a, b) { return a * b }\nexport const PI = 3.14159\n```\n\n```js\n// main.js\nimport { somma, PI } from './math.js'\nconsole.log(somma(2, 3)) // 5\nconsole.log(PI)          // 3.14159\n```\n\n### Default export\n\n```js\n// utente.js\nexport default class Utente {\n  constructor(nome) { this.nome = nome }\n}\n```\n\n```js\n// main.js\nimport Utente from './utente.js' // nome a scelta\nconst u = new Utente('Mario')\n```\n\nRegola pratica: usa **named export** per utility con più funzioni, **default export** per un componente/classe principale.\n\n### Re-export\n\n```js\n// index.js (barrel file)\nexport { somma, moltiplica } from './math.js'\nexport { default as Utente } from './utente.js'\n```\n\n### Come funziona Vite (cenni)\n\nIn un progetto Vite (come questo sito), i moduli ES6 vengono processati e raggruppati (**bundled**) per la produzione. Non devi preoccuparti dei dettagli, ma sappi che:\n- `import` / `export` funzionano nativamente in sviluppo.\n- In produzione Vite crea un bundle ottimizzato.\n- Le importazioni circolari (`A importa B, B importa A`) sono da evitare.\n\n## In pratica\n\n1. Crea un file `operazioni.js` con `export function raddoppia(n)` e `export function inverti(s)`.\n2. Importale in un altro file e usale.\n3. (Bonus) Crea un file `index.js` che le re-esporta entrambe.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è la differenza principale tra named export e default export?",
+          "options": [
+            "Named export può esportare solo funzioni, default export solo classi",
+            "Named export richiede le parentesi graffe nell'import; default export no",
+            "Named export non funziona con Vite",
+            "Non c'è differenza, sono alias"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa risolve l'uso dei moduli ES6 rispetto al codice globale?",
+          "options": [
+            "Rende il codice più veloce da eseguire",
+            "Elimina conflitti di scope, rende le dipendenze esplicite e il codice testabile in isolamento",
+            "Permette di scrivere CSS dentro JavaScript",
+            "Abilita il supporto per browser vecchi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cos'è un 'barrel file' (o index.js di re-export)?",
+          "options": [
+            "Un file che contiene solo commenti",
+            "Un file che importa e ri-esporta simboli da più moduli, creando un punto di accesso unificato",
+            "Il file principale di Vite",
+            "Un file che esporta solo costanti"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-07",
+      "title": "Pattern avanzati — destructuring, spread, optional chaining",
+      "duration": "~40 min",
+      "content": "## Teoria\n\n### Destructuring di oggetti\n\n```js\nconst utente = { nome: 'Alice', eta: 30, citta: 'Milano' }\n\n// Prima\nconst nome = utente.nome\nconst eta = utente.eta\n\n// Con destructuring\nconst { nome, eta } = utente\n\n// Con rinomina\nconst { nome: nomeUtente, eta: anni } = utente\n\n// Con valore di default\nconst { ruolo = 'visitatore' } = utente // 'visitatore' se non esiste\n```\n\n### Destructuring di array\n\n```js\nconst colori = ['rosso', 'verde', 'blu']\nconst [primo, secondo] = colori\n// primo = 'rosso', secondo = 'verde'\n\n// Saltare elementi\nconst [, , terzo] = colori // blu\n\n// Swap di variabili\nlet a = 1, b = 2\n;[a, b] = [b, a] // a = 2, b = 1\n```\n\n### Spread operator `...`\n\n```js\n// Copiare / unire array\nconst numeri = [1, 2, 3]\nconst altriNumeri = [4, 5, 6]\nconst tutti = [...numeri, ...altriNumeri] // [1,2,3,4,5,6]\n\n// Copiare / unire oggetti\nconst base = { a: 1, b: 2 }\nconst esteso = { ...base, c: 3 } // { a:1, b:2, c:3 }\n\n// Override\nconst aggiornato = { ...utente, eta: 31 } // età sovrascritta\n```\n\n### Rest parameter\n\n```js\nfunction somma(...numeri) {\n  return numeri.reduce((acc, n) => acc + n, 0)\n}\nsomma(1, 2, 3, 4) // 10\n```\n\n### Optional chaining `?.`\n\nEvita errori quando accedi a proprietà annidate che potrebbero essere `null` o `undefined`:\n\n```js\nconst utente = { profilo: { citta: 'Roma' } }\n\n// Prima\nconst citta = utente && utente.profilo && utente.profilo.citta\n\n// Con optional chaining\nconst citta = utente?.profilo?.citta // 'Roma'\nconst cap = utente?.profilo?.cap    // undefined (non lancia errore)\n\n// Con metodi\nconst upper = utente?.profilo?.citta?.toUpperCase() // 'ROMA'\n```\n\n### Nullish coalescing `??`\n\n```js\nconst nome = utente?.nome ?? 'Anonimo'\n// Usa 'Anonimo' solo se nome è null o undefined (non se è '' o 0)\n```\n\n## In pratica\n\n1. Dato `const persona = { nome: 'Luca', indirizzo: { via: 'Garibaldi', num: 5 } }`, estrai `nome` e `via` con destructuring.\n2. Usa optional chaining per accedere a `persona?.contatti?.email` (che non esiste) senza errori.\n3. Crea una funzione `aggiorna(oggetto, patch)` che usa spread per ritornare un nuovo oggetto con le proprietà di `patch` sovrascritte.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cosa fa `const { nome, eta = 18 } = utente`?",
+          "options": [
+            "Imposta l'età dell'utente a 18",
+            "Estrae nome ed eta dall'oggetto; se eta non esiste, usa 18 come default",
+            "Crea un nuovo oggetto con nome e eta fissi",
+            "Filtra l'oggetto mantenendo solo nome e eta"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa restituisce `utente?.profilo?.email` se `profilo` è `undefined`?",
+          "options": [
+            "Lancia un TypeError",
+            "Restituisce null",
+            "Restituisce undefined senza lanciare errori",
+            "Restituisce una stringa vuota"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Qual è la differenza tra `||` e `??` per fornire valori di default?",
+          "options": [
+            "Nessuna differenza",
+            "`||` usa il default anche per stringa vuota e 0; `??` lo usa solo per null/undefined",
+            "`??` funziona solo con numeri",
+            "`||` è per oggetti, `??` per array"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Lo spread operator `...` su un oggetto:",
+          "options": [
+            "Lo elimina dalla memoria",
+            "Crea una copia superficiale delle sue proprietà",
+            "Converte l'oggetto in un array",
+            "Rende l'oggetto immutabile"
+          ],
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}

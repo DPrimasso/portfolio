@@ -1,89 +1,127 @@
 <template>
-  <div
-    class="app"
-    :data-screen-label="variant === 'v1' ? 'V1 Terminal Editorial' : 'V2 Dev Dossier'"
-  >
-    <div class="topbar">
-      <div class="brand">
-        <span class="dot" />
-        <b>dprimasso</b>
-        <span class="breadcrumb">
-          / portfolio / <b>{{ variant === 'v1' ? 'terminal-editorial' : 'dev-dossier' }}</b>
-        </span>
-      </div>
-      <span class="spacer" />
-      <div class="seg" title="Switch variant (1 / 2)">
-        <button :class="{ on: variant === 'v1' }" @click="variant = 'v1'">
-          v1 <span class="hide-sm">· terminal</span>
-        </button>
-        <button :class="{ on: variant === 'v2' }" @click="variant = 'v2'">
-          v2 <span class="hide-sm">· dossier</span>
-        </button>
-      </div>
-      <div class="seg" title="Language (L)">
-        <button :class="{ on: lang === 'it' }" @click="lang = 'it'">it</button>
-        <button :class="{ on: lang === 'en' }" @click="lang = 'en'">en</button>
-      </div>
-      <button class="pill" title="Toggle projects layout (G)" @click="toggleLayout">
-        {{ layoutMode === 'list' ? '▤ list' : '▦ grid' }} <kbd>G</kbd>
-      </button>
-    </div>
+  <div class="app">
+    <Landing
+      v-if="currentView === 'landing'"
+      @go-portfolio="currentView = 'portfolio'"
+      @go-academy="goAcademy"
+    />
 
-    <div class="stage">
-      <V1 v-if="variant === 'v1'" :lang="lang" :layout-mode="layoutMode" />
-      <V2 v-else :lang="lang" :layout-mode="layoutMode" />
-    </div>
-
-    <div :class="['tweaks', { show: tweaksOpen }]">
-      <div class="title"><b>Tweaks</b><span>live</span></div>
-      <div class="trow">
-        <span class="k">variant</span>
-        <div class="seg">
-          <button :class="{ on: variant === 'v1' }" @click="variant = 'v1'">v1</button>
-          <button :class="{ on: variant === 'v2' }" @click="variant = 'v2'">v2</button>
+    <template v-else-if="currentView === 'portfolio'">
+      <div class="topbar">
+        <div class="brand">
+          <button class="brand-btn" @click="currentView = 'landing'">
+            <span class="dot" />
+            <b>dprimasso</b>
+          </button>
+          <span class="breadcrumb">/ portfolio / <b>dev-dossier</b></span>
         </div>
-      </div>
-      <div class="trow">
-        <span class="k">projects layout</span>
-        <div class="seg">
-          <button :class="{ on: layoutMode === 'list' }" @click="layoutMode = 'list'">list</button>
-          <button :class="{ on: layoutMode === 'grid' }" @click="layoutMode = 'grid'">grid</button>
+        <div
+          class="topbar-nav"
+          role="navigation"
+          :aria-label="lang === 'it' ? 'Navigazione vista' : 'View navigation'"
+        >
+          <button
+            :class="['topbar-nav-btn', { active: currentView === 'landing' }]"
+            @click="goLanding"
+          >
+            {{ lang === 'it' ? 'home' : 'home' }}
+          </button>
+          <button
+            :class="['topbar-nav-btn', { active: currentView === 'portfolio' }]"
+            @click="goPortfolio"
+          >
+            {{ lang === 'it' ? 'portfolio' : 'portfolio' }}
+          </button>
+          <button
+            :class="['topbar-nav-btn', { active: currentView === 'academy' }]"
+            @click="goAcademy()"
+          >
+            {{ lang === 'it' ? 'academy' : 'academy' }}
+          </button>
         </div>
-      </div>
-      <div class="trow">
-        <span class="k">language</span>
-        <div class="seg">
+        <span class="spacer" />
+        <div class="topbar-jump">
+          <button class="pill" @click="jumpToSection('about')">
+            {{ lang === 'it' ? 'profilo' : 'profile' }}
+          </button>
+          <button class="pill" @click="jumpToSection('projects')">
+            {{ lang === 'it' ? 'progetti' : 'projects' }}
+          </button>
+          <button class="pill" @click="jumpToSection('contact')">
+            {{ lang === 'it' ? 'contatti' : 'contact' }}
+          </button>
+        </div>
+        <button class="topbar-academy-link" @click="goAcademy()">
+          academy
+          <span class="topbar-academy-live">live</span>
+        </button>
+        <div class="seg" title="Language (L)">
           <button :class="{ on: lang === 'it' }" @click="lang = 'it'">it</button>
           <button :class="{ on: lang === 'en' }" @click="lang = 'en'">en</button>
         </div>
+        <button class="pill" title="Toggle projects layout (G)" @click="toggleLayout">
+          {{ layoutMode === 'list' ? '▤ list' : '▦ grid' }} <kbd>G</kbd>
+        </button>
       </div>
-      <div class="hint">
-        shortcuts:
-        <span class="kbd" style="font-size: 10px">1</span>/<span class="kbd" style="font-size: 10px"
-          >2</span
-        >
-        variant · <span class="kbd" style="font-size: 10px">L</span> lang ·
-        <span class="kbd" style="font-size: 10px">G</span> layout
+      <div class="stage">
+        <V2 :lang="lang" :layout-mode="layoutMode" @open-academy="goAcademy" />
       </div>
-    </div>
+    </template>
+
+    <Academy
+      v-else-if="currentView === 'academy'"
+      :initial-screen="academyScreen"
+      @close="closeAcademy"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
-import V1 from './components/V1.vue'
+import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import V2 from './components/V2.vue'
+import Academy from './components/Academy.vue'
+import Landing from './components/Landing.vue'
 import { useSEO } from './composables/useSEO'
 import { PORTFOLIO } from './data/portfolioData.js'
 
 const { setMetaTags, setStructuredData } = useSEO()
 
-const variant = ref(localStorage.getItem('dp_variant') || 'v1')
-const lang = ref(localStorage.getItem('dp_lang') || 'en')
+const currentView = ref('landing')
+const academyReturnView = ref('landing')
+const lang = ref(localStorage.getItem('dp_lang') || 'it')
 const layoutMode = ref(localStorage.getItem('dp_layout') || 'list')
-const tweaksOpen = ref(false)
+const academyScreen = ref('s0')
 
-watch(variant, v => localStorage.setItem('dp_variant', v))
+function goAcademy(screen = 's0') {
+  academyReturnView.value =
+    currentView.value === 'academy' ? academyReturnView.value : currentView.value
+  academyScreen.value = screen
+  currentView.value = 'academy'
+}
+
+function goLanding() {
+  currentView.value = 'landing'
+}
+
+function goPortfolio() {
+  currentView.value = 'portfolio'
+}
+
+function closeAcademy() {
+  currentView.value = academyReturnView.value === 'academy' ? 'landing' : academyReturnView.value
+}
+
+async function jumpToSection(sectionId) {
+  if (currentView.value !== 'portfolio') {
+    currentView.value = 'portfolio'
+    await nextTick()
+  }
+  const el = document.getElementById(`s-${sectionId}`)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
 watch(lang, v => localStorage.setItem('dp_lang', v))
 watch(layoutMode, v => localStorage.setItem('dp_layout', v))
 
@@ -93,10 +131,11 @@ function toggleLayout() {
 
 function onKey(e) {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
-  if (e.key === '1') variant.value = 'v1'
-  if (e.key === '2') variant.value = 'v2'
-  if (e.key.toLowerCase() === 'l') lang.value = lang.value === 'it' ? 'en' : 'it'
-  if (e.key.toLowerCase() === 'g') toggleLayout()
+  if (e.key === 'Escape' && currentView.value !== 'landing') currentView.value = 'landing'
+  if (currentView.value === 'portfolio') {
+    if (e.key.toLowerCase() === 'l') lang.value = lang.value === 'it' ? 'en' : 'it'
+    if (e.key.toLowerCase() === 'g') toggleLayout()
+  }
 }
 
 onMounted(() => {
