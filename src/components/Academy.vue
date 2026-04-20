@@ -663,7 +663,7 @@ watch(
       if (screen.value === 's1' || screen.value === 's0') {
         const target =
           props.initialScreen === 's1' || props.initialScreen === 's0' ? 's2' : props.initialScreen
-        screen.value = target
+        goTo(target)
       }
     } else {
       if (screen.value !== 's0') screen.value = 's1'
