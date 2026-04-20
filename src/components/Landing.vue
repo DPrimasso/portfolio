@@ -27,11 +27,11 @@
       </div>
 
       <nav class="landing-nav">
-        <button class="landing-cta primary" @click="emit('go-portfolio')">
+        <button class="landing-cta primary" @click="goPortfolio">
           <span class="cta-label">Portfolio tecnico</span>
           <span class="cta-arrow">→</span>
         </button>
-        <button class="landing-cta secondary" @click="emit('go-academy')">
+        <button class="landing-cta secondary" @click="goAcademy">
           <span class="cta-label">Academy</span>
           <span class="cta-arrow">→</span>
           <span class="cta-badge">corsi</span>
@@ -58,11 +58,18 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits<{
-  'go-portfolio': []
-  'go-academy': []
-}>()
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 const email = 'daniele.primasso@gmail.com'
+
+function goPortfolio() {
+  router.push({ name: 'portfolio' })
+}
+
+function goAcademy() {
+  router.push({ name: 'academy' })
+}
 </script>
 
 <style scoped>

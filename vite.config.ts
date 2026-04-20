@@ -51,9 +51,28 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'robots.txt'],
       manifest: {
+        id: '/',
         name: 'Portfolio Daniele Primasso',
         short_name: 'Portfolio',
         description: 'Portfolio personale di Daniele Primasso - Software Developer',
+        start_url: '/',
+        scope: '/',
+        shortcuts: [
+          {
+            name: 'Portfolio',
+            short_name: 'Portfolio',
+            description: 'Apri la sezione portfolio',
+            url: '/portfolio',
+            icons: [{ src: 'favicon.png', sizes: '192x192', type: 'image/png' }],
+          },
+          {
+            name: 'Academy',
+            short_name: 'Academy',
+            description: "Apri l'Academy",
+            url: '/academy',
+            icons: [{ src: 'favicon.png', sizes: '192x192', type: 'image/png' }],
+          },
+        ],
         theme_color: '#0d1117',
         background_color: '#0d1117',
         display: 'standalone',

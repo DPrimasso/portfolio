@@ -4,12 +4,19 @@
  */
 export function generateSitemapXml(baseOrigin: string): string {
   const base = baseOrigin.replace(/\/$/, '')
+  const routes = ['/', '/portfolio', '/academy']
+  const urlEntries = routes
+    .map(
+      route => `  <url>
+    <loc>${base}${route}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+  </url>`
+    )
+    .join('\n')
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${base}/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+${urlEntries}
 </urlset>`
 }

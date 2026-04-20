@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import App from './App.vue'
+import router from './router'
 import './assets/portfolio.css'
 
 function showRuntimeOverlay(message) {
@@ -50,4 +51,5 @@ window.addEventListener('unhandledrejection', e => {
 
 app.use(pinia)
 app.use(head)
+app.use(router)
 app.mount('#app')
