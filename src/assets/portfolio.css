@@ -16,6 +16,43 @@
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --serif: 'Instrument Serif', 'Times New Roman', serif;
+  /* redesign 2026 */
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+/* ============ REDESIGN 2026 — DARK ============ */
+:root[data-theme='dark'] {
+  --bg: #07091a;
+  --bg-alt: #0d1128;
+  --bg-card: #111630;
+  --bg-card-hov: #161d3a;
+  --line: rgba(255, 255, 255, 0.08);
+  --fg: #eeedf4;
+  --fg-dim: #9a96b4;
+  --fg-mute: #52506a;
+  --accent-dev: oklch(60% 0.24 278);
+  --accent-acad: oklch(68% 0.17 52);
+  --accent-dev-rgb: 124, 80, 240;
+  --accent-acad-rgb: 224, 168, 80;
+  --green-live: oklch(65% 0.18 145);
+}
+
+/* ============ REDESIGN 2026 — LIGHT ============ */
+:root[data-theme='light'] {
+  --bg: #f5f4f1;
+  --bg-alt: #eceae4;
+  --bg-card: #ffffff;
+  --bg-card-hov: #f0eeea;
+  --line: rgba(0, 0, 0, 0.08);
+  --fg: #141220;
+  --fg-dim: #4a4760;
+  --fg-mute: #9a98aa;
+  --accent-dev: oklch(48% 0.24 278);
+  --accent-acad: oklch(52% 0.17 52);
+  --accent-dev-rgb: 90, 40, 200;
+  --accent-acad-rgb: 180, 110, 20;
+  --green-live: oklch(55% 0.18 145);
 }
 
 *,
