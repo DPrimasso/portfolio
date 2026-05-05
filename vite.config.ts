@@ -49,7 +49,7 @@ export default defineConfig({
     seoDistPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'robots.txt'],
+      includeAssets: ['favicon.ico', 'daniele-primasso-profile2-fcdbcb1c.jpeg', 'robots.txt'],
       manifest: {
         id: '/',
         name: 'Portfolio Daniele Primasso',
@@ -63,14 +63,26 @@ export default defineConfig({
             short_name: 'Portfolio',
             description: 'Apri la sezione portfolio',
             url: '/portfolio',
-            icons: [{ src: 'favicon.png', sizes: '192x192', type: 'image/png' }],
+            icons: [
+              {
+                src: 'daniele-primasso-profile2-fcdbcb1c.jpeg',
+                sizes: '200x200',
+                type: 'image/jpeg',
+              },
+            ],
           },
           {
             name: 'Academy',
             short_name: 'Academy',
             description: "Apri l'Academy",
             url: '/academy',
-            icons: [{ src: 'favicon.png', sizes: '192x192', type: 'image/png' }],
+            icons: [
+              {
+                src: 'daniele-primasso-profile2-fcdbcb1c.jpeg',
+                sizes: '200x200',
+                type: 'image/jpeg',
+              },
+            ],
           },
         ],
         theme_color: '#0d1117',
@@ -78,14 +90,9 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: 'favicon.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'favicon.png',
-            sizes: '512x512',
-            type: 'image/png',
+            src: 'daniele-primasso-profile2-fcdbcb1c.jpeg',
+            sizes: '200x200',
+            type: 'image/jpeg',
           },
         ],
       },

@@ -22,7 +22,7 @@ onMounted(() => {
   setMetaTags({
     title: `${p.name} — Home`,
     description: `${p.name} — ${p.role.en}. ${p.tagline.en}`,
-    image: '/images/daniele-primasso-profilo.webp',
+    image: '/daniele-primasso-profile2-fcdbcb1c.jpeg',
     siteName: p.name,
     url: canonicalUrl.value,
   })
@@ -33,7 +33,7 @@ onMounted(() => {
     jobTitle: p.role.en,
     email: p.email,
     url: canonicalUrl.value,
-    image: `${origin}/images/daniele-primasso-profilo.webp`,
+    image: `${origin}/daniele-primasso-profile2-fcdbcb1c.jpeg`,
     sameAs: [p.linkedin, p.github].filter(Boolean),
   })
 })

@@ -114,7 +114,7 @@ onMounted(() => {
   setMetaTags({
     title: `${p.name} — Portfolio`,
     description: `${p.name} — ${p.role.en}. ${p.tagline.en}`,
-    image: '/images/daniele-primasso-profilo.webp',
+    image: '/daniele-primasso-profile2-fcdbcb1c.jpeg',
     siteName: p.name,
     url: `${origin}${route.fullPath}`,
   })

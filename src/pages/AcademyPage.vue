@@ -32,7 +32,7 @@ onMounted(() => {
   setMetaTags({
     title: `${p.name} — Academy`,
     description: 'Academy con percorsi guidati, dashboard corsi e progress tracking.',
-    image: '/images/daniele-primasso-profilo.webp',
+    image: '/daniele-primasso-profile2-fcdbcb1c.jpeg',
     siteName: p.name,
     url: `${origin}${route.fullPath}`,
   })

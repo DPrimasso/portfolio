@@ -27,7 +27,7 @@ export function useSEO() {
     const {
       title = DEFAULT_TITLE,
       description = DEFAULT_DESCRIPTION,
-      image = '/images/daniele-primasso-profilo.webp',
+      image = '/daniele-primasso-profile2-fcdbcb1c.jpeg',
       url = typeof window !== 'undefined' ? window.location.href : '',
       siteName = 'Daniele Primasso',
     } = options
