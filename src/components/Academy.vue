@@ -27,6 +27,16 @@
         <div class="s0-offers">
           <div class="s0-offer free">
             <div class="s0-offer-badge">gratuito</div>
+            <div class="s0-offer-icon">🖥</div>
+            <div class="s0-offer-title">Preprogrammazione</div>
+            <div class="s0-offer-desc">
+              Hardware, reti, sicurezza, algoritmi, Scratch, Python e Web. Il punto di partenza per
+              capire davvero come funziona il mondo digitale.
+            </div>
+          </div>
+
+          <div class="s0-offer free">
+            <div class="s0-offer-badge">gratuito</div>
             <div class="s0-offer-icon">{ }</div>
             <div class="s0-offer-title">Programmazione Base</div>
             <div class="s0-offer-desc">
@@ -46,17 +56,17 @@
           </div>
 
           <div class="s0-offer paid">
-            <div class="s0-offer-badge">€20 · 2 ore</div>
+            <div class="s0-offer-badge">€15 / ora</div>
             <div class="s0-offer-icon">💡</div>
             <div class="s0-offer-title">Sessione guidata con me</div>
             <div class="s0-offer-desc">
               Hai seguito il corso e vuoi rivedere tutti i concetti con qualcuno che ti spiega dal
-              vivo? Prenota una sessione di 2 ore insieme.
+              vivo? Prenota le ore che ti servono e lavoriamo insieme.
             </div>
           </div>
 
           <div class="s0-offer core">
-            <div class="s0-offer-badge">core</div>
+            <div class="s0-offer-badge">€20 / ora</div>
             <div class="s0-offer-icon">⟨⟩</div>
             <div class="s0-offer-title">Code Together</div>
             <div class="s0-offer-desc">
@@ -603,6 +613,7 @@ import { useAcademyStore } from '../stores/academy'
 import programmazioneBase from '../data/courses/programmazione-base.json'
 import programmazioneAvanzato from '../data/courses/programmazione-avanzato.json'
 import codeTogether from '../data/courses/code-together.json'
+import preprogrammazione from '../data/courses/preprogrammazione.json'
 
 const props = defineProps({
   initialScreen: { type: String, default: 's0' },
@@ -613,6 +624,7 @@ const academyStore = useAcademyStore()
 const VALID_SCREENS = ['s0', 's1', 's2', 's3', 's4', 's5']
 
 const allCourses = {
+  preprogrammazione: preprogrammazione,
   'programmazione-base': programmazioneBase,
   'programmazione-avanzato': programmazioneAvanzato,
   'code-together': codeTogether,
@@ -719,6 +731,7 @@ const overallAvgScore = computed(() => {
 })
 
 const COURSE_META = {
+  preprogrammazione: { icon: '🖥', color: 'green' },
   'programmazione-base': { icon: '{ }', color: '' },
   'programmazione-avanzato': { icon: '{ }', color: 'blue' },
   'code-together': { icon: '⟨⟩', color: 'purple' },

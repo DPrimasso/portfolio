@@ -1,0 +1,714 @@
+{
+  "id": "preprogrammazione",
+  "title": "Preprogrammazione",
+  "subtitle": "Come funzionano davvero i computer, Internet e il codice",
+  "description": "Percorso completo per chi parte da zero: hardware, reti, sicurezza, algoritmi, Scratch, Python e Web. Ogni modulo combina teoria essenziale ed esercizi pratici pensati per chi vuole capire davvero il mondo digitale.",
+  "icon": "🖥",
+  "color": "green",
+  "language": "Scratch / Python / HTML",
+  "modules": [
+    {
+      "id": "mod-00",
+      "title": "Orientamento e Domande Fondamentali",
+      "duration": "~45 min",
+      "content": "## Teoria\n\n### Perché questo corso\n\nPrima di scrivere una singola riga di codice, è utile capire *come funziona* l'ecosistema in cui il codice vive: l'hardware che lo esegue, le reti che lo trasportano, gli algoritmi che lo strutturano.\n\nQuesto corso parte dalle fondamenta — non perché siano semplici, ma perché sono spesso date per scontate da chi lavora nel digitale. Capirle cambia il modo in cui si legge un errore, si stima un problema, si sceglie uno strumento.\n\n### Mappa del percorso\n\n| Modulo | Argomento |\n| --- | --- |\n| 1 | Hardware e Sistema Binario |\n| 2 | Sistema Operativo e File System |\n| 3 | Internet, Web e Reti |\n| 4 | Cybersicurezza e Crittografia |\n| 5 | Pensiero Computazionale e Algoritmi |\n| 6–8 | Programmazione visuale con Scratch |\n| 9–11 | Python: sintassi, strutture dati, funzioni |\n| 12 | Web: HTML, CSS e JavaScript |\n| 13 | Progetto finale e percorsi nel tech |\n\n### Come studiare ogni modulo\n\n1. **Teoria** — leggi gli esempi e *eseguili*: copiare codice senza eseguirlo non insegna nulla.\n2. **In pratica** — gli esercizi consolidano la comprensione. Saltarli significa portarsi avanti i vuoti.\n3. **Quiz** — serve a identificare i punti da rivedere, non ad assegnare un voto.\n\n### 5 domande per iniziare\n\nRispondi prima di leggere la risposta. L'obiettivo è calibrare dove sei, non sapere già tutto.\n\n**1. Come fa YouTube a sapere esattamente quale video vuoi vedere dopo?**\n> Raccoglie dati sul comportamento (tempo di visione, interazioni, ricerche) e usa modelli di machine learning per prevedere cosa massimizza la permanenza sulla piattaforma. L'algoritmo ottimizza una metrica aziendale, non necessariamente la tua soddisfazione.\n\n**2. Come arriva un messaggio da Milano a Tokyo in meno di 100 ms?**\n> I dati viaggiano a velocità prossima a quella della luce attraverso cavi in fibra ottica sottomarini. Il messaggio è spezzato in pacchetti, ognuno percorre il percorso più veloce disponibile, e vengono riassemblati a destinazione.\n\n**3. Perché il PC rallenta quando apri 50 schede di Chrome?**\n> Ogni scheda occupa RAM. Quando la RAM finisce, il sistema operativo usa il disco come \"memoria virtuale\" (swap) — ordini di grandezza più lento. Il sistema arranca perché legge e scrive su disco invece che in RAM.\n\n**4. Come fa un'app a riconoscere il tuo viso?**\n> Una rete neurale convoluzionale addestrata su milioni di immagini impara a estrarre caratteristiche (proporzioni del viso, distanze tra punti chiave) e le confronta con quelle registrate. È machine learning applicato alla visione artificiale.\n\n**5. Come verifica un sito che la tua password è giusta, senza averla salvata in chiaro?**\n> Salva un *hash* — l'output di una funzione matematica non invertibile. Al login, calcola l'hash di ciò che scrivi e lo confronta con quello salvato. Nessuno, incluso il sito stesso, può risalire alla password originale dall'hash.\n\n### Strumenti necessari\n\n- **Browser moderno** (Chrome, Firefox, Edge): per la console JavaScript e il DevTools.\n- **VS Code**: editor gratuito, standard nel settore.\n- **Python 3.x**: si installa in `mod-09`. Non serve ora.\n- **Account Scratch** su scratch.mit.edu: gratuito, per i moduli 6–8.\n\n---\n\n## In pratica\n\n### Autovalutazione iniziale\n\nRispondi onestamente (non ci sono risposte giuste o sbagliate):\n\n1. Sai spiegare cosa fa la RAM in un computer?\n2. Sai cosa succede quando digiti un URL nel browser e premi Invio?\n3. Hai mai scritto codice in qualsiasi linguaggio?\n4. Sai cosa significa \"algoritmo\" in senso tecnico?\n5. Sai distinguere crittografia da hashing?\n\nI \"no\" sono esattamente ciò che il corso copre. Tienili a mente.\n\n### Esercizio di precisione\n\nDescrivi in passi precisi come si prepara un caffè con la moka. Poi rileggi e chiediti: *un sistema automatico che segue istruzioni alla lettera riuscirebbe a eseguirla?* Identifica almeno 3 passi ambigui e riscrivili eliminando ogni ambiguità.\n\nQuesto esercizio anticipa il concetto di algoritmo del modulo 5.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cosa fa una funzione di hashing come SHA-256?",
+          "options": [
+            "Cifra un testo in modo reversibile con una chiave",
+            "Trasforma un input in un output a lunghezza fissa; la funzione non è invertibile",
+            "Comprime un file riducendone le dimensioni",
+            "Genera una password casuale sicura"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Perché il PC diventa molto lento quando la RAM è satura?",
+          "options": [
+            "La CPU si riscalda e abbassa automaticamente la frequenza",
+            "Il sistema usa il disco come memoria virtuale (swap), che è ordini di grandezza più lento della RAM",
+            "Il sistema operativo mette in pausa tutti i processi meno importanti",
+            "Il browser limita automaticamente il numero di tab attive"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Come funziona il riconoscimento facciale nelle app moderne?",
+          "options": [
+            "Confronta pixel per pixel l'immagine con una foto di riferimento salvata in chiaro",
+            "Una rete neurale addestrata su milioni di immagini estrae caratteristiche e le confronta con quelle registrate",
+            "Usa il GPS per verificare la posizione geografica dell'utente",
+            "Scansiona i metadati del sistema operativo"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Qual è lo scopo principale del quiz di fine modulo in questo corso?",
+          "options": [
+            "Determinare se hai superato il modulo o devi rifarlo",
+            "Identificare i punti da rivedere e consolidare la comprensione",
+            "Assegnare un voto finale al corso",
+            "Sbloccare l'accesso al modulo successivo"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-01",
+      "title": "Hardware e Sistema Binario",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Hardware e Software\n\n- **Hardware**: tutto ciò che ha una forma fisica — schermo, tastiera, componenti interni al case.\n- **Software**: i programmi che girano sull'hardware — sistema operativo, applicazioni, script.\n\nSenza hardware il software non esiste; senza software l'hardware è un aggregato di componenti inerti.\n\n### I componenti principali\n\n#### CPU — L'unità di controllo\n\n- **Central Processing Unit**: esegue istruzioni, fa calcoli, coordina tutto il resto.\n- Velocità misurata in **GHz** (miliardi di operazioni al secondo).\n- **Core**: unità di esecuzione indipendenti. Le CPU moderne ne hanno 4, 8, 16 o più.\n- Ottimizzata per compiti **complessi e sequenziali**: logica, controllo del flusso, decisioni.\n\n#### GPU — L'unità di elaborazione parallela\n\n- Originariamente per il rendering grafico; ha migliaia di core semplici che lavorano in parallelo.\n- Eccelle in compiti **ripetitivi e massicci**: disegnare milioni di pixel, ma soprattutto — addestrare reti neurali.\n- Addestrare un LLM come GPT-4 ha richiesto migliaia di GPU per mesi: la GPU è oggi il cuore dell'infrastruttura ML.\n\n| | CPU | GPU |\n| --- | --- | --- |\n| Numero di core | Pochi, potenti | Migliaia, specializzati |\n| Tipo di compito ideale | Logica complessa, sequenziale | Calcoli paralleli e ripetitivi |\n| Uso principale | Sistema operativo, applicazioni | Grafica, ML, rendering, simulazioni |\n\n#### RAM — La memoria di lavoro\n\n- **Random Access Memory**: contiene i dati che la CPU usa *in questo momento*.\n- **Volatile**: si svuota completamente allo spegnimento.\n- Più RAM = più processi o dataset tenuti attivi contemporaneamente senza rallentamenti.\n- Capacità tipica: 8, 16, 32 GB.\n\n#### Storage\n\n- Conserva dati a lungo termine: sistema operativo, file, applicazioni. **Non volatile**.\n- **HDD**: disco magnetico meccanico, lento, economico.\n- **SSD**: memoria flash, veloce, silenzioso. Avvio del sistema: ~10 secondi su SSD vs 2–3 minuti su HDD.\n\n#### Scheda madre, PSU, raffreddamento\n\n- **Scheda madre**: bus fisico che collega tutti i componenti.\n- **PSU (Alimentatore)**: converte la corrente domestica (220V AC) in quella per i componenti (12V/5V/3.3V DC).\n- **Raffreddamento**: senza di esso CPU e GPU raggiungono temperature di throttling e si autospengono per protezione.\n\n---\n\n### Il Sistema Binario\n\n#### Perché solo 0 e 1?\n\nIl computer è costruito su miliardi di **transistor** — interruttori elettronici microscopici. Ogni transistor ha due soli stati stabili: **acceso (1)** o **spento (0)**. Tutto quello che il computer elabora — testo, immagini, audio, codice — è in ultima analisi una sequenza di questi stati.\n\n#### Conversione binario → decimale\n\nIl binario usa potenze di 2 come pesi posizionali:\n\n| Posizione | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Potenza | 2⁷ | 2⁶ | 2⁵ | 2⁴ | 2³ | 2² | 2¹ | 2⁰ |\n\nEsempio: `10110` = 16 + 4 + 2 = **22**\n\n#### Conversione decimale → binario\n\nAlgoritmo: dividi per 2 ripetutamente e raccogli i resti.\n\n```\n42 ÷ 2 = 21  resto 0\n21 ÷ 2 = 10  resto 1\n10 ÷ 2 =  5  resto 0\n 5 ÷ 2 =  2  resto 1\n 2 ÷ 2 =  1  resto 0\n 1 ÷ 2 =  0  resto 1\n```\n\nLeggi i resti dal basso: `101010` = **42**\n\n#### Unità di misura\n\n| Unità | Dimensione | Contiene circa |\n| --- | --- | --- |\n| 1 bit | 0 o 1 | Una cifra binaria |\n| 1 byte | 8 bit | Un carattere ASCII |\n| 1 KB | 1.024 byte | Una pagina di testo |\n| 1 MB | 1.024 KB | Una foto JPEG compressa |\n| 1 GB | 1.024 MB | ~250 canzoni MP3 |\n| 1 TB | 1.024 GB | ~250.000 canzoni MP3 |\n\n---\n\n## In pratica\n\n### Esercizio 1 — Diagnostica hardware\n\nPer ogni sintomo, identifica il componente responsabile:\n\n1. Il laptop si surriscalda e si spegne dopo 20 minuti di utilizzo intenso.\n2. Il PC impiega 4 minuti ad avviarsi, poi funziona normalmente.\n3. Con 15 tab di Chrome aperte il sistema diventa inutilizzabile; chiudendone 10 torna fluido.\n4. Si sente un clic metallico periodico dal case; a volte il sistema si blocca.\n5. Durante un rendering video la CPU è al 100% per ore.\n\n### Esercizio 2 — Conversioni\n\nConverti:\n\n| Decimale | Binario |\n| --- | --- |\n| 7 | ? |\n| 42 | ? |\n| 255 | ? |\n| ? | 1101 |\n| ? | 10101 |\n\n### Esercizio 3 — Convertitore binario in Scratch\n\nCrea 8 sprite cliccabili (acceso/spento) che mostrano il valore decimale corrispondente in tempo reale. Ogni sprite rappresenta un bit; i pesi vanno da 1 (destra) a 128 (sinistra). Usa un broadcast per aggiornare il totale ad ogni click.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Perché le GPU sono diventate fondamentali per il machine learning?",
+          "options": [
+            "Hanno un clock più alto delle CPU e quindi eseguono più istruzioni al secondo",
+            "Hanno migliaia di core paralleli ottimali per i calcoli ripetitivi dell'addestramento di reti neurali",
+            "Consumano meno energia delle CPU durante l'addestramento",
+            "Sono progettate specificamente per eseguire Python"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Quanto vale il numero binario `1011` in decimale?",
+          "options": ["5", "9", "11", "13"],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Qual è la differenza funzionale principale tra RAM e disco (SSD/HDD)?",
+          "options": [
+            "La RAM è più capiente del disco",
+            "La RAM è persistente; il disco è volatile",
+            "La RAM è memoria volatile di lavoro; il disco è storage persistente a lungo termine",
+            "Non c'è differenza pratica: sono intercambiabili"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q4",
+          "question": "Con 8 bit, qual è il numero intero massimo rappresentabile?",
+          "options": ["128", "255", "256", "512"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-02",
+      "title": "Sistema Operativo e File System",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Cos'è un Sistema Operativo\n\nIl sistema operativo (OS) è lo strato software che fa da intermediario tra hardware e applicazioni. Quando un programma vuole salvare un file, non parla direttamente al disco: chiede all'OS, che traduce la richiesta e la consegna al driver hardware appropriato. Senza OS, ogni applicazione dovrebbe sapere come comunicare con ogni possibile configurazione hardware — impossibile da mantenere.\n\n**I 5 compiti principali:**\n1. Gestire hardware (CPU, RAM, disco, periferiche)\n2. Eseguire e isolare i processi\n3. Gestire il file system\n4. Gestire sicurezza e permessi utente\n5. Fornire API che le applicazioni usano per comunicare con il sistema\n\n### I principali OS\n\n| OS | Uso tipico | Note |\n| --- | --- | --- |\n| **Windows** | PC consumer, enterprise | Più diffuso su desktop |\n| **macOS** | Workstation creative, sviluppo | Solo su hardware Apple |\n| **Linux** | Server, cloud, embedded, sviluppo | Open source; la stragrande maggioranza dei server di Internet gira su Linux |\n| **Android** | Smartphone/tablet | Basato su kernel Linux |\n| **iOS** | iPhone/iPad | Kernel XNU (Apple) |\n\n> Linux domina il cloud: AWS, GCP, Azure eseguono quasi tutto su Linux. Capire i fondamentali Linux è utile anche se sviluppi su Windows o Mac.\n\n### Il File System\n\n#### File e cartelle\n\n- Un **file** è un'unità di dati salvata su disco con un nome e un'estensione.\n- L'**estensione** indica il tipo e il programma con cui aprirlo: `.py` → Python, `.json` → JSON, `.mp4` → video, `.exe` → eseguibile Windows.\n- Una **directory** (cartella) è un contenitore per file e altre directory.\n\n#### Struttura ad albero\n\nIl file system è un albero con una radice:\n- Windows: `C:\\`\n- Linux/macOS: `/`\n\n```\n/\n├── home/\n│   └── daniele/\n│       ├── progetti/\n│       │   └── portfolio/\n│       │       └── src/\n│       └── documenti/\n├── usr/\n└── etc/\n```\n\n#### Percorsi assoluti e relativi\n\n**Assoluto**: parte dalla radice, identifica sempre la stessa posizione.\n```\n/home/daniele/progetti/portfolio/src/main.js\nC:\\Users\\daniele\\progetti\\portfolio\\src\\main.js\n```\n\n**Relativo**: parte dalla directory corrente.\n```\n./src/main.js        (file in una sottocartella)\n../altro-progetto/   (cartella nella directory padre)\n```\n\nI percorsi relativi sono preferibili in progetti versionati: funzionano anche se sposti la cartella.\n\n### Processi e Multitasking\n\nUn **processo** è un programma in esecuzione con le risorse che l'OS gli ha allocato (memoria, file aperti, handle di rete). Aprire Chrome avvia un processo; aprire VS Code ne avvia un altro.\n\n**Come funziona il multitasking su un singolo core:**\n\nLa CPU può eseguire una sola istruzione alla volta, ma passa da un processo all'altro ogni pochi millisecondi (context switch). L'illusione di simultaneità è creata dalla velocità del cambio. Su CPU multi-core, più processi girano davvero in parallelo — uno per core.\n\n**RAM e swap:** ogni processo usa una porzione di RAM. Quando la RAM si esaurisce, l'OS sposta i dati inattivi sul disco (swap/pagefile). Il disco è 1000× più lento della RAM, quindi lo swap degrada le prestazioni in modo visibile.\n\n---\n\n## In pratica\n\n### Esercizio 1 — Task Manager / Activity Monitor\n\nSu Windows: `Ctrl + Shift + Esc`. Su macOS: Activity Monitor in Applicazioni → Utility.\n\n1. Conta i processi attivi — probabilmente 150–250, anche con \"niente\" aperto.\n2. Apri 10 tab di Chrome e osserva la RAM consumata da ciascun processo Chrome.\n3. Trova il processo che usa più CPU in questo momento.\n4. Identifica almeno 3 processi di sistema che non riconosci e cerca cosa fanno.\n\n### Esercizio 2 — Navigazione da terminale\n\nApri il terminale (cmd su Windows, Terminal su macOS/Linux) e usa questi comandi:\n\n| Windows (cmd) | Linux/macOS | Cosa fa |\n| --- | --- | --- |\n| `dir` | `ls` | Lista file e cartelle |\n| `cd nomecartella` | `cd nomecartella` | Entra in una cartella |\n| `cd ..` | `cd ..` | Torna alla cartella padre |\n| `mkdir test` | `mkdir test` | Crea una cartella |\n| `echo ciao` | `echo ciao` | Stampa testo |\n\nObiettivo: naviga fino alla tua cartella Documenti usando solo il terminale, crea una cartella `corso`, entra, crea un file `note.txt`.\n\n### Esercizio 3 — Organizzazione progetto\n\nCrea questa struttura di cartelle per i tuoi progetti del corso:\n\n```\ncorso-preprogrammazione/\n├── scratch/\n│   ├── mod-06-eventi/\n│   ├── mod-07-dati/\n│   └── mod-08-progetto/\n├── python/\n│   ├── mod-09/\n│   ├── mod-10/\n│   └── mod-11/\n└── web/\n    └── mod-12/\n```",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è il compito principale di un sistema operativo?",
+          "options": [
+            "Fornire un'interfaccia grafica all'utente",
+            "Fare da intermediario tra hardware e software applicativo, gestendo risorse e processi",
+            "Proteggere il computer dai virus",
+            "Connettersi a Internet"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa indica il percorso `/home/daniele/progetti/app.py`?",
+          "options": [
+            "Un percorso relativo alla cartella corrente",
+            "Un percorso assoluto che identifica univocamente un file nel file system",
+            "Un URL per accedere al file da remoto",
+            "Un percorso valido solo su Windows"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cos'è un processo in un sistema operativo?",
+          "options": [
+            "Un file eseguibile salvato su disco",
+            "Un programma in esecuzione con le risorse allocate dal sistema operativo",
+            "Una cartella del file system",
+            "Un driver hardware"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Il multitasking su una CPU single-core è:",
+          "options": [
+            "Impossibile: solo le CPU multi-core possono eseguire più programmi",
+            "Reale: la CPU esegue davvero più istruzioni nello stesso momento",
+            "Un'illusione creata dalla CPU che passa rapidamente tra processi con context switch",
+            "Gestito esclusivamente dalla RAM"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "mod-03",
+      "title": "Internet, Web e Reti",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Internet vs Web\n\n- **Internet**: l'infrastruttura globale di rete fisica e logica — cavi, router, protocolli IP.\n- **Web**: un servizio che gira su Internet, basato su HTTP/HTTPS. Email, FTP, SSH, DNS sono altri servizi su Internet che non sono il Web.\n\n### Come viaggiano i dati\n\nI dati non viaggiano in un blocco continuo: vengono spezzati in **pacchetti**. Ogni pacchetto:\n1. Ha un'intestazione con indirizzo sorgente, destinazione e numero di sequenza.\n2. Percorre la rete in modo indipendente — può seguire percorsi diversi.\n3. Viene riassemblato a destinazione nell'ordine corretto.\n\nQuesta architettura (packet switching) è robusta: se un nodo cade, i pacchetti trovano un'altra strada.\n\n### Indirizzi IP e DNS\n\n- **Indirizzo IP**: identificatore numerico di ogni dispositivo in rete. IPv4: `93.184.216.34`. IPv6: `2606:2800:220:1:248:1893:25c8:1946`.\n- **DNS (Domain Name System)**: traduce i nomi leggibili (`google.com`) in indirizzi IP. È l'\"elenco telefonico\" di Internet.\n\nQuando scrivi un URL nel browser:\n1. Il browser chiede al DNS l'IP del dominio.\n2. Il DNS risponde con l'IP.\n3. Il browser si connette al server a quell'IP.\n\n### Client-Server\n\n**Client**: chi fa la richiesta (browser, app mobile, script).\n**Server**: chi risponde con dati o servizi.\n\nIl modello è asimmetrico: un server serve migliaia di client contemporaneamente.\n\n### HTTP e HTTPS\n\n**HTTP** (HyperText Transfer Protocol): protocollo testuale che definisce come client e server si scambiano messaggi.\n\n```\nGET /api/users HTTP/1.1\nHost: api.esempio.com\nAuthorization: Bearer token123\n```\n\n**HTTPS** = HTTP + TLS (Transport Layer Security). Cifra la comunicazione: un osservatore intermedio vede solo dati cifrati, non il contenuto. Essenziale per qualsiasi sito con autenticazione o dati sensibili.\n\n### CDN\n\nUna **CDN (Content Delivery Network)** è una rete di server distribuiti geograficamente. Quando carichi un'immagine o un file JS da un CDN, ricevi il file dal nodo più vicino a te — riducendo la latenza.\n\nGrandi siti (Netflix, YouTube, GitHub) usano CDN per distribuire contenuti statici senza sovraccaricare il server di origine.\n\n### Accenno alle API REST\n\nLa maggior parte dei servizi web moderni espone le proprie funzionalità tramite **API REST**: endpoint HTTP che restituiscono dati in formato JSON.\n\n```\nGET  https://api.openweather.org/data/2.5/weather?q=Milano\n→ { \"temp\": 18.5, \"description\": \"partly cloudy\", ... }\n```\n\nCapire HTTP è il prerequisito per lavorare con qualsiasi API.\n\n---\n\n## In pratica\n\n### Esercizio 1 — Analisi con DevTools\n\n1. Apri Chrome, premi `F12` → scheda **Network**.\n2. Vai su un sito semplice (es. example.com).\n3. Osserva le richieste HTTP: metodo (GET/POST), URL, status code, dimensione, tempo.\n4. Clicca su una richiesta e leggi gli **Headers** di richiesta e risposta.\n\nIdentifica: quale richiesta carica il documento HTML principale? Quali caricano CSS, JS, immagini?\n\n### Esercizio 2 — Tracciare una richiesta\n\nApri il terminale e prova:\n\n```bash\n# Windows (PowerShell) o macOS/Linux\nping google.com\n\n# Tracciare il percorso dei pacchetti\ntracert google.com   # Windows\ntraceroute google.com  # macOS/Linux\n```\n\nOsserva quanti \"hop\" (nodi intermedi) attraversa il pacchetto per arrivare a destinazione.\n\n### Esercizio 3 — Simulatore pacchetti in Scratch\n\nSimula il funzionamento del packet switching in Scratch:\n- Crea uno sprite \"pacchetto\" con un messaggio numerico.\n- Crea 3–4 nodi (sprite fissi) che rappresentano router.\n- Il pacchetto si muove da nodo a nodo seguendo un percorso casuale.\n- Alla fine mostra \"Pacchetto ricevuto\" con il numero di hop percorsi.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è la differenza tra Internet e Web?",
+          "options": [
+            "Sono sinonimi: entrambi indicano la rete globale di computer",
+            "Internet è l'infrastruttura di rete fisica/logica; il Web è un servizio (HTTP) che ci gira sopra",
+            "Il Web include anche email e FTP; Internet è solo il protocollo HTTP",
+            "Internet è la versione privata del Web aziendale"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa fa il protocollo DNS?",
+          "options": [
+            "Cifra le comunicazioni tra client e server",
+            "Assegna indirizzi IP dinamici ai dispositivi di una rete locale",
+            "Traduce un nome di dominio nell'indirizzo IP del server corrispondente",
+            "Comprime i dati prima di trasmetterli"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Perché HTTPS è più sicuro di HTTP?",
+          "options": [
+            "Trasferisce i dati più velocemente grazie alla compressione integrata",
+            "Cifra la comunicazione tra client e server tramite TLS, prevenendo intercettazioni",
+            "Usa un server dedicato per ogni sessione utente",
+            "Richiede autenticazione obbligatoria dell'utente"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Cosa significa che i dati viaggiano in \"pacchetti\"?",
+          "options": [
+            "I dati vengono copiati su più server contemporaneamente per ridondanza",
+            "I dati vengono compressi per occupare meno spazio durante la trasmissione",
+            "I dati vengono cifrati prima dell'invio con una chiave pubblica",
+            "Il messaggio viene spezzato in frammenti indipendenti, inviati separatamente e riassemblati a destinazione"
+          ],
+          "correct": 3
+        }
+      ]
+    },
+    {
+      "id": "mod-04",
+      "title": "Cybersicurezza e Crittografia",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Password sicure\n\nLa forza di una password è misurata in **entropia**: la quantità di incertezza che un attaccante deve superare. La lunghezza aumenta l'entropia esponenzialmente; la complessità la aumenta linearmente.\n\n**Il metodo delle 4–5 parole casuali:**\n`corretto-cavallo-batteria-graffio`\n\nQuesto è più sicuro di `P@ssw0rd1!` nonostante sembri più semplice: ha circa 44 bit di entropia vs 28 bit della password \"complessa\", ed è molto più facile da ricordare.\n\n**Password manager**: l'unica soluzione scalabile. Usa una password master forte e lascia che il manager generi password casuali uniche per ogni servizio.\n\n### Autenticazione a Due Fattori (2FA)\n\nCombina qualcosa che *sai* (password) con qualcosa che *hai* (codice OTP) o *sei* (biometria). Anche se la password viene compromessa, l'attaccante non può accedere senza il secondo fattore. Usa sempre 2FA sugli account critici (email, banca, cloud).\n\n### Hashing\n\nUna **funzione di hash** (SHA-256, bcrypt, Argon2) prende un input di qualsiasi lunghezza e produce un output a lunghezza fissa. È:\n- **Deterministica**: stesso input → stesso output.\n- **Non invertibile**: dall'output non si risale all'input.\n- **Sensibile alle collisioni**: anche un singolo bit di differenza cambia completamente l'output.\n\nI siti sicuri non salvano le password — salvano i loro hash. Al login, calcolano l'hash di ciò che scrivi e lo confrontano.\n\n### Crittografia simmetrica vs asimmetrica\n\n**Simmetrica**: la stessa chiave cifra e decifra. Veloce, ma richiede di condividere la chiave in anticipo (AES, ChaCha20).\n\n**Asimmetrica**: una coppia di chiavi correlate — **pubblica** (si condivide liberamente) e **privata** (mai condivisa). Ciò che la pubblica cifra, solo la privata può decifrare, e viceversa (RSA, ECC). Usata in TLS per scambiare in sicurezza la chiave simmetrica della sessione.\n\nHTTPS usa entrambe: asimmetrica per il handshake iniziale, simmetrica per il traffico dati (più efficiente).\n\n### Phishing e Social Engineering\n\nLa vulnerabilità più sfruttata non è tecnica — è umana. Il phishing induce la vittima a consegnare credenziali o dati tramite impersonazione (email falsa di banca, pagina di login clonata).\n\n**Segnali di allarme:**\n- URL leggermente errato (`paypa1.com` vs `paypal.com`)\n- Urgenza artificiale (\"Il tuo account verrà sospeso tra 24 ore\")\n- Richiesta di credenziali via email o chat\n\n### Tipi di malware\n\n| Tipo | Comportamento |\n| --- | --- |\n| **Virus** | Si replica attaccandosi a file esistenti |\n| **Trojan** | Si maschera da software legittimo |\n| **Worm** | Si propaga autonomamente in rete |\n| **Ransomware** | Cifra i file e chiede riscatto |\n| **Spyware** | Raccoglie dati di nascosto |\n\n### Privacy e tracking\n\nI siti tracciano gli utenti tramite cookie, fingerprinting del browser, pixel di tracciamento. I dati aggregati costruiscono profili comportamentali dettagliati. Capire questi meccanismi è il primo passo per gestire la propria superficie di esposizione.\n\n---\n\n## In pratica\n\n### Esercizio 1 — Audit password\n\n1. Senza scrivere le tue password reali, valuta la forza di 3 password ipotetiche usando un tool come haveibeenpwned.com per verificare se sono state compromesse in data breach.\n2. Installa un password manager (Bitwarden è gratuito e open source) e configura almeno 2 account.\n\n### Esercizio 2 — Cifrario di Cesare in Scratch\n\nImplementa il cifrario di Cesare: ogni lettera viene shiftata di N posizioni nell'alfabeto.\n\n`HELLO` con shift 3 → `KHOOR`\n\n1. Chiedi all'utente il testo e il valore di shift.\n2. Scorri ogni carattere del testo.\n3. Calcola la nuova posizione: `(posizione + shift) % 26`.\n4. Ricostruisci il testo cifrato.\n\n**Estensione**: aggiungi la modalità decifratura (shift negativo) e una modalità brute-force che prova tutti i 25 shift possibili.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Perché `corretto-cavallo-batteria-graffio` è più sicura di `P@ssw0rd1!`?",
+          "options": [
+            "Contiene più tipi di caratteri (lettere, punteggiatura)",
+            "È molto più lunga, quindi ha un'entropia enormemente maggiore che la rende resistente al brute-force",
+            "I siti web la accettano più facilmente senza richiedere caratteri speciali",
+            "È più semplice da ricordare, quindi non viene scritta su carta"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Come usa una funzione di hash un sistema di autenticazione sicuro?",
+          "options": [
+            "Cifra la password con la chiave privata del server per poterla recuperare in caso di smarrimento",
+            "Converte la password in un valore non invertibile; al login confronta l'hash dell'input con quello salvato",
+            "Cripta la comunicazione tra browser e server durante il login",
+            "Genera automaticamente una nuova password sicura ad ogni accesso"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cosa distingue la crittografia asimmetrica da quella simmetrica?",
+          "options": [
+            "La crittografia asimmetrica è sempre più lenta perché usa chiavi più lunghe",
+            "La crittografia asimmetrica usa una coppia chiave pubblica/privata; quella simmetrica usa un'unica chiave condivisa tra le parti",
+            "La crittografia simmetrica è usata solo per le email; l'asimmetrica per il Web",
+            "Non c'è differenza pratica di sicurezza tra le due"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Qual è la tecnica principale usata in un attacco di phishing?",
+          "options": [
+            "Sfruttare vulnerabilità tecniche nel codice del server bersaglio",
+            "Intercettare il traffico di rete tra client e server",
+            "Indurre la vittima a rivelare credenziali o dati sensibili tramite impersonazione di entità fidate",
+            "Installare malware attraverso aggiornamenti software legittimi"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "mod-05",
+      "title": "Pensiero Computazionale e Algoritmi",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### I 4 pilastri del pensiero computazionale\n\n1. **Decomposizione**: scomporre un problema complesso in sottoproblemi gestibili indipendentemente.\n2. **Riconoscimento di pattern**: identificare strutture ricorrenti che permettono di riusare soluzioni note.\n3. **Astrazione**: ridurre il problema alla sua essenza, ignorando dettagli irrilevanti per il livello corrente.\n4. **Algoritmo**: definire una sequenza finita e non ambigua di passi che risolve il problema.\n\nQuesti non sono concetti solo informatici: sono strumenti di problem solving applicabili in qualsiasi dominio.\n\n### Definizione e proprietà di un algoritmo\n\nUn algoritmo è:\n- **Finito**: termina in un numero finito di passi.\n- **Definito**: ogni passo è non ambiguo.\n- **Efficace**: ogni passo è eseguibile concretamente.\n- **Con input/output**: prende dati, produce un risultato.\n\n### Ricerca lineare vs binaria\n\n**Ricerca lineare**: scorre ogni elemento dall'inizio alla fine. Funziona su liste non ordinate.\n- Caso peggiore: controlla tutti gli n elementi → **O(n)**\n\n**Ricerca binaria**: confronta con il centro, elimina metà della lista, ripete. Richiede lista ordinata.\n- Caso peggiore: log₂(n) confronti → **O(log n)**\n\nSu 1.000.000 di elementi: lineare → fino a 1.000.000 confronti; binaria → massimo 20 confronti.\n\n### Bubble Sort\n\nScorre la lista confrontando coppie adiacenti e scambiandole se sono nell'ordine sbagliato. Ripete finché nessuno scambio è necessario.\n\n```\nLista: [5, 3, 8, 1]\n\nPassata 1: [3,5,8,1] → [3,5,8,1] → [3,5,1,8]\nPassata 2: [3,5,1,8] → [3,1,5,8]\nPassata 3: [1,3,5,8] ← ordinata\n```\n\nComplessità: **O(n²)** nel caso peggiore. Semplice da capire, inefficiente su grandi dataset.\n\n### Big O — Complessità asintotica\n\n| Notazione | Nome | Esempio |\n| --- | --- | --- |\n| O(1) | Costante | Accesso a elemento array per indice |\n| O(log n) | Logaritmica | Ricerca binaria |\n| O(n) | Lineare | Ricerca lineare, scorrere una lista |\n| O(n log n) | Linearitmica | Merge Sort, Quick Sort |\n| O(n²) | Quadratica | Bubble Sort, confronto di tutte le coppie |\n| O(2ⁿ) | Esponenziale | Forza bruta su problemi combinatori |\n\n**Perché conta**: un algoritmo O(n²) su 10.000 elementi fa 100.000.000 operazioni; uno O(n log n) ne fa circa 130.000.\n\n### Iterazione vs ricorsione\n\n**Iterazione**: usa cicli (for/while). Più efficiente in memoria.\n**Ricorsione**: una funzione che chiama sé stessa. Più elegante per problemi strutturalmente ricorsivi (alberi, grafi), ma usa stack di chiamate che può causare overflow su input grandi.\n\n---\n\n## In pratica\n\n### Esercizio 1 — Decomponi un processo reale\n\nScegli un processo lavorativo che conosci (es. approvazione di un documento, gestione di un ticket di supporto, pubblicazione di contenuti). Scomponilo usando i 4 pilastri:\n1. Decomposizione: elenca i sottoproblemi.\n2. Pattern: ci sono passi che si ripetono?\n3. Astrazione: quali dettagli sono irrilevanti per la logica principale?\n4. Algoritmo: scrivi i passi in ordine non ambiguo.\n\n### Esercizio 2 — Analisi di complessità\n\nPer ciascun algoritmo, stima la complessità e motiva:\n1. Trovare il massimo in una lista non ordinata di n elementi.\n2. Verificare se un elemento è presente in una lista ordinata di n elementi.\n3. Trovare tutti i duplicati in una lista di n elementi (confronto ingenuo).\n4. Calcolare il fattoriale di n con ricorsione.\n\n### Esercizio 3 — Bubble Sort visualizzatore in Scratch\n\nCrea un visualizzatore che:\n1. Genera una lista di 8–10 numeri casuali e li visualizza come barre di altezza proporzionale.\n2. Esegue il Bubble Sort passo dopo passo con un'animazione che evidenzia le coppie confrontate.\n3. Mostra un contatore degli scambi effettuati.\n4. Al termine, visualizza la lista ordinata.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale dei 4 pilastri del pensiero computazionale consiste nel ridurre un problema alla sua essenza, ignorando dettagli irrilevanti?",
+          "options": [
+            "Decomposizione",
+            "Riconoscimento di pattern",
+            "Astrazione",
+            "Definizione di algoritmo"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Cos'è la notazione Big O?",
+          "options": [
+            "Il numero massimo assoluto di operazioni che un algoritmo può eseguire",
+            "Una misura che descrive come il tempo (o spazio) di un algoritmo cresce al crescere della dimensione dell'input",
+            "Il tempo medio di esecuzione su input casuale",
+            "Il numero di righe di codice dell'implementazione"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Qual è la complessità temporale della ricerca binaria?",
+          "options": ["O(n)", "O(n²)", "O(log n)", "O(1)"],
+          "correct": 2
+        },
+        {
+          "id": "q4",
+          "question": "Quando NON si può usare la ricerca binaria?",
+          "options": [
+            "Quando la lista contiene più di 1.000 elementi",
+            "Quando la lista non è ordinata",
+            "Quando si cerca un elemento di tipo stringa",
+            "Quando si usa un linguaggio interpretato come Python"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-06",
+      "title": "Programmazione Event-Driven con Scratch",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Perché Scratch\n\nScratch è un ambiente di programmazione visuale a blocchi sviluppato dal MIT. Non è solo didattico: la programmazione a blocchi è usata in contesti professionali (Node-RED per IoT, MIT App Inventor per app mobile, Unreal Engine Blueprints per videogame). Scratch permette di concentrarsi sulle strutture logiche senza la distrazione della sintassi.\n\n### Il paradigma event-driven\n\nNella programmazione event-driven, il flusso del programma è guidato da **eventi** — segnali asincroni che scattano in risposta a interazioni o condizioni:\n- Un click dell'utente\n- Un messaggio ricevuto\n- Un timer scaduto\n- Un dato arrivato da rete\n\nIn Scratch questo è esplicito: ogni script inizia con un blocco \"quando [evento]\". Negli ambienti professionali, lo stesso pattern appare in:\n- **Frontend web**: `addEventListener('click', handler)`\n- **Node.js**: `emitter.on('data', callback)`\n- **AWS Lambda**: funzioni triggered da eventi S3, API Gateway, SQS\n- **Sistemi a code**: Kafka, RabbitMQ\n\n### Componenti di Scratch\n\n- **Sprite**: oggetti con logica e aspetto. Ogni sprite ha i propri script e variabili.\n- **Stage**: lo sfondo, può avere script propri.\n- **Costumi**: stati visivi di uno sprite (utile per macchine a stati).\n- **Broadcast (invia messaggio)**: comunicazione tra sprite — un evento pubblicato che tutti possono ricevere. Equivale al pattern Observer.\n- **Parallelismo**: più script sullo stesso sprite partono contemporaneamente in risposta allo stesso evento.\n\n### Cloni\n\nI **cloni** sono istanze dinamiche di uno sprite create a runtime, ognuna con il proprio stato. Utili per rappresentare entità multiple dello stesso tipo (elementi di una lista, eventi concorrenti). Analogia professionale: processi fork, thread pool, container.\n\n### Blocchi personalizzati = funzioni\n\nI blocchi personalizzati di Scratch incapsulano logica riutilizzabile con un nome e parametri — esattamente una funzione. Usarli riduce la duplicazione del codice e rende il programma più leggibile.\n\n---\n\n## In pratica\n\n### Progetto — Simulatore di Stato di un Processo\n\nSimula il ciclo di vita di un processo software con gli stati: **IDLE → RUNNING → WAITING → DONE → IDLE**\n\n**Step 1**: crea uno sprite \"processo\" con 4 costumi (uno per stato), colorati diversamente.\n\n**Step 2**: crea 4 pulsanti sprite (START, PAUSE, RESUME, RESET).\n\n**Step 3**: logica degli stati con broadcast:\n```\nquando ricevo \"start\"\n  se [stato = IDLE] allora\n    cambia costume in RUNNING\n    imposta stato a RUNNING\n```\n\n**Step 4**: aggiungi un timer che in stato RUNNING incrementa ogni secondo e si ferma in WAITING/DONE.\n\n**Step 5**: crea 3–5 cloni del processo e gestiscili indipendentemente (ogni clone ha il suo stato e timer).\n\n**Obiettivo**: visualizzare come più processi possono essere in stati diversi contemporaneamente — il multitasking del modulo 2 reso visibile.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cos'è un evento nella programmazione event-driven?",
+          "options": [
+            "Una variabile che cambia valore a runtime",
+            "Un segnale (click, messaggio, timer, dato in arrivo) che scatena l'esecuzione di codice registrato per quell'evento",
+            "Una funzione che viene chiamata all'avvio del programma",
+            "Un errore che interrompe l'esecuzione"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "In quale contesto professionale si usa lo stesso paradigma event-driven di Scratch?",
+          "options": [
+            "Solo nella programmazione funzionale pura senza effetti collaterali",
+            "React (click handlers), Node.js (eventi I/O), AWS Lambda (trigger), sistemi a code di messaggi",
+            "Esclusivamente nei game engine come Unity e Unreal",
+            "Solo nei sistemi embedded con microcontroller"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "In Scratch, cosa sono i cloni?",
+          "options": [
+            "Copie statiche di uno sprite definite prima dell'esecuzione del programma",
+            "Copie dinamiche di uno sprite create a runtime, ognuna con il proprio stato indipendente",
+            "Un backup automatico dello stage in caso di errore",
+            "Variabili globali duplicate tra sprite diversi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Perché i blocchi personalizzati di Scratch sono assimilabili al concetto di funzione?",
+          "options": [
+            "Perché hanno un nome e possono accettare parametri in input",
+            "Perché vengono eseguiti solo quando si clicca la bandiera verde",
+            "Perché modificano lo sfondo dello stage",
+            "Perché sono compilati in JavaScript"
+          ],
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "id": "mod-07",
+      "title": "Variabili, Liste e Strutture Dati in Scratch",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Variabili\n\nUna variabile è un contenitore con un nome che tiene un singolo valore. In Scratch:\n- **Globale (per tutti gli sprite)**: accessibile e modificabile da qualsiasi sprite.\n- **Locale (solo per questo sprite)**: incapsulata nello sprite, invisibile agli altri.\n\nPreferire variabili locali riduce l'accoppiamento tra componenti — principio valido in qualsiasi linguaggio.\n\n### Tipi di dato\n\n| Tipo | Esempi | Operazioni principali |\n| --- | --- | --- |\n| Numero | `42`, `3.14`, `-7` | Aritmetica, confronto |\n| Stringa | `\"ciao\"`, `\"Milano\"` | Concatenazione, lunghezza, estrazione |\n| Booleano | `vero`, `falso` | AND, OR, NOT |\n\nIn Scratch i tipi non sono esplicitamente dichiarati (come in Python), ma il concetto è lo stesso.\n\n### Liste\n\nUna **lista** è una sequenza ordinata di valori indicizzata. In Scratch l'indice parte da **1** (a differenza della maggior parte dei linguaggi che usano 0 — per ragioni storiche legate all'aritmetica dei puntatori in C).\n\nOperazioni fondamentali:\n- `aggiungi [valore]` → append\n- `inserisci [valore] alla posizione [n]` → insert\n- `elimina elemento [n]` → delete\n- `elemento [n] di [lista]` → read by index\n- `lunghezza di [lista]` → length\n- `[lista] contiene [valore]` → contains check\n\n### Operatori logici\n\n| Operatore | Risultato |\n| --- | --- |\n| A **AND** B | Vero solo se A e B sono entrambi veri |\n| A **OR** B | Vero se almeno uno tra A e B è vero |\n| **NOT** A | Inverte il valore booleano |\n\n### Stringhe\n\nUna stringa è una sequenza di caratteri. Operazioni utili in Scratch:\n- `unisci [s1] e [s2]` → concatenazione\n- `lunghezza di [s]` → numero di caratteri\n- `lettera [n] di [s]` → accesso al carattere in posizione n\n\n### Lista vs variabile\n\nUsa una **variabile** quando tieni traccia di un singolo valore che cambia (punteggio, stato corrente, nome utente).\nUsa una **lista** quando hai una collezione di elementi dello stesso tipo (voci di menu, dati da elaborare, cronologia).\n\n---\n\n## In pratica\n\n### Progetto — Task Tracker\n\nCostruisci un gestore di attività con interfaccia in Scratch:\n\n**Dati:**\n- Lista `task_nomi`: nomi delle attività\n- Lista `task_stati`: \"da fare\" o \"fatto\" per ogni task (stesso indice)\n- Variabile `task_corrente`: indice del task selezionato\n\n**Funzionalità:**\n1. **Aggiungi task**: chiede il nome e lo aggiunge con stato \"da fare\".\n2. **Visualizza lista**: mostra tutti i task con il loro stato.\n3. **Segna come fatto**: cambia lo stato del task corrente.\n4. **Filtra**: mostra solo i task \"da fare\" o solo i \"fatto\".\n5. **Conta**: mostra quanti task completati su totale (es. \"3/7 completati\").\n\n**Struttura consigliata**: usa blocchi personalizzati per ogni operazione (aggiungi, visualizza, segna, filtra) — ognuno corrisponde a una funzione.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è la differenza principale tra una variabile e una lista?",
+          "options": [
+            "Una variabile può contenere solo numeri; una lista può contenere qualsiasi tipo",
+            "Una variabile contiene un singolo valore; una lista contiene una sequenza ordinata di valori",
+            "Le liste sono più veloci delle variabili nell'accesso diretto",
+            "Non c'è differenza: sono intercambiabili"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Perché molti linguaggi usano l'indice 0 per il primo elemento di un array?",
+          "options": [
+            "È una convenzione arbitraria senza motivazione tecnica",
+            "Per ragioni storiche legate all'aritmetica dei puntatori in C: l'indice è l'offset dall'inizio dell'array in memoria",
+            "Perché l'indice 0 è computazionalmente più efficiente",
+            "Per distinguere array vuoti da array con un solo elemento"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cosa restituisce l'operatore logico AND?",
+          "options": [
+            "Vero se almeno una delle due condizioni è vera",
+            "Vero solo se entrambe le condizioni sono vere",
+            "Il valore numerico della prima condizione",
+            "Sempre vero se le condizioni sono dello stesso tipo"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Quando è più appropriato usare una struttura chiave-valore (dizionario) invece di una lista?",
+          "options": [
+            "Quando si vuole mantenere l'ordine di inserimento degli elementi",
+            "Quando si deve accedere ai dati tramite un identificatore significativo (nome, ID) invece di una posizione numerica",
+            "Quando si devono effettuare molte operazioni di ordinamento",
+            "Quando si lavora esclusivamente con valori numerici"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-08",
+      "title": "Progetto Scratch",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Ciclo di sviluppo software (mini)\n\nPrima di scrivere codice, anche per un progetto piccolo, vale la pena fare:\n\n1. **Requisiti**: cosa deve fare il programma? Chi lo usa? Quali sono i casi limite?\n2. **Progettazione**: struttura dei dati, schermate, flusso logico — sulla carta o su uno schema.\n3. **MVP (Minimum Viable Product)**: la versione minima funzionante. Inizia da qui, non dall'idea finale.\n4. **Iterazione**: aggiungi funzionalità una alla volta, testando ogni aggiunta.\n5. **Pubblicazione**: condividere un progetto — anche semplice — costringe a renderlo davvero funzionante per altri.\n\n### Tre opzioni di progetto\n\nScegli in base ai tuoi interessi. Tutti e tre usano i concetti dei moduli 6 e 7.\n\n---\n\n#### Opzione A — Visualizzatore di Algoritmo\n\n**Cosa fa**: visualizza il Bubble Sort passo per passo su una lista di numeri casuali.\n\n**Requisiti minimi:**\n- Genera 8–12 numeri casuali e li mostra come barre verticali proporzionali.\n- Ogni confronto viene animato (le due barre si colorano di rosso).\n- Ogni scambio è visibile (le barre si muovono).\n- Un contatore mostra il numero di confronti e scambi.\n- Pulsante per resettare con una nuova lista casuale.\n\n**Estensioni**: aggiungi un controllo di velocità; aggiungi un secondo algoritmo (Selection Sort) e confronta il numero di operazioni.\n\n---\n\n#### Opzione B — Budget Tracker Interattivo\n\n**Cosa fa**: gestisce un budget con categorie e calcola saldi e statistiche.\n\n**Requisiti minimi:**\n- Inserisci voci di spesa con nome, importo e categoria (es. Cibo, Trasporti, Lavoro).\n- Visualizza la lista delle voci.\n- Calcola il totale per categoria.\n- Mostra il saldo rimanente rispetto a un budget impostato.\n\n**Estensioni**: grafici a barre per categoria; avviso quando si supera il budget.\n\n---\n\n#### Opzione C — Simulatore di Workflow\n\n**Cosa fa**: simula il ciclo di vita di ticket o task in un sistema tipo Kanban.\n\n**Requisiti minimi:**\n- 3 colonne: Backlog, In Progress, Done.\n- Ogni task è uno sprite cliccabile con un nome.\n- Click su un task lo sposta alla colonna successiva.\n- Contatore di task per colonna.\n- Possibilità di aggiungere nuovi task al Backlog.\n\n**Estensioni**: priorità (alta/media/bassa) con colori diversi; timer che mostra da quanti secondi un task è in \"In Progress\".\n\n---\n\n## In pratica\n\n1. **Scegli il progetto** e scrivi i requisiti in 5–10 punti.\n2. **Disegna lo schema** delle schermate e dei dati su carta prima di aprire Scratch.\n3. **Implementa l'MVP**: parti dalle funzionalità core, senza grafica elaborata.\n4. **Testa** ogni funzionalità aggiunta prima di passare alla successiva.\n5. **Pubblica** il progetto su Scratch e condividi il link.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale fase del ciclo di sviluppo software viene prima della scrittura del codice?",
+          "options": [
+            "Testing e debugging",
+            "Deploy in produzione",
+            "Analisi dei requisiti e progettazione",
+            "Refactoring e ottimizzazione"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Cos'è un MVP (Minimum Viable Product)?",
+          "options": [
+            "La versione finale e completa di un prodotto con tutte le funzionalità",
+            "La versione minima funzionante che soddisfa i requisiti core, utile per validare l'idea rapidamente",
+            "Un prototipo non funzionante usato solo per presentazioni ai clienti",
+            "Il prodotto con le performance più ottimizzate"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Perché è utile suddividere l'implementazione in iterazioni incrementali?",
+          "options": [
+            "Per rendere il progetto più complicato e strutturato",
+            "Per avere versioni funzionanti a ogni step, facilitare il debugging e adattarsi a cambiamenti nei requisiti",
+            "Perché è un requisito obbligatorio di Scratch",
+            "Per poter parallelizzare il lavoro su più sviluppatori"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Perché pubblicare un progetto — anche semplice — ha valore pratico?",
+          "options": [
+            "Perché aumenta automaticamente le prestazioni del codice",
+            "Perché costringe a renderlo davvero funzionante per altri e contribuisce a costruire un portfolio tangibile",
+            "Perché i siti di hosting ottimizzano il codice automaticamente",
+            "Non ha valore: solo progetti professionali completi meritano di essere pubblicati"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-09",
+      "title": "Da Scratch a Python",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Perché i linguaggi testuali\n\nScratch è ottimo per ragionare sulla struttura del codice, ma ha limiti: non è versionabile con Git, non scala, non si integra con sistemi esterni, non ha librerie per data science o web. I linguaggi testuali superano questi limiti.\n\n### Perché Python\n\n**Python** è uno dei linguaggi più usati al mondo per:\n- **Data science e ML**: NumPy, pandas, scikit-learn, TensorFlow, PyTorch.\n- **Backend web**: Django, FastAPI, Flask.\n- **Scripting e automazione**: task ripetitivi, elaborazione file, CI/CD.\n- **Scripting scientifico**: NASA, CERN, bioinformatica.\n- **AI**: i training script di GPT, Claude, Gemini sono scritti in Python.\n\nLa sintassi vicina all'inglese e la tipizzazione dinamica la rendono adatta per iniziare; la vastità dell'ecosistema la rendono rilevante per continuare.\n\n### Scratch → Python: confronto diretto\n\n| Concetto | Scratch | Python |\n| --- | --- | --- |\n| Stampa output | `dire [ciao]` | `print(\"ciao\")` |\n| Variabile | `imposta x a 5` | `x = 5` |\n| Input | `chiedi [] e attendi` | `input(\"Testo: \")` |\n| Condizione | blocco `se ... allora` | `if condizione:` |\n| Ciclo for | `ripeti 10 volte` | `for i in range(10):` |\n| Ciclo while | `ripeti finché non []` | `while condizione:` |\n| Funzione | blocco personalizzato | `def nome(parametri):` |\n\n### Sintassi fondamentale\n\n```python\n# Commento: il computer lo ignora\n\n# Variabili\nnome = \"Daniele\"\neta = 30\naltezza = 1.82\nattivo = True\n\n# Output\nprint(\"Ciao,\", nome)\nprint(f\"Hai {eta} anni\")  # f-string: interpola variabili\n\n# Input\nrisposta = input(\"Come ti chiami? \")\nprint(\"Ciao,\", risposta)\n\n# Conversione di tipo\nnumero = int(input(\"Inserisci un numero: \"))\n```\n\n**Indentazione**: Python usa l'indentazione (4 spazi) per delimitare i blocchi — non parentesi graffe. È obbligatoria e strutturale.\n\n### Installazione\n\n1. Scarica Python 3.x da python.org.\n2. Installa VS Code + estensione Python (Microsoft).\n3. Verifica: apri terminale e scrivi `python --version`.\n\n---\n\n## In pratica\n\n### Programma 1 — CLI con argomenti\n\n```python\nnome = input(\"Il tuo nome: \")\ncittà = input(\"La tua città: \")\nlavoro = input(\"Il tuo ruolo: \")\n\nprint(f\"\\n--- Profilo ---\")\nprint(f\"Nome: {nome}\")\nprint(f\"Città: {città}\")\nprint(f\"Ruolo: {lavoro}\")\n```\n\n### Programma 2 — Convertitore di unità\n\nScrivi un convertitore che:\n1. Chiede una temperatura in Celsius.\n2. La converte in Fahrenheit: `F = C * 9/5 + 32`.\n3. La converte in Kelvin: `K = C + 273.15`.\n4. Stampa entrambi i risultati formattati a 2 decimali.\n\n### Programma 3 — Word frequency counter\n\n```python\ntesto = input(\"Inserisci una frase: \")\nparole = testo.lower().split()\nconteggio = {}\n\nfor parola in parole:\n    if parola in conteggio:\n        conteggio[parola] += 1\n    else:\n        conteggio[parola] = 1\n\nprint(\"\\nFrequenza parole:\")\nfor parola, n in conteggio.items():\n    print(f\"  {parola}: {n}\")\n```\n\nMandalo con testi diversi. Cosa noti se inserisci lo stesso testo con maiuscole diverse?",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale caratteristica sintattica è obbligatoria e strutturale in Python, a differenza della maggior parte degli altri linguaggi?",
+          "options": [
+            "L'uso del punto e virgola a fine riga",
+            "L'indentazione, che definisce i blocchi di codice al posto delle parentesi graffe",
+            "La dichiarazione esplicita del tipo di tutte le variabili",
+            "L'uso di parentesi tonde per racchiudere i blocchi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "In quali ambiti professionali Python è più comunemente usato?",
+          "options": [
+            "Esclusivamente nello sviluppo di app mobile native",
+            "Data science, machine learning, scripting di automazione, sviluppo web backend",
+            "Solo nei sistemi embedded con microcontroller a bassa potenza",
+            "Esclusivamente nelle applicazioni desktop con interfaccia grafica"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cosa fa `input()` in Python?",
+          "options": [
+            "Stampa un valore sullo standard output",
+            "Legge una stringa inserita dall'utente da tastiera e la restituisce come valore stringa",
+            "Apre un file dal disco",
+            "Richiede un input numerico intero e lo converte automaticamente"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Perché Python è considerato adatto come primo linguaggio?",
+          "options": [
+            "Perché è il linguaggio più veloce in esecuzione",
+            "Perché la sintassi è vicina all'inglese naturale, con poca sintassi cerimoniosa e senza tipi obbligatori",
+            "Perché non ha bug a differenza di altri linguaggi",
+            "Perché funziona solo online e non richiede installazione locale"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-10",
+      "title": "Python: Controllo del Flusso e Tipi di Dato",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Tipi di dato principali\n\n| Tipo | Esempi | Note |\n| --- | --- | --- |\n| `int` | `42`, `-7`, `0` | Intero, precisione arbitraria in Python |\n| `float` | `3.14`, `-0.5` | Virgola mobile IEEE 754 |\n| `str` | `\"ciao\"`, `'mondo'` | Immutabile, indicizzata da 0 |\n| `bool` | `True`, `False` | Sottotipo di int: `True == 1` |\n| `list` | `[1, 2, 3]` | Mutabile, ordinata |\n| `dict` | `{\"k\": \"v\"}` | Chiave-valore, accesso O(1) |\n| `None` | `None` | Assenza di valore (null) |\n\n**Conversione di tipo:**\n```python\nint(\"42\")       # 42\nfloat(\"3.14\")   # 3.14\nstr(42)         # \"42\"\nbool(0)         # False (0, \"\", [], None sono falsy)\n```\n\n### Condizioni\n\n```python\nvoto = int(input(\"Voto (0-100): \"))\n\nif voto >= 90:\n    print(\"Eccellente\")\nelif voto >= 70:\n    print(\"Buono\")\nelif voto >= 60:\n    print(\"Sufficiente\")\nelse:\n    print(\"Insufficiente\")\n```\n\n**Operatori di confronto**: `==`, `!=`, `<`, `>`, `<=`, `>=`\n**Operatori logici**: `and`, `or`, `not`\n\n### Ciclo for\n\n```python\n# Itera su un range\nfor i in range(5):      # 0, 1, 2, 3, 4\n    print(i)\n\n# Itera su una lista\nfrutti = [\"mela\", \"banana\", \"ciliegia\"]\nfor frutto in frutti:\n    print(frutto)\n\n# Con enumerate (indice + valore)\nfor i, frutto in enumerate(frutti):\n    print(f\"{i}: {frutto}\")\n```\n\n### Ciclo while\n\nUsa `while` quando non conosci in anticipo il numero di iterazioni.\n\n```python\ntentativi = 0\nmax_tentativi = 3\n\nwhile tentativi < max_tentativi:\n    pw = input(\"Password: \")\n    if pw == \"segreto\":\n        print(\"Accesso concesso\")\n        break\n    tentativi += 1\n    print(f\"Errata. Rimangono {max_tentativi - tentativi} tentativi\")\nelse:\n    print(\"Account bloccato\")\n```\n\n**`break`**: esce immediatamente dal ciclo.\n**`continue`**: salta al prossimo ciclo senza eseguire il resto del corpo.\n\n### Leggere i messaggi di errore\n\nPython mostra l'errore con traceback (stack trace). Leggi dall'ultima riga:\n- `SyntaxError`: errore di sintassi — spesso indentazione o parentesi mancante.\n- `TypeError`: operazione su tipo sbagliato — es. `\"3\" + 3`.\n- `ValueError`: valore incompatibile — es. `int(\"abc\")`.\n- `NameError`: variabile non definita.\n- `IndexError`: indice fuori range su lista.\n- `KeyError`: chiave non trovata in dizionario.\n\n---\n\n## In pratica\n\n### Programma 1 — Calcolatrice con menu\n\n```python\nwhile True:\n    print(\"\\n1. Somma  2. Sottrazione  3. Moltiplicazione  4. Divisione  5. Esci\")\n    scelta = input(\"Scegli operazione: \")\n    if scelta == \"5\":\n        break\n    a = float(input(\"Primo numero: \"))\n    b = float(input(\"Secondo numero: \"))\n    if scelta == \"1\":\n        print(f\"Risultato: {a + b}\")\n    elif scelta == \"2\":\n        print(f\"Risultato: {a - b}\")\n    elif scelta == \"3\":\n        print(f\"Risultato: {a * b}\")\n    elif scelta == \"4\":\n        if b == 0:\n            print(\"Errore: divisione per zero\")\n        else:\n            print(f\"Risultato: {a / b}\")\n    else:\n        print(\"Scelta non valida\")\n```\n\n### Programma 2 — FizzBuzz\n\nClassico esercizio nei colloqui tecnici: stampa i numeri da 1 a 100, ma per i multipli di 3 stampa \"Fizz\", per i multipli di 5 stampa \"Buzz\", per i multipli di entrambi stampa \"FizzBuzz\".\n\nProva a scriverlo da zero prima di guardare soluzioni. Considera: qual è l'ordine corretto dei controlli?\n\n### Programma 3 — Analizzatore di testo\n\nScrivi un programma che legge una stringa e stampa:\n- Numero di caratteri totali\n- Numero di parole\n- Numero di righe (hint: conta i `\\n`)\n- La parola più lunga\n- Quante volte appare la lettera \"a\" (case-insensitive)\n\n### Bonus — FizzBuzz esteso\n\nModifica FizzBuzz per accettare due parametri da input (invece di 3 e 5) e un range personalizzato.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è la differenza tra un ciclo `for` e un ciclo `while` in Python?",
+          "options": [
+            "`for` è più veloce; `while` è più leggibile",
+            "`for` itera su una sequenza di lunghezza nota; `while` continua finché una condizione è vera, utile quando le iterazioni non sono note in anticipo",
+            "`for` può essere interrotto con `break`; `while` non può",
+            "Non c'è differenza: sono intercambiabili in ogni situazione"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa stampa questo codice?\n```python\nfor i in range(3):\n    print(i)\n```",
+          "options": ["1, 2, 3", "0, 1, 2", "0, 1, 2, 3", "Genera un errore di sintassi"],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cosa fa `continue` all'interno di un ciclo?",
+          "options": [
+            "Interrompe completamente il ciclo e passa all'istruzione successiva",
+            "Salta il resto del corpo del ciclo per l'iterazione corrente e passa alla prossima",
+            "Riavvia il ciclo dall'inizio azzerando il contatore",
+            "Mette in pausa l'esecuzione per 1 secondo"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Perché FizzBuzz è un esercizio comune nei colloqui tecnici?",
+          "options": [
+            "Perché richiede algoritmi avanzati che solo sviluppatori esperti conoscono",
+            "Perché testa la capacità di tradurre una specifica semplice in codice corretto, gestendo condizioni multiple nell'ordine giusto",
+            "Perché richiede librerie esterne specifiche di Python",
+            "Perché misura le prestazioni di esecuzione del candidato"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-11",
+      "title": "Python: Strutture Dati e Funzioni",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Liste in Python\n\n```python\nnumeri = [3, 1, 4, 1, 5, 9, 2, 6]\n\n# Accesso per indice (0-based)\nnumeri[0]   # 3 (primo elemento)\nnumeri[-1]  # 6 (ultimo elemento)\n\n# Slicing [inizio:fine:step] — fine escluso\nnumeri[1:4]   # [1, 4, 1]\nnumeri[:3]    # [3, 1, 4]\nnumeri[5:]    # [9, 2, 6]\nnumeri[::2]   # [3, 4, 5, 2] (ogni 2)\n\n# Metodi utili\nnumeri.append(7)     # aggiunge in fondo\nnumeri.insert(0, 0)  # inserisce in posizione\nnumeri.remove(1)     # rimuove prima occorrenza\nnumeri.sort()        # ordina in-place\nsorted(numeri)       # restituisce lista ordinata senza modificare\nlen(numeri)          # lunghezza\nsum(numeri)          # somma\nmin(numeri), max(numeri)\n```\n\n### Dizionari\n\nStruttura chiave-valore con accesso O(1) per chiave.\n\n```python\nutente = {\n    \"nome\": \"Daniele\",\n    \"eta\": 30,\n    \"città\": \"Milano\",\n    \"skills\": [\"Python\", \"Vue\", \"SQL\"]\n}\n\n# Accesso\nutente[\"nome\"]            # \"Daniele\"\nutente.get(\"email\", \"N/A\")  # valore default se chiave assente\n\n# Modifica\nutente[\"eta\"] = 31\nutente[\"email\"] = \"d@example.com\"\ndel utente[\"città\"]\n\n# Iterazione\nfor chiave, valore in utente.items():\n    print(f\"{chiave}: {valore}\")\n\n# Controlla presenza\n\"nome\" in utente  # True\n```\n\n### Lista vs Dizionario\n\nUsa una **lista** quando l'ordine conta e accedi per posizione: sequenze, code, stack.\nUsa un **dizionario** quando accedi per identificatore semantico: configurazione, profili utente, lookup table.\n\n### Funzioni\n\n```python\ndef calcola_media(numeri):\n    \"\"\"Calcola la media aritmetica di una lista di numeri.\"\"\"\n    if not numeri:\n        return None\n    return sum(numeri) / len(numeri)\n\n# Parametri con valore default\ndef saluta(nome, prefisso=\"Ciao\"):\n    return f\"{prefisso}, {nome}!\"\n\nprint(saluta(\"Alice\"))          # Ciao, Alice!\nprint(saluta(\"Alice\", \"Buongiorno\"))  # Buongiorno, Alice!\n```\n\n**`return`** vs **`print`**: `return` passa il valore al chiamante per usarlo in espressioni; `print` mostra il valore a schermo come effetto collaterale. Una funzione senza `return` restituisce `None`.\n\n### Librerie standard utili\n\n```python\nimport random\nrandom.randint(1, 10)        # intero casuale 1–10\nrandom.choice([\"a\",\"b\",\"c\"]) # elemento casuale da lista\nrandom.shuffle(lista)        # mescola in-place\n\nimport math\nmath.sqrt(16)   # 4.0\nmath.pi         # 3.14159...\nmath.floor(3.7) # 3\n\nimport os\nos.getcwd()          # directory corrente\nos.listdir(\".\")      # lista file nella directory\nos.path.join(\"dir\", \"file.txt\")  # costruisce path\n```\n\n---\n\n## In pratica\n\n### Programma 1 — Generatore di password\n\n```python\nimport random\nimport string\n\ndef genera_password(lunghezza=16, maiuscole=True, numeri=True, simboli=True):\n    caratteri = string.ascii_lowercase\n    if maiuscole:\n        caratteri += string.ascii_uppercase\n    if numeri:\n        caratteri += string.digits\n    if simboli:\n        caratteri += \"!@#$%^&*\"\n    return \"\".join(random.choice(caratteri) for _ in range(lunghezza))\n\nfor _ in range(5):\n    print(genera_password())\n```\n\n### Programma 2 — Rubrica contatti (CRUD)\n\nImplementa un sistema di gestione contatti con:\n- `aggiungi_contatto(rubrica, nome, telefono, email)` → aggiunge al dizionario\n- `cerca_contatto(rubrica, nome)` → restituisce i dati o None\n- `aggiorna_contatto(rubrica, nome, **campi)` → modifica campi selezionati\n- `elimina_contatto(rubrica, nome)` → rimuove\n- `lista_contatti(rubrica)` → stampa tutti in formato leggibile\n\nCrea un menu a terminale che permetta all'utente di scegliere l'operazione.\n\n### Programma 3 — Analisi statistica\n\nScrivi una funzione `analizza(numeri)` che restituisce un dizionario con:\n- `min`, `max`, `somma`, `media`, `mediana`\n- `moda` (valore più frequente)\n- `deviazione_standard` (opzionale: calcola senza importare librerie)\n\nTestala con liste di dimensioni diverse.\n\n### Bonus — Quiz da dizionario\n\nCrea un quiz da 5 domande dove le domande e le risposte sono memorizzate in una lista di dizionari. Alla fine mostra il punteggio.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Cosa restituisce `[1, 2, 3, 4, 5][1:4]` in Python?",
+          "options": [
+            "L'elemento all'indice 1 moltiplicato per 4",
+            "[2, 3, 4] — gli elementi dall'indice 1 incluso all'indice 4 escluso",
+            "[1, 2, 3, 4] — i primi 4 elementi",
+            "Genera un IndexError se la lista ha meno di 4 elementi"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Quando è preferibile usare un dizionario rispetto a una lista?",
+          "options": [
+            "Quando si vuole mantenere l'ordine di inserimento degli elementi",
+            "Quando si devono ordinare gli elementi frequentemente",
+            "Quando si accede ai dati tramite una chiave significativa (nome, ID) invece di una posizione numerica",
+            "Quando si lavora con valori numerici che richiedono operazioni matematiche"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q3",
+          "question": "Qual è la differenza tra `print(x)` e `return x` in una funzione?",
+          "options": [
+            "`print` è più veloce di `return` in esecuzione",
+            "`print` mostra il valore a schermo (effetto collaterale); `return` lo passa al chiamante per poterlo usare in espressioni",
+            "`return` stampa e poi termina il programma; `print` no",
+            "Sono equivalenti: entrambi rendono il valore disponibile al chiamante"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Cosa fa `import random` in Python?",
+          "options": [
+            "Genera automaticamente numeri casuali senza dover chiamare funzioni",
+            "Rende disponibili le funzioni del modulo `random` della libreria standard (es. `random.randint`, `random.choice`)",
+            "Installa il modulo random da PyPI se non è presente",
+            "Rende l'intera esecuzione del programma non deterministica"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-12",
+      "title": "Web: HTML, CSS e JavaScript",
+      "duration": "~90 min",
+      "content": "## Teoria\n\n### Come carica una pagina web\n\n1. Digiti l'URL → il browser chiede al DNS l'IP del server.\n2. Il browser invia una richiesta HTTP GET al server.\n3. Il server risponde con il file HTML.\n4. Il browser analizza l'HTML, trova riferimenti a CSS e JS, li richiede.\n5. Il browser costruisce il DOM dall'HTML, applica gli stili CSS, esegue JavaScript.\n\n### I tre linguaggi del Web\n\n| Linguaggio | Ruolo | Analogia |\n| --- | --- | --- |\n| **HTML** | Struttura e contenuto | Scheletro dell'edificio |\n| **CSS** | Aspetto visivo | Rivestimento e arredamento |\n| **JavaScript** | Comportamento e interattività | Impianto elettrico e domotica |\n\n### HTML essenziale\n\n```html\n<!DOCTYPE html>\n<html lang=\"it\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Titolo della pagina</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <header>\n    <h1>Titolo principale</h1>\n    <nav><a href=\"#about\">About</a> | <a href=\"#projects\">Progetti</a></nav>\n  </header>\n  <main>\n    <section id=\"about\">\n      <h2>Chi sono</h2>\n      <p>Paragrafo di testo.</p>\n    </section>\n    <section id=\"projects\">\n      <div class=\"card\"><h3>Progetto A</h3></div>\n    </section>\n  </main>\n  <footer><p>© 2024</p></footer>\n  <script src=\"script.js\"></script>\n</body>\n</html>\n```\n\n### CSS essenziale\n\n```css\n/* Variabili CSS (design system) */\n:root {\n  --colore-primario: #6200ea;\n  --colore-testo: #212121;\n  --font-principale: 'Inter', sans-serif;\n  --border-radius: 8px;\n}\n\n/* Selettori */\nh1 { color: var(--colore-primario); }        /* per tag */\n.card { background: white; }                 /* per classe */\n#hero { padding: 4rem 2rem; }               /* per id */\n.card h3 { font-weight: bold; }             /* discendente */\n\n/* Box model */\n.card {\n  margin: 1rem;\n  padding: 1.5rem;\n  border: 1px solid #ddd;\n  border-radius: var(--border-radius);\n}\n\n/* Layout con Flexbox */\n.grid {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n```\n\n### JavaScript e DOM\n\n```javascript\n// Selezionare elementi\nconst btn = document.querySelector('#theme-btn')\nconst body = document.body\n\n// Event listener\nbtn.addEventListener('click', () => {\n  body.classList.toggle('dark-mode')\n  btn.textContent = body.classList.contains('dark-mode')\n    ? 'Modalità chiara'\n    : 'Modalità scura'\n})\n\n// Creare elementi dinamicamente\nfunction aggiungiCard(titolo, descrizione) {\n  const card = document.createElement('div')\n  card.className = 'card'\n  card.innerHTML = `<h3>${titolo}</h3><p>${descrizione}</p>`\n  document.querySelector('.grid').appendChild(card)\n}\n```\n\n### Browser DevTools\n\n`F12` apre gli strumenti sviluppatore:\n- **Elements**: ispeziona e modifica HTML/CSS in tempo reale.\n- **Console**: esegui JavaScript, vedi errori e log.\n- **Network**: analizza le richieste HTTP (già visto nel mod-03).\n- **Lighthouse**: audit performance, accessibilità, SEO.\n\n### Deploy\n\nOpzioni gratuite per siti statici:\n- **GitHub Pages**: push su main → sito live su `username.github.io/repo`.\n- **Netlify**: drag & drop della cartella o deploy automatico da GitHub.\n- **Vercel**: ideale per framework (React, Vue, Next.js); gratuito per uso personale.\n\n---\n\n## In pratica\n\n### Progetto — Landing page portfolio\n\nCostruisci una pagina web professionale con:\n\n**HTML (struttura semantica):**\n- `<header>` con nome, ruolo e navigazione\n- `<section id=\"about\">` con bio e skill list\n- `<section id=\"projects\">` con almeno 2–3 card progetto\n- `<footer>` con link social e contatti\n\n**CSS (design system):**\n- Usa variabili CSS per colori e font\n- Layout responsive con Flexbox\n- Card con hover effect\n- Un gradient nel header\n\n**JavaScript:**\n- Toggle tema scuro/chiaro (aggiungi/rimuovi classe `dark-mode` sul body)\n- Al click su un bottone \"Mostra tutti i progetti\", rivela le card nascoste (toggle visibilità)\n\n**Deploy**: pubblica su GitHub Pages o Netlify. Testa su mobile (DevTools → Toggle device toolbar).",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Qual è la responsabilità di JavaScript nel contesto di una pagina web?",
+          "options": [
+            "Definire la struttura e il contenuto semantico della pagina",
+            "Controllare l'aspetto visivo (colori, layout, tipografia)",
+            "Aggiungere comportamento e interattività, manipolando il DOM in risposta a eventi utente",
+            "Gestire le richieste al server e la logica di business"
+          ],
+          "correct": 2
+        },
+        {
+          "id": "q2",
+          "question": "Cosa seleziona il selettore CSS `.card h3`?",
+          "options": [
+            "L'elemento con id 'h3' dentro un elemento con id 'card'",
+            "Tutti gli elementi `h3` che si trovano dentro elementi con classe `card`",
+            "L'elemento con classe 'card-h3'",
+            "Gli elementi con classe 'card' e quelli 'h3' separatamente"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cos'è il DOM?",
+          "options": [
+            "Il linguaggio di markup usato per scrivere HTML",
+            "La rappresentazione ad albero della pagina che il browser costruisce dall'HTML e che JavaScript può manipolare",
+            "Il protocollo usato per trasferire file HTML dal server al browser",
+            "Un database dove il browser salva le preferenze dell'utente"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Perché usare variabili CSS (`:root { --colore: #6200ea; }`) invece di valori hardcoded?",
+          "options": [
+            "Le variabili CSS sono supportate solo da Chrome e non da tutti i browser",
+            "Centralizza i valori del design system: modificare una variabile aggiorna tutta l'interfaccia in un solo punto",
+            "Rende il sito più veloce da caricare grazie alla cache del browser",
+            "È richiesto obbligatoriamente dagli standard W3C"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "mod-13",
+      "title": "Progetto Finale e Percorsi nel Tech",
+      "duration": "~90 min",
+      "content": "## Progetto finale\n\n### Come scegliere\n\nScegli qualcosa che usi davvero o che risolve un problema reale — anche piccolo. Un tool che usi ogni giorno è più formativo di una demo creata per il corso.\n\n---\n\n### Opzione A — Script Python di automazione\n\n**Idee:**\n- **Rinominatore batch**: legge tutti i file in una cartella, applica una regola di rinomina (es. aggiunge data, normalizza nomi) e li rinomina.\n- **Analizzatore CSV**: legge un file CSV (es. export da Excel), calcola statistiche per colonna, trova valori anomali, genera un report testuale.\n- **Scraper semplice**: usando `urllib` (solo libreria standard), scarica il contenuto di una pagina e ne estrae informazioni strutturate.\n\n**Struttura minima:**\n```python\ndef leggi_input(percorso):\n    \"\"\"Legge i dati dal file o directory specificato.\"\"\"\n    pass\n\ndef elabora(dati):\n    \"\"\"Applica la trasformazione ai dati.\"\"\"\n    pass\n\ndef scrivi_output(risultati, percorso):\n    \"\"\"Salva i risultati.\"\"\"\n    pass\n\nif __name__ == \"__main__\":\n    dati = leggi_input(\"input/\")\n    risultati = elabora(dati)\n    scrivi_output(risultati, \"output/report.txt\")\n```\n\n---\n\n### Opzione B — Portfolio web professionale\n\nEspandi il progetto del modulo 12 in un sito multi-sezione pronto da condividere:\n\n**Sezioni:**\n1. **Hero**: nome, ruolo, CTA (\"Contattami\" / \"Scarica CV\").\n2. **About**: bio professionale, stack tecnologico con icone, timeline esperienze.\n3. **Progetti**: card con titolo, descrizione, tecnologie usate, link GitHub/live.\n4. **Contatti**: form (solo frontend) o link diretti.\n\n**Requisiti tecnici:**\n- Responsive su mobile.\n- Tema scuro/chiaro persistente (usa `localStorage`).\n- Performance: immagini ottimizzate, nessuna libreria esterna non necessaria.\n- Deploy su dominio personalizzato (gratuito con GitHub Pages o Netlify).\n\n---\n\n### Opzione C — Progetto Scratch avanzato\n\nEstendi uno dei progetti dei moduli 7 o 8 con:\n- Almeno un livello di complessità in più rispetto all'MVP.\n- Persistenza dei dati tra sessioni (usa le variabili cloud di Scratch).\n- Un'interfaccia utente curata con transizioni e feedback visivo.\n- Pubblicazione e presentazione in 5 minuti (cosa fa, come l'hai costruito, cosa aggiungeresti).\n\n---\n\n## Percorsi nel tech\n\n### Le specializzazioni principali\n\n| Percorso | Cosa fa | Stack tipico |\n| --- | --- | --- |\n| **Frontend** | Interfacce utente web | HTML/CSS/JS, React/Vue, TypeScript |\n| **Backend** | Server, API, database | Python/Node.js/Go, SQL, REST/GraphQL |\n| **Fullstack** | Entrambi | Combinazione dei due |\n| **Data Science** | Analisi e modelli su dati | Python, pandas, scikit-learn, SQL |\n| **ML/AI Engineering** | Sistemi di intelligenza artificiale | Python, PyTorch/TensorFlow, MLOps |\n| **DevOps/Platform** | Infrastruttura, CI/CD, cloud | Linux, Docker, Kubernetes, AWS/GCP |\n| **Cybersecurity** | Sicurezza offensiva e difensiva | Networking, Linux, Python, protocolli |\n| **Mobile** | App iOS e Android | Swift/Kotlin o React Native/Flutter |\n\nNon esiste una scelta \"giusta\" — dipende da cosa ti motiva di più: UI, dati, infrastruttura, sicurezza.\n\n### Come continuare a imparare\n\n**Piattaforme gratuite o a basso costo:**\n- **freeCodeCamp** (freecodecamp.org): curriculum strutturato, certificazioni, community.\n- **The Odin Project** (theodinproject.com): percorso completo web development.\n- **CS50** (cs50.harvard.edu): corso introduttivo Harvard, gratuito online, rigoroso.\n- **Kaggle** (kaggle.com): data science e ML con dataset reali e competizioni.\n- **GitHub** (github.com): leggi codice open source, contribuisci, costruisci portfolio.\n\n**Cosa funziona davvero:**\n- Costruisci progetti su problemi che ti interessano.\n- Quando sei bloccato, leggi la documentazione ufficiale prima di Stack Overflow.\n- Contribuisci a un progetto open source — anche con correzioni di typo nei docs.\n- Entra in community (Discord, Slack, Reddit r/learnprogramming).\n\n### Il mindset del programmatore\n\n> **Fare errori è parte del processo, non un'eccezione.** Anche i senior developer passano ore su un bug che alla fine era un punto e virgola.\n\n> **Cercare su Google (e chiedere all'AI) è competenza, non imbroglio.** Nessuno memorizza la sintassi: si sa *cosa* cercare e si sa *valutare* quello che si trova.\n\n> **La logica conta più della sintassi.** La sintassi si impara in settimane; il pensiero computazionale richiede anni — ed è quello che distingue un programmatore da un esecutore.\n\n> **La pazienza batte il talento.** Chi riesce nel lungo periodo è chi non smette quando è bloccato.",
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Quale percorso professionale nel tech si concentra principalmente su server, API e database?",
+          "options": ["Frontend development", "Backend development", "UI/UX design", "DevOps"],
+          "correct": 1
+        },
+        {
+          "id": "q2",
+          "question": "Cosa significa che un software è \"open source\"?",
+          "options": [
+            "Il software è gratuito e senza nessuna licenza",
+            "Il codice sorgente è pubblicamente disponibile e può essere studiato, modificato e redistribuito secondo la licenza",
+            "Il software può essere usato solo per scopi educativi non commerciali",
+            "Il software non ha bug perché è revisionato da molte persone"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q3",
+          "question": "Cos'è il \"rubber duck debugging\"?",
+          "options": [
+            "Un metodo per testare il codice in ambienti di staging isolati",
+            "Spiegare il problema ad alta voce — anche a un oggetto inanimato — per forzare il ragionamento lineare e trovare l'errore",
+            "Usare un IDE che evidenzia automaticamente gli errori di logica",
+            "Un framework di unit testing automatizzato"
+          ],
+          "correct": 1
+        },
+        {
+          "id": "q4",
+          "question": "Quale approccio è più efficace per continuare a imparare a programmare?",
+          "options": [
+            "Studiare la teoria di tutti i linguaggi prima di scrivere una riga di codice",
+            "Costruire progetti reali su problemi che ti interessano, consultando documentazione e community quando si è bloccati",
+            "Seguire esclusivamente corsi universitari formali con esami",
+            "Memorizzare la sintassi di ogni linguaggio prima di passare a quello successivo"
+          ],
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}
