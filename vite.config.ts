@@ -6,7 +6,14 @@ import { resolve, join } from 'node:path'
 import fs from 'node:fs'
 import { generateSitemapXml } from './src/composables/useSitemap'
 
-/** robots.txt + sitemap.xml in dist con URL canoniche da VITE_BASE_URL. */
+const PROFILE_IMAGE_PATH = '/daniele-primasso-profile2-fcdbcb1c.jpeg'
+
+function normalizeSiteBase(root: string, mode: string): string {
+  const env = loadEnv(mode, root, '')
+  return (process.env.VITE_BASE_URL || env.VITE_BASE_URL || '').trim().replace(/\/$/, '')
+}
+
+/** robots.txt + sitemap.xml in dist; sostituisce placeholder in index.html per meta social assolute. */
 function seoDistPlugin(): Plugin {
   let root = ''
   let outDir = ''
@@ -19,9 +26,16 @@ function seoDistPlugin(): Plugin {
       outDir = resolve(config.root, config.build.outDir)
       mode = config.mode
     },
+    transformIndexHtml(html) {
+      const base = normalizeSiteBase(root, mode)
+      const ogImage = base ? `${base}${PROFILE_IMAGE_PATH}` : PROFILE_IMAGE_PATH
+      const canonical = base ? `${base}/` : 'https://dprimasso.it/'
+      return html
+        .replaceAll('__DP_SEO_OG_IMAGE__', ogImage)
+        .replaceAll('__DP_SEO_CANONICAL__', canonical)
+    },
     closeBundle() {
-      const env = loadEnv(mode, root, '')
-      const base = (process.env.VITE_BASE_URL || env.VITE_BASE_URL || '').trim().replace(/\/$/, '')
+      const base = normalizeSiteBase(root, mode)
 
       const robotsPath = join(outDir, 'robots.txt')
       const sitemapPath = join(outDir, 'sitemap.xml')
