@@ -7,10 +7,13 @@ import fs from 'node:fs'
 import { generateSitemapXml } from './src/composables/useSitemap'
 
 const PROFILE_IMAGE_PATH = '/daniele-primasso-profile2-fcdbcb1c.jpeg'
+const DEFAULT_SITE_BASE = 'https://dprimasso.it'
 
 function normalizeSiteBase(root: string, mode: string): string {
   const env = loadEnv(mode, root, '')
-  return (process.env.VITE_BASE_URL || env.VITE_BASE_URL || '').trim().replace(/\/$/, '')
+  return (process.env.VITE_BASE_URL || env.VITE_BASE_URL || DEFAULT_SITE_BASE)
+    .trim()
+    .replace(/\/$/, '')
 }
 
 /** robots.txt + sitemap.xml in dist; sostituisce placeholder in index.html per meta social assolute. */
@@ -40,19 +43,9 @@ function seoDistPlugin(): Plugin {
       const robotsPath = join(outDir, 'robots.txt')
       const sitemapPath = join(outDir, 'sitemap.xml')
 
-      if (base) {
-        const robots = `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`
-        fs.writeFileSync(robotsPath, robots, 'utf8')
-        fs.writeFileSync(sitemapPath, generateSitemapXml(base), 'utf8')
-      } else {
-        const robots = `User-agent: *\nAllow: /\n\n# Aggiungi VITE_BASE_URL in .env (build) per generare Sitemap e URL assoluti.\n`
-        fs.writeFileSync(robotsPath, robots, 'utf8')
-        try {
-          fs.unlinkSync(sitemapPath)
-        } catch {
-          /* niente sitemap in dist se non c'è base URL */
-        }
-      }
+      const robots = `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`
+      fs.writeFileSync(robotsPath, robots, 'utf8')
+      fs.writeFileSync(sitemapPath, generateSitemapXml(base), 'utf8')
     },
   }
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-# In produzione, `vite build` con VITE_BASE_URL riscrivve robots.txt e genera sitemap.xml in dist/.
+Sitemap: https://dprimasso.it/sitemap.xml
